@@ -1,5 +1,5 @@
 ﻿Fidibo
-1.0.0.0
+
 
 winexe
 C#
@@ -12,9 +12,9 @@ TRACE;DEBUG;NETCOREAPP;NETCOREAPP3_1;
 F:\aphw\Fidibo\Fidibo\App.xaml
 11407045341
 
-51953460112
+3-1233169557
 192-1533232326
 MainWindow.xaml;
 
-True
+False
 

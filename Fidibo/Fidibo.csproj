@@ -6,4 +6,14 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="Resources\backbutton.png" />
+    <None Remove="Resources\closebutton.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\backbutton.png" />
+    <Resource Include="Resources\closebutton.png" />
+  </ItemGroup>
+
 </Project>

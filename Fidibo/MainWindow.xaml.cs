@@ -24,5 +24,66 @@ namespace Fidibo
         {
             InitializeComponent();
         }
+
+        private void Close_Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void Admin_Button_Click(object sender, RoutedEventArgs e)
+        {
+            Admin_Login.Visibility = Visibility.Visible;
+            login_border.Visibility = Visibility.Collapsed;
+            Customer_Login.Visibility = Visibility.Collapsed;
+            Customer_sign_up.Visibility = Visibility.Collapsed;
+        }
+
+        private void customer_button_Click(object sender, RoutedEventArgs e)
+        {
+            Admin_Login.Visibility = Visibility.Collapsed;
+            login_border.Visibility = Visibility.Collapsed;
+            Customer_Login.Visibility = Visibility.Visible;
+            Customer_sign_up.Visibility = Visibility.Collapsed;
+        }
+
+        private void Back_Button_Click(object sender, RoutedEventArgs e)
+        {
+
+            Admin_Login.Visibility = Visibility.Collapsed;
+            login_border.Visibility = Visibility.Visible;
+            Customer_Login.Visibility = Visibility.Collapsed;
+            Customer_sign_up.Visibility = Visibility.Collapsed;
+        }
+
+        private void Admin_Login_Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Customer_Login_Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void go_to_sign_up_Click(object sender, RoutedEventArgs e)
+        {
+            Admin_Login.Visibility = Visibility.Collapsed;
+            login_border.Visibility = Visibility.Collapsed;
+            Customer_Login.Visibility = Visibility.Collapsed;
+            Customer_sign_up.Visibility = Visibility.Visible;
+        }
+
+        private void Sign_Up_Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Back_To_Login_Button_Click(object sender, RoutedEventArgs e)
+        {
+            Admin_Login.Visibility = Visibility.Collapsed;
+            login_border.Visibility = Visibility.Collapsed;
+            Customer_Login.Visibility = Visibility.Visible;
+            Customer_sign_up.Visibility = Visibility.Collapsed;
+        }
     }
 }

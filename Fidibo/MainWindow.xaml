@@ -5,8 +5,90 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Fidibo"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="500" Width="400" WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid>
+        <Border x:Name="login_border" Background="#1e272e" Visibility="Visible">
+            <Grid>
+                <Button x:Name="Close_Button" Background="#1e272e" Height ="50" Width="50" HorizontalAlignment="Right" Grid.Row="0" VerticalAlignment="Top" Click="Close_Button_Click" BorderBrush="#1e272e">
+                    <Image Source="Resources/closebutton.png" />
+                </Button>
 
+                <TextBlock Text="Login" FontSize="40" HorizontalAlignment="Center" Margin="0,137,0,303" RenderTransformOrigin="0.5,0.5" FontFamily="Comic Sans MS" Foreground="#9AECDB">
+
+                </TextBlock>
+                <TextBlock Text="Please Choose your accessibility : " HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,197,0,0" Foreground="#808e9b"/>
+
+                <Button x:Name="Admin_Button" Height="50" Width="200" Margin="100,250,100,200" Background="#1e272e" Content="Admin" Foreground="#fff200" FontSize="20" BorderBrush="#fff200" Click="Admin_Button_Click" />
+                <Button x:Name="customer_button" Height="50" Width="200" Margin="100,329,100,121" Background="#1e272e" Content="Customer" Foreground="#fff200" FontSize="20" BorderBrush="#fff200" Click="customer_button_Click"/>
+
+            </Grid>
+        </Border>
+
+        <Border x:Name="Admin_Login" Visibility="Collapsed" Background="#1e272e">
+            <Grid>
+
+                <Button x:Name="Back_Button" Height="50" Width="50" VerticalAlignment="Top" HorizontalAlignment="Left" Background="#1e272e" BorderBrush="#1e272e" Click="Back_Button_Click">
+                    <Image Source="Resources/backbutton.PNG"/>
+                </Button>
+                <TextBlock Text="Login As Admin :" FontSize="30" HorizontalAlignment="Center" Margin="0,137,0,303" RenderTransformOrigin="0.5,0.5" FontFamily="Comic Sans MS" Foreground="#9AECDB">
+
+                </TextBlock>
+
+                <TextBlock Text="Email : " Height="100" Margin="40,215,40,185" Foreground="White" FontFamily="Verdana"/>
+                <TextBox x:Name="admin_email_box" Height="25" Margin="40" Background="#1e272e" BorderBrush="#fff200" FontSize="16" Foreground="#fff200"/>
+
+                <TextBlock Text="Password : " Height="100" Margin="40,285,-40,115" Foreground="White" FontFamily="Verdana"/>
+                <PasswordBox x:Name="admin_password_box" Margin="40,310,40,165" Background="#1e272e" BorderBrush="#fff200" FontSize="16" Foreground="#fff200" />
+
+                <Button x:Name="Admin_Login_Button" Height="40" Margin="60" VerticalAlignment="Bottom" Background="#2C3A47" BorderThickness="0" Content="Login" FontSize="25" Foreground="Aqua" Click="Admin_Login_Button_Click"/>
+            </Grid>
+        </Border>
+
+        <Border x:Name="Customer_Login" Visibility="Collapsed" Background="#1e272e">
+            <Grid>
+
+                <Button x:Name="Back_Button1" Height="50" Width="50" VerticalAlignment="Top" HorizontalAlignment="Left" Background="#1e272e" BorderBrush="#1e272e" Click="Back_Button_Click">
+                    <Image Source="Resources/backbutton.PNG"/>
+                </Button>
+                <TextBlock Text="Login As Customer :" FontSize="30" HorizontalAlignment="Center" Margin="0,137,0,303" RenderTransformOrigin="0.5,0.5" FontFamily="Comic Sans MS" Foreground="#9AECDB">
+                </TextBlock>
+
+                <TextBlock Text="Email : " Height="100" Margin="40,215,40,185" Foreground="White" FontFamily="Verdana"/>
+                <TextBox x:Name="customer_email_box" Height="25" Margin="40" Background="#1e272e" BorderBrush="#fff200" FontSize="16" Foreground="#fff200"/>
+
+                <TextBlock Text="Password : " Height="100" Margin="40,285,-40,115" Foreground="White" FontFamily="Verdana"/>
+                <PasswordBox x:Name="customer_password_box" Margin="40,310,40,165" Background="#1e272e" BorderBrush="#fff200" FontSize="16" Foreground="#fff200"/>
+
+                <Button x:Name="Customer_Login_Button" Height="40" Margin="60,367,60,0" VerticalAlignment="Top" Background="#2C3A47" BorderThickness="0" Content="Login" FontSize="25" Foreground="Aqua" Click="Customer_Login_Button_Click"/>
+
+                <Button x:Name="go_to_sign_up" Height="20" Content="Don't have an account? Click here to sign up" VerticalAlignment="Bottom" Margin="45,0,45,35" Background="#1e272e" BorderBrush="#1e272e" Foreground="#808e9b" Click="go_to_sign_up_Click"/>
+            </Grid>
+        </Border>
+
+        <Border  x:Name="Customer_sign_up" Background="#1e272e" Visibility="Collapsed">
+            <Grid>
+                <Button x:Name="Back_Button2" Height="50" Width="50" VerticalAlignment="Top" HorizontalAlignment="Left" Background="#1e272e" BorderBrush="#1e272e" Click="Back_Button_Click">
+                    <Image Source="Resources/backbutton.PNG"/>
+                </Button>
+                <TextBlock Text="Sign Up :" FontSize="30" HorizontalAlignment="Center" Margin="0,65,0,375" RenderTransformOrigin="0.5,0.5" FontFamily="Comic Sans MS" Foreground="#9AECDB">
+                </TextBlock>
+
+                <TextBlock Text="Name : " Height="100" Margin="40,123,40,277" Foreground="White" FontFamily="Verdana"/>
+                <TextBox x:Name="Name_Box" Height="25" Margin="40,148,40,327" Background="#1e272e" BorderBrush="#fff200" FontSize="16" Foreground="#fff200"/>
+
+                <TextBlock Text="Phone Number : " Height="100" Margin="40,186,-40,214" Foreground="White" FontFamily="Verdana"/>
+                <TextBox x:Name="Phone_Box" Margin="40,211,40,264" Background="#1e272e" BorderBrush="#fff200" FontSize="16" Foreground="#fff200"/>
+
+                <TextBlock Text="Email : " Height="100" Margin="40,253,40,147" Foreground="White" FontFamily="Verdana"/>
+                <TextBox x:Name="Email_Sign_Up_Box" Height="25" Margin="40,278,40,197" Background="#1e272e" BorderBrush="#fff200" FontSize="16" Foreground="#fff200"/>
+
+                <TextBlock Text="Password : " Height="100" Margin="40,321,-40,79" Foreground="White" FontFamily="Verdana"/>
+                <PasswordBox x:Name="Password_Sign_Up_Box" Margin="40,346,40,129" Background="#1e272e" BorderBrush="#fff200" FontSize="16" Foreground="#fff200"/>
+
+                <Button x:Name="Sign_Up_Button" Height="40" Margin="60,391,60,0" VerticalAlignment="Top" Background="#2C3A47" BorderThickness="0" Content="Sign Up" FontSize="25" Foreground="Aqua" Click="Sign_Up_Button_Click"/>
+
+                <Button x:Name="Back_To_Login_Button" Height="20" Content="Already have an account? Click here to login" VerticalAlignment="Top" Margin="45,450,45,0" Background="#1e272e" BorderBrush="#1e272e" Foreground="#808e9b" Click="Back_To_Login_Button_Click"/>
+            </Grid>
+        </Border>
     </Grid>
 </Window>
