@@ -1,0 +1,136 @@
+﻿<Window x:Class="Fidibo.Customer"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Fidibo"
+        mc:Ignorable="d"
+        Title="Customer" Height="400" Width="750" WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Background="#1e272e" FontFamily="Trebuchet MS">
+    <Grid>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.25*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Border x:Name="Welcome_Border" Grid.Column="1" Margin="5" BorderBrush="#808e9b" BorderThickness="1" Visibility="Visible">
+            <TextBlock Text="Welcome" FontSize="40" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#fff200" FontFamily="Tw Cen MT"/>
+        </Border>
+
+        <Border Grid.Column="0" Margin="5" BorderBrush="#808e9b" BorderThickness="1" Visibility="Visible">
+            <StackPanel>
+                <Button x:Name="Wallet_Button" Height="33" Width="105" Margin="5,8" Background="#2C3A47" BorderBrush="#808e9b" Content="Wallet" Foreground="#9AECDB" FontFamily="Segoe UI Black" Click="Wallet_Button_Click"/>
+                <Button x:Name="Library_Button" Height="33" Width="105" Margin="5,8" Background="#2C3A47" BorderBrush="#808e9b" Content="Library" Foreground="#9AECDB" FontFamily="Segoe UI Black" Click="Library_Button_Click"/>
+                <Button x:Name="Cart_Button" Height="33" Width="105" Margin="5,8" Background="#2C3A47" BorderBrush="#808e9b" Content="Cart" Foreground="#9AECDB" FontFamily="Segoe UI Black" Click="Cart_Button_Click"/>
+                <Button x:Name="Search_Button" Height="33" Width="105" Margin="5,8" Background="#2C3A47" BorderBrush="#808e9b" Content="Search" Foreground="#9AECDB" FontFamily="Segoe UI Black" Click="Search_Button_Click"/>
+                <Button x:Name="VIP_Button" Height="33" Width="105" Margin="5,8" Background="#2C3A47" BorderBrush="#808e9b" Content="Buy VIP" Foreground="#9AECDB" FontFamily="Segoe UI Black" Click="VIP_Button_Click"/>
+                <Button x:Name="BookMark_Button" Height="33" Width="105" Margin="5,8" Background="#2C3A47" BorderBrush="#808e9b" Content="Bookmarks" Foreground="#9AECDB" FontFamily="Segoe UI Black" Click="BookMark_Button_Click"/>
+                <Button x:Name="Edit_Profile_Button" Height="33" Width="105" Margin="5,8" Background="#2C3A47" BorderBrush="#808e9b" Content="Edit Profile" Foreground="#9AECDB" FontFamily="Segoe UI Black" Click="Edit_Profile_Button_Click"/>
+
+                <Button x:Name="Exit_Button" Height="25" Width="66" Margin="5,8" Background="#2C3A47" BorderBrush="#808e9b" Content="Exit" Foreground="#9AECDB" FontFamily="Segoe UI Black" Click="Exit_Button_Click"/>
+            </StackPanel>
+        </Border>
+
+        <Border x:Name="Wallet_Border" Grid.Column="1" Margin="5" BorderBrush="#808e9b" BorderThickness="1" Visibility="Collapsed">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <TextBlock x:Name="Cash_TextBlock" Grid.Row="0" Text="Your wallet's balance is : " FontSize="40" FontFamily="Cooper Black" Foreground="#fff200" HorizontalAlignment="Center" Margin="0,20"/>
+
+                <Button x:Name="Go_To_Raise_Balance" Grid.Row="1" Margin="75,75" Content="To raise your wallet's balance click here" FontSize="20" Background="#808e9b" Click="Go_To_Raise_Balance_Click"/>
+            </Grid>
+        </Border>
+
+        <Border x:Name="Library_Border" Grid.Column="1" Margin="5" BorderBrush="#808e9b" BorderThickness="1" Visibility="Collapsed">
+
+        </Border>
+
+        <Border x:Name="Cart_Border" Grid.Column="1" Margin="5" BorderBrush="#808e9b" BorderThickness="1" Visibility="Collapsed">
+            <Grid>
+                <Button x:Name="Go_To_Delete_Item_From_Cart_Button" Height="30" Width="150" Margin="5,340,400,5" Background="#808e9b" Content="Delet item from cart" FontSize="15" Foreground="Black" BorderThickness="0"/>
+            </Grid>
+        </Border>
+
+        <Border x:Name="Search_Border" Grid.Column="1" Margin="5" BorderBrush="#808e9b" BorderThickness="1" Visibility="Collapsed">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.4*"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Border>
+                    <Grid>
+                        <Button x:Name="Go_To_Search_By_Writer_Name" Content="Search by writer" Foreground="#fff200" Height="40" Width="100" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="150,30" Background="#7f8fa6" Click="Go_To_Search_By_Writer_Name_Click"/>
+                        <Button x:Name="Go_To_Search_By_Book_Name" Content="Search by book" Foreground="#fff200" Height="40" Width="100" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="150,30" Background="#7f8fa6" Click="Go_To_Search_By_Book_Name_Click"/>
+                    </Grid>
+                </Border>
+
+                <Border x:Name="SearchBy_Writer_Border" Grid.Row="1" Visibility="Collapsed" >
+                    <Grid>
+                        <TextBlock Text="Search by writer : " Margin="25,5" Foreground="#a4b0be"/>
+                        <TextBox Height="30" Width="400" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="25,35" Background="#dcdde1" BorderBrush="#fff200" BorderThickness="2"/>
+                        <Button x:Name="Search_By_Book_Name" Height="30" Width="60" HorizontalAlignment="Right"  VerticalAlignment="Top" Margin="30,35" Background="#0fb9b1" BorderThickness="1" Content="Search"/>
+                    </Grid>
+                </Border>
+
+                <Border x:Name="SearchBy_Book_Border" Grid.Row="1" Visibility="Collapsed">
+                    <Grid>
+                        <TextBlock Text="Search by book's name : " Margin="25,5" Foreground="#a4b0be"/>
+                        <TextBox Height="30" Width="400" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="25,35" Background="#dcdde1" BorderBrush="#fff200" BorderThickness="2"/>
+                        <Button x:Name="Search_By_Writer_Name" Height="30" Width="60" HorizontalAlignment="Right"  VerticalAlignment="Top" Margin="30,35" Background="#0fb9b1" BorderThickness="1" Content="Search"/>
+                    </Grid>
+                </Border>
+            </Grid>
+        </Border>
+
+        <Border x:Name="Buy_VIP_Border" Grid.Column="1" Margin="5" BorderBrush="#808e9b" BorderThickness="1" Visibility="Collapsed">
+
+        </Border>
+
+        <Border x:Name="Bookmarks_Border" Grid.Column="1" Margin="5" BorderBrush="#808e9b" BorderThickness="1" Visibility="Collapsed">
+
+        </Border>
+
+        <Border x:Name="Edit_Profile_Border" Grid.Column="1" Margin="5" BorderBrush="#808e9b" BorderThickness="1" Visibility="Collapsed">
+            <StackPanel>
+                <TextBlock Text="New name : " Foreground="#a5b1c2" Margin="50,25,0,5" FontFamily="Segoe UI Black" />
+                <TextBox x:Name="New_Name_Text_Box" Margin="50,0" Background="#aaa69d" Height="25"/>
+
+                <TextBlock Text="New phone number : " Foreground="#a5b1c2" Margin="50,25,0,5" FontFamily="Segoe UI Black" />
+                <TextBox x:Name="New_Phone_Number_Text_Box" Margin="50,0" Background="#aaa69d" Height="25"/>
+
+                <TextBlock Text="New email : " Foreground="#a5b1c2" Margin="50,25,0,5" FontFamily="Segoe UI Black" />
+                <TextBox x:Name="New_Email_Text_Box" Margin="50,0" Background="#aaa69d" Height="25"/>
+
+                <TextBlock Text="New password : " Foreground="#a5b1c2" Margin="50,25,0,5" FontFamily="Segoe UI Black" />
+                <PasswordBox x:Name="New_Password_Password_Box" Margin="50,0" Background="#aaa69d" Height="25"/>
+
+                <Button x:Name="Apply_Edit_Button" Content="Apply changes" Margin="230,20" Height="30" Background="#006266" BorderThickness="0"/>
+            </StackPanel>
+        </Border>
+
+        <Border x:Name="Raise_Balance_Border" Grid.Column="1" Margin="5" BorderBrush="#808e9b" BorderThickness="1" Visibility="Collapsed">
+            <StackPanel>
+                <TextBlock Text="Ammout of cash : " Margin="20,10" Foreground="#a5b1c2"/>
+                <TextBox  x:Name="Amount_Of_Money_Box" Margin="20,0,150,0" Height="20" Background="#aaa69d"/>
+
+                <TextBlock  Text="Card number : " Margin="20,10" Foreground="#a5b1c2"/>
+                <TextBox x:Name="Card_Number_Box" Margin="20,0,150,0" Height="20" Background="#aaa69d"/>
+
+                <TextBlock Text="CVV2 : " Margin="20,10" Foreground="#a5b1c2"/>
+                <TextBox x:Name="CVV2_Box" Margin="20,0,150,0" Height="20" Background="#aaa69d"/>
+
+                <TextBlock Text="Expiration date : " Margin="20,10" Foreground="#a5b1c2"/>
+                <Grid>
+                    <TextBox x:Name="Expiration_Year_Box" Margin="20,0,150,0" Height="20" Width="30" Background="#aaa69d" HorizontalAlignment="Left"/>
+                    <TextBox x:Name="Expiration_month_Box" Margin="66,0,0,0" Height="20" Width="30" Background="#aaa69d" HorizontalAlignment="Left"/>
+                </Grid>
+
+                <Button x:Name="Pay_Wallet_Button" Height="30" Margin="200,30" Content="Pay" Background="#006266" FontSize="20" FontFamily="Trebuchet MS" BorderThickness="0" Click="Pay_Wallet_Button_Click"/>
+                <Button x:Name="Back_To_Wallet" Height="25" Margin="5,20,500,5" Content="Back" Background="#B53471" BorderThickness="0" Click="Back_To_Wallet_Click"/>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>

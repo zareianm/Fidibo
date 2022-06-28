@@ -62,7 +62,11 @@ namespace Fidibo
 
         private void Customer_Login_Button_Click(object sender, RoutedEventArgs e)
         {
-
+            if(customer_password_box.Password == "ab" && customer_email_box.Text == "ab")
+            {
+                Customer c = new Customer();
+                c.Show();
+                this.Close();            }
         }
 
         private void go_to_sign_up_Click(object sender, RoutedEventArgs e)
