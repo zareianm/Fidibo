@@ -1,0 +1,178 @@
+﻿<Window x:Class="Fidibo.Admin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Fidibo"
+        mc:Ignorable="d"
+        Title="Customer" Height="400" Width="750" WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Background="#1e272e" FontFamily="Trebuchet MS">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.25*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Border x:Name="Welcome_Border" Grid.Column="1" Margin="5" BorderBrush="#808e9b" BorderThickness="1" Visibility="Visible">
+            <TextBlock Text="Welcome" FontSize="40" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#fff200" FontFamily="Tw Cen MT"/>
+        </Border>
+
+        <Border Grid.Column="0" Margin="5" BorderBrush="#808e9b" BorderThickness="1" Visibility="Visible">
+            <StackPanel>
+                <Button x:Name="Add_Book_Button" Height="33" Width="105" Margin="5,8" Background="#2C3A47" BorderBrush="#808e9b" Content="Add book" Foreground="#9AECDB" FontFamily="Segoe UI Black" Click="Add_Book_Button_Click"/>
+                <Button x:Name="Edit_Book_Button" Height="33" Width="105" Margin="5,8" Background="#2C3A47" BorderBrush="#808e9b" Content="Edit book" Foreground="#9AECDB" FontFamily="Segoe UI Black" Click="Edit_Book_Button_Click"/>
+                <Button x:Name="Customers_Button" Height="33" Width="105" Margin="5,8" Background="#2C3A47" BorderBrush="#808e9b" Content="Customers" Foreground="#9AECDB" FontFamily="Segoe UI Black" Click ="Customers_Button_Click"/>
+                <Button x:Name="VIP_Setting_Button" Height="33" Width="105" Margin="5,8" Background="#2C3A47" BorderBrush="#808e9b" Content="VIP setting" Foreground="#9AECDB" FontFamily="Segoe UI Black" Click="VIP_Setting_Button_Click"/>
+                <Button x:Name="Discout_Button" Height="33" Width="105" Margin="5,8" Background="#2C3A47" BorderBrush="#808e9b" Content="Discount" Foreground="#9AECDB" FontFamily="Segoe UI Black" Click="Discout_Button_Click"/>
+                <Button x:Name="Sale_Rate_Button" Height="33" Width="105" Margin="5,8" Background="#2C3A47" BorderBrush="#808e9b" Content="Sale rate" Foreground="#9AECDB" FontFamily="Segoe UI Black" Click="Sale_Rate_Button_Click"/>
+                <Button x:Name="Safe_Button" Height="33" Width="105" Margin="5,8" Background="#2C3A47" BorderBrush="#808e9b" Content="Safe" Foreground="#9AECDB" FontFamily="Segoe UI Black" Click="Safe_Button_Click"/>
+
+                <Button x:Name="Exit_Button" Height="25" Width="66" Margin="5,8" Background="#2C3A47" BorderBrush="#808e9b" Content="Exit" Foreground="#9AECDB" FontFamily="Segoe UI Black" Click="Exit_Button_Click"/>
+            </StackPanel>
+        </Border>
+
+        <Border x:Name="Add_Book_Border" Grid.Column="1" Margin="5" BorderBrush="#808e9b" BorderThickness="1" Visibility="Collapsed">
+            <Grid>
+                <StackPanel>
+                    <TextBlock Text="Name of the new book :" Foreground="#dcdde1" Margin="30,10"/>
+                    <TextBox x:Name="Name_Box" Margin="30,0,150,0" Background="#dcdde1" BorderThickness="0"/>
+
+                    <TextBlock Text="Writer of the new book :" Foreground="#dcdde1" Margin="30,10"/>
+                    <TextBox x:Name="Writer_Box" Margin="30,0,150,0" Background="#dcdde1" BorderThickness="0"/>
+
+                    <TextBlock Text="Price of the new book :" Foreground="#dcdde1" Margin="30,10"/>
+                    <TextBox x:Name="Price_Box" Margin="30,0,150,0" Background="#dcdde1" BorderThickness="0"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <Border x:Name="Edit_Book_Border" Grid.Column="1" Margin="5" BorderBrush="#808e9b" BorderThickness="1" Visibility="Collapsed">
+            <Grid>
+                <Border x:Name="List_Of_Book_Border" Visibility="Visible">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="0.4*"/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Button x:Name="Go_To_Search_By_Writer_Name_Button" Content="Search by writer" Foreground="#fff200" Height="40" Width="100" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="150,15" Background="#7f8fa6" Click="Go_To_Search_By_Writer_Name_Button_Click"/>
+                        <Button x:Name="Go_To_Search_By_Book_Name_Button" Content="Search by book" Foreground="#fff200" Height="40" Width="100" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="150,15" Background="#7f8fa6" Click="Go_To_Search_By_Book_Name_Button_Click"/>
+                    </Grid>
+                </Border>
+
+                <Border x:Name="Search_By_Writer_Border" Visibility="Collapsed">
+                    <Grid>
+                        <TextBlock Text="Search by writer : " Margin="25,10" Foreground="#a4b0be"/>
+                        <TextBox x:Name="Search_By_Writer_Box" Height="30" Width="400" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="25,35" Background="#dcdde1" BorderBrush="#fff200" BorderThickness="2" FontSize="20"/>
+                        <Button x:Name="Search_By_Writer_Name_Button" Height="30" Width="60" HorizontalAlignment="Right"  VerticalAlignment="Top" Margin="30,35" Background="#0fb9b1" BorderThickness="1" Content="Search"/>
+                        <Button x:Name="Back_To_List_Of_Book_Button" Height="40" Width="80" Content="Back" Background="#B53471" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10" Click="Back_To_List_Of_Book_Button_Click"/>
+                    </Grid>
+                </Border>
+
+                <Border x:Name="Search_By_Book_Name_Border" Visibility="Collapsed">
+                    <Grid>
+                        <TextBlock Text="Search by name of book : " Margin="25,10" Foreground="#a4b0be"/>
+                        <TextBox x:Name="Search_By_Book_Name_Box" Height="30" Width="400" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="25,35" Background="#dcdde1" BorderBrush="#fff200" BorderThickness="2" FontSize="20"/>
+                        <Button x:Name="Search_By_Book_Name_BUtton" Height="30" Width="60" HorizontalAlignment="Right"  VerticalAlignment="Top" Margin="30,35" Background="#0fb9b1" BorderThickness="1" Content="Search"/>
+                        <Button x:Name="Back_To_List_Of_Book_Button2" Height="40" Width="80" Content="Back" Background="#B53471" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10" Click="Back_To_List_Of_Book_Button_Click"/>
+                    </Grid>
+                </Border>
+
+            </Grid>
+        </Border>
+
+        <Border x:Name="Customers_Border" Grid.Column="1" Margin="5" BorderBrush="#808e9b" BorderThickness="1" Visibility="Collapsed">
+            <Grid>
+                <Border x:Name="List_Of_Customer_Border" Visibility="Visible">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="0.4*"/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Button x:Name="Go_To_Search_By_Customer_Email_Button" Content="Search by email" Foreground="#fff200" Height="40" Width="100" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="150,15" Background="#7f8fa6" Click="Go_To_Search_By_Customer_Email_Button_Click"/>
+                        <Button x:Name="Go_To_Search_By_Customer_Name_Button" Content="Search by name" Foreground="#fff200" Height="40" Width="100" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="150,15" Background="#7f8fa6" Click="Go_To_Search_By_Customer_Name_Button_Click"/>
+
+                    </Grid>
+                </Border>
+
+                <Border x:Name="Search_By_Customer_Email_Border" Visibility="Collapsed">
+                    <Grid>
+                        <TextBlock Text="Search by Email : " Margin="25,10" Foreground="#a4b0be"/>
+                        <TextBox x:Name="Search_By_Customer_Email_Box" Height="30" Width="400" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="25,35" Background="#dcdde1" BorderBrush="#fff200" BorderThickness="2" FontSize="20"/>
+                        <Button x:Name="Search_By_Customer_Email_Button" Height="30" Width="60" HorizontalAlignment="Right"  VerticalAlignment="Top" Margin="30,35" Background="#0fb9b1" BorderThickness="1" Content="Search"/>
+                        <Button x:Name="Back_To_List_Of_Customer_Button" Height="40" Width="80" Content="Back" Background="#B53471" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10" Click="Back_To_List_Of_Customer_Button_Click"/>
+                    </Grid>
+                </Border>
+
+                <Border x:Name="Search_By_Customer_Name_Border" Visibility="Collapsed">
+                    <Grid>
+                        <TextBlock Text="Search by name : " Margin="25,10" Foreground="#a4b0be"/>
+                        <TextBox x:Name="Search_By_Customer_Name_Box" Height="30" Width="400" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="25,35" Background="#dcdde1" BorderBrush="#fff200" BorderThickness="2" FontSize="20"/>
+                        <Button x:Name="Search_By_Customer_Name_Button" Height="30" Width="60" HorizontalAlignment="Right"  VerticalAlignment="Top" Margin="30,35" Background="#0fb9b1" BorderThickness="1" Content="Search"/>
+                        <Button x:Name="Back_To_List_Of_Customer_Button2" Height="40" Width="80" Content="Back" Background="#B53471" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10" Click="Back_To_List_Of_Customer_Button_Click"/>
+                    </Grid>
+                </Border>
+
+            </Grid>
+        </Border>
+
+        <Border x:Name="VIP_Setting_Border" Grid.Column="1" Margin="5" BorderBrush="#808e9b" BorderThickness="1" Visibility="Collapsed">
+            <Grid>
+                <StackPanel>
+                    <TextBlock Text="Set new price for monthly subscription :" FontSize="15" Foreground="#dcdde1" Margin="20,20,20,15"/>
+                    <TextBox x:Name="New_Price_For_VIP_Box"  Margin="20,0,100,0" Background="#7f8fa6" BorderThickness="0" Height="20" FontSize="15"/>
+                    <Button x:Name="Go_To_Add_New_Book_To_VIP_Button" Content="Add new book to VIP section" Height="40" Margin="70,140" VerticalAlignment="Bottom" FontSize="20" Background="#95afc0" BorderThickness="0" Click="Go_To_Add_New_Book_To_VIP_Button_Click"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <Border x:Name="Add_Book_To_VIP_Border" Grid.Column="1" Margin="5" BorderBrush="#808e9b" BorderThickness="1" Visibility="Collapsed">
+            <Grid>
+                <Button x:Name="Add_Book_To_VIP_Button" FontSize="20" Height="30" Margin="0,274,0,64" Width="250" Background="#22a6b3" BorderThickness="0" Content="Add to VIP books"/>
+                <Button x:Name="Back_To_VIP_Button" Height="40" Width="80" Content="Back" Background="#B53471" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10" Click="Back_To_VIP_Button_Click"/>
+            </Grid>    
+        </Border>
+        
+        <Border x:Name="Discount_Setting_Border" Grid.Column="1" Margin="5" BorderBrush="#808e9b" BorderThickness="1" Visibility="Collapsed">
+
+        </Border>
+        
+        <Border x:Name="Sale_Rate_Setting_Border" Grid.Column="1" Margin="5" BorderBrush="#808e9b" BorderThickness="1" Visibility="Collapsed">
+
+        </Border>
+        
+        <Border x:Name="Safe_Setting_Border" Grid.Column="1" Margin="5" BorderBrush="#808e9b" BorderThickness="1" Visibility="Collapsed">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <TextBlock x:Name="Cash_TextBlock" Grid.Row="0" Text="Your safe's balance is : " FontSize="40" FontFamily="Cooper Black" Foreground="#fff200" HorizontalAlignment="Center" Margin="0,20"/>
+
+                <Button x:Name="Go_To_Transfer_Money_Button" Grid.Row="1" Margin="75,75" Content="To transfor money from safe click here" FontSize="20" Background="#808e9b" Click="Go_To_Transfer_Money_Button_Click"/>
+            </Grid>
+        </Border>
+        
+        <Border x:Name="Transfor_Money_Border" Grid.Column="1" Margin="5" BorderBrush="#808e9b" BorderThickness="1" Visibility="Collapsed">
+            <StackPanel>
+                <TextBlock Text="Ammout of cash : " Margin="20,10" Foreground="#a5b1c2"/>
+                <TextBox  x:Name="Amount_Of_Money_Box" Margin="20,0,150,0" Height="20" Background="#aaa69d"/>
+
+                <TextBlock  Text="Card number : " Margin="20,10" Foreground="#a5b1c2"/>
+                <TextBox x:Name="Card_Number_Box" Margin="20,0,150,0" Height="20" Background="#aaa69d"/>
+
+                <TextBlock Text="CVV2 : " Margin="20,10" Foreground="#a5b1c2"/>
+                <TextBox x:Name="CVV2_Box" Margin="20,0,150,0" Height="20" Background="#aaa69d"/>
+
+                <TextBlock Text="Expiration date : " Margin="20,10" Foreground="#a5b1c2"/>
+                <Grid>
+                    <TextBox x:Name="Expiration_Year_Box" Margin="20,0,150,0" Height="20" Width="30" Background="#aaa69d" HorizontalAlignment="Left"/>
+                    <TextBox x:Name="Expiration_month_Box" Margin="66,0,0,0" Height="20" Width="30" Background="#aaa69d" HorizontalAlignment="Left"/>
+                </Grid>
+
+                <Button x:Name="Transfer_Money_Button" Height="30" Margin="200,30" Content="Pay" Background="#006266" FontSize="20" FontFamily="Trebuchet MS" BorderThickness="0" Click="Transfer_Money_Button_Click"/>
+                <Button x:Name="Back_To_Safe_Setting_Button" Height="25" Margin="5,20,500,5" Content="Back" Background="#B53471" BorderThickness="0" Click="Back_To_Safe_Setting_Button_Click"/>
+            </StackPanel>
+        </Border>
+        
+    </Grid>
+</Window>

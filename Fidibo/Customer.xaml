@@ -71,7 +71,7 @@
                     <Grid>
                         <TextBlock Text="Search by writer : " Margin="25,5" Foreground="#a4b0be"/>
                         <TextBox Height="30" Width="400" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="25,35" Background="#dcdde1" BorderBrush="#fff200" BorderThickness="2"/>
-                        <Button x:Name="Search_By_Book_Name" Height="30" Width="60" HorizontalAlignment="Right"  VerticalAlignment="Top" Margin="30,35" Background="#0fb9b1" BorderThickness="1" Content="Search"/>
+                        <Button x:Name="Search_By_Writer_Name" Height="30" Width="60" HorizontalAlignment="Right"  VerticalAlignment="Top" Margin="30,35" Background="#0fb9b1" BorderThickness="1" Content="Search"/>
                     </Grid>
                 </Border>
 
@@ -79,7 +79,7 @@
                     <Grid>
                         <TextBlock Text="Search by book's name : " Margin="25,5" Foreground="#a4b0be"/>
                         <TextBox Height="30" Width="400" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="25,35" Background="#dcdde1" BorderBrush="#fff200" BorderThickness="2"/>
-                        <Button x:Name="Search_By_Writer_Name" Height="30" Width="60" HorizontalAlignment="Right"  VerticalAlignment="Top" Margin="30,35" Background="#0fb9b1" BorderThickness="1" Content="Search"/>
+                        <Button x:Name="Search_By_Book_Name" Height="30" Width="60" HorizontalAlignment="Right"  VerticalAlignment="Top" Margin="30,35" Background="#0fb9b1" BorderThickness="1" Content="Search"/>
                     </Grid>
                 </Border>
             </Grid>

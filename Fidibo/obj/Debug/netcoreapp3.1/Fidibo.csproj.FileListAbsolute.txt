@@ -20,3 +20,5 @@ F:\aphw\Fidibo\Fidibo\obj\Debug\netcoreapp3.1\Fidibo.pdb
 F:\aphw\Fidibo\Fidibo\obj\Debug\netcoreapp3.1\Fidibo.genruntimeconfig.cache
 F:\aphw\Fidibo\Fidibo\obj\Debug\netcoreapp3.1\Customer.g.cs
 F:\aphw\Fidibo\Fidibo\obj\Debug\netcoreapp3.1\Customer.baml
+F:\aphw\Fidibo\Fidibo\obj\Debug\netcoreapp3.1\Admin.g.cs
+F:\aphw\Fidibo\Fidibo\obj\Debug\netcoreapp3.1\Admin.baml

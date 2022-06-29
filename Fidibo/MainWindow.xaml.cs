@@ -57,16 +57,22 @@ namespace Fidibo
 
         private void Admin_Login_Button_Click(object sender, RoutedEventArgs e)
         {
-
+            if (admin_password_box.Password == "1234" && admin_email_box.Text == "Admin@gmail.com")
+            {
+                Admin a = new Admin();
+                a.Show();
+                this.Close();
+            }
         }
 
         private void Customer_Login_Button_Click(object sender, RoutedEventArgs e)
         {
-            if(customer_password_box.Password == "ab" && customer_email_box.Text == "ab")
+            if (customer_password_box.Password == "ab" && customer_email_box.Text == "ab")
             {
                 Customer c = new Customer();
                 c.Show();
-                this.Close();            }
+                this.Close();
+            }
         }
 
         private void go_to_sign_up_Click(object sender, RoutedEventArgs e)
