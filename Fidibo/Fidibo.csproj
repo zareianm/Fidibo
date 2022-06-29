@@ -9,11 +9,15 @@
   <ItemGroup>
     <None Remove="Resources\backbutton.png" />
     <None Remove="Resources\closebutton.png" />
+    <None Remove="Resources\data.mdf" />
+    <None Remove="Resources\data_log.ldf" />
   </ItemGroup>
 
   <ItemGroup>
     <Resource Include="Resources\backbutton.png" />
     <Resource Include="Resources\closebutton.png" />
+    <Resource Include="Resources\data.mdf" />
+    <Resource Include="Resources\data_log.ldf" />
   </ItemGroup>
 
 </Project>
