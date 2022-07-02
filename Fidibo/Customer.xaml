@@ -14,7 +14,10 @@
         </Grid.ColumnDefinitions>
 
         <Border x:Name="Welcome_Border" Grid.Column="1" Margin="5" BorderBrush="#808e9b" BorderThickness="1" Visibility="Visible">
-            <TextBlock Text="Welcome" FontSize="40" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#fff200" FontFamily="Tw Cen MT"/>
+            <Grid>
+                <TextBlock Text="Welcome" FontSize="40" VerticalAlignment="Top" HorizontalAlignment="Center" Foreground="#fff200" FontFamily="Tw Cen MT" Margin="0,101,0,0"/>
+                <TextBlock x:Name="Welcome_name_Text_Block" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="55" Foreground="#0be881" FontFamily="Segoe UI Semibold"/>
+            </Grid>
         </Border>
 
         <Border Grid.Column="0" Margin="5" BorderBrush="#808e9b" BorderThickness="1" Visibility="Visible">
@@ -38,8 +41,8 @@
                     <RowDefinition/>
                 </Grid.RowDefinitions>
 
-                <TextBlock x:Name="Cash_TextBlock" Grid.Row="0" Text="Your wallet's balance is : " FontSize="40" FontFamily="Cooper Black" Foreground="#fff200" HorizontalAlignment="Center" Margin="0,20"/>
-
+                <TextBlock  Grid.Row="0" Text="Your wallet's balance is : " FontSize="40" FontFamily="Cooper Black" Foreground="#fff200" HorizontalAlignment="Center" Margin="0,20"/>
+                <TextBlock x:Name="Cash_TextBlock"  FontSize="50" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,97,0,0" Foreground="#ff5e57"/>
                 <Button x:Name="Go_To_Raise_Balance" Grid.Row="1" Margin="75,75" Content="To raise your wallet's balance click here" FontSize="20" Background="#808e9b" Click="Go_To_Raise_Balance_Click"/>
             </Grid>
         </Border>
@@ -107,7 +110,7 @@
                 <TextBlock Text="New password : " Foreground="#a5b1c2" Margin="50,25,0,5" FontFamily="Segoe UI Black" />
                 <PasswordBox x:Name="New_Password_Password_Box" Margin="50,0" Background="#aaa69d" Height="25"/>
 
-                <Button x:Name="Apply_Edit_Button" Content="Apply changes" Margin="230,20" Height="30" Background="#006266" BorderThickness="0"/>
+                <Button x:Name="Apply_Edit_Button" Content="Apply changes" Margin="230,20" Height="30" Background="#006266" BorderThickness="0" Click="Apply_Edit_Button_Click"/>
             </StackPanel>
         </Border>
 
