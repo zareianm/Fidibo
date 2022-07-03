@@ -17,6 +17,8 @@ namespace Fidibo
     /// </summary>
     public partial class Admin : Window
     {
+        static string coverPath;
+        static string PDFPath;
         public Admin()
         {
             InitializeComponent();
@@ -237,6 +239,108 @@ namespace Fidibo
         {
             Add_Book_To_VIP_Border.Visibility = Visibility.Collapsed;
             VIP_Setting_Border.Visibility = Visibility.Visible;
+        }
+
+        private void BrowsePDFButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Create OpenFileDialog
+            Microsoft.Win32.OpenFileDialog openFileDlgPDF = new Microsoft.Win32.OpenFileDialog();
+
+            Nullable<bool> result = openFileDlgPDF.ShowDialog();
+
+            try
+            {
+                if (result == true)
+                {
+                    PDF_Address_Text_Block.Text = openFileDlgPDF.FileName;
+
+                    string a = Name_Box.Text;
+                    PDFPath = System.IO.Path.GetFullPath($@"PDFResources/" + a + ".pdf");
+
+                    System.IO.File.Copy(openFileDlgPDF.FileName, PDFPath);
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                PDF_Address_Text_Block.Text = null;
+                Cover_Address_Text_Block.Text = null;
+                Name_Box.Text = null;
+                Writer_Box.Text = null;
+                Price_Box.Text = null;
+            }
+        }
+
+        private void BrowseCover_Button_Click(object sender, RoutedEventArgs e)
+        {
+            // Create OpenFileDialog
+
+             Microsoft.Win32.OpenFileDialog openFileDlgCover = new Microsoft.Win32.OpenFileDialog();
+            Nullable<bool> result = openFileDlgCover.ShowDialog();
+
+            try
+            {
+
+
+                if (result == true)
+                {
+                    Cover_Address_Text_Block.Text = openFileDlgCover.FileName;
+
+                    string a = Name_Box.Text;
+                    coverPath = System.IO.Path.GetFullPath($@"coverResources/" + a + ".png");
+
+                    System.IO.File.Copy(openFileDlgCover.FileName, coverPath);
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                PDF_Address_Text_Block.Text = null;
+                Cover_Address_Text_Block.Text = null;
+                Name_Box.Text = null;
+                Writer_Box.Text = null;
+                Price_Box.Text = null;
+            }
+        }
+
+        private void Add_Book_Into_store_Button_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (PDF_Address_Text_Block.Text == null || Cover_Address_Text_Block.Text == null || Name_Box.Text == null || Writer_Box.Text == null || Price_Box.Text == null)
+                    throw new Exception("Please fill all of the fields !!");
+
+                if (Book_Class.IndexOfBook(Name_Box.Text) != -1)
+                    throw new Exception("This book already exists !!");
+                if (double.Parse(Price_Box.Text) < 0)
+                    throw new Exception("Only nonnegative value !!");
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                PDF_Address_Text_Block.Text = null;
+                Cover_Address_Text_Block.Text = null;
+                Name_Box.Text = null;
+                Writer_Box.Text = null;
+                Price_Box.Text = null;
+                System.IO.File.Delete(PDFPath);
+                System.IO.File.Delete(coverPath);
+                return;
+            }
+
+            new Book_Class(Name_Box.Text, Writer_Box.Text, double.Parse(Price_Box.Text));
+            MessageBox.Show("Book were added succesfully !!");
+            PDF_Address_Text_Block.Text = null;
+            Cover_Address_Text_Block.Text = null;
+            Name_Box.Text = null;
+            Writer_Box.Text = null;
+            Price_Box.Text = null;
+            return;
+
         }
     }
 }
