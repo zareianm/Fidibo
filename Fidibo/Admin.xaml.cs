@@ -19,9 +19,17 @@ namespace Fidibo
     {
         static string coverPath;
         static string PDFPath;
-        public Admin()
+
+        Admin_Class admin;
+
+        public Admin(Admin_Class admin)
         {
+
+
+            this.admin = admin;
+            
             InitializeComponent();
+  
         }
 
         private void Add_Book_Button_Click(object sender, RoutedEventArgs e)
@@ -144,6 +152,9 @@ namespace Fidibo
             List_Of_Customer_Border.Visibility = Visibility.Visible;
             Search_By_Customer_Email_Border.Visibility = Visibility.Collapsed;
             Search_By_Customer_Name_Border.Visibility = Visibility.Collapsed;
+
+
+
         }
 
         private void Safe_Button_Click(object sender, RoutedEventArgs e)
@@ -164,6 +175,14 @@ namespace Fidibo
             List_Of_Customer_Border.Visibility = Visibility.Visible;
             Search_By_Customer_Email_Border.Visibility = Visibility.Collapsed;
             Search_By_Customer_Name_Border.Visibility = Visibility.Collapsed;
+
+
+
+            Safe_TextBlock.Text = admin.safe_cash + " $";
+
+            
+
+
         }
 
         private void Exit_Button_Click(object sender, RoutedEventArgs e)
@@ -181,7 +200,42 @@ namespace Fidibo
 
         private void Transfer_Money_Button_Click(object sender, RoutedEventArgs e)
         {
+            double deposit;
+            try
+            {
+                string[] s = DateTime.Now.ToString().Split(new char[] { '/', ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                deposit = double.Parse(Amount_Of_Money_Box.Text);
+                if (deposit < 0)
+                    throw new Exception("Only nonnegative value !!");
+                if (!Admin_Class.IsValidCardNumber(Card_Number_Box.Text))
+                    throw new Exception("The card number is wrong !!");
+                if (int.Parse(Expiration_Year_Box.Text) <= 0 || int.Parse(Expiration_month_Box.Text) > 12 || int.Parse(Expiration_month_Box.Text) < 1)
+                    throw new Exception("Wrong date !!");
+                if (!Admin_Class.IsValidCVV(CVV2_Box.Text))
+                    throw new Exception("Wrong CVV2");
+                if (int.Parse(s[1]) + int.Parse(s[2]) * 12 > int.Parse(Expiration_Year_Box.Text) * 12 + int.Parse(Expiration_month_Box.Text))
+                    throw new Exception("Your card is expired !!");
+                if (admin.safe_cash <= int.Parse(Amount_Of_Money_Box.Text))
+                    throw new Exception("the amount of money is greater than your balance");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                Expiration_Year_Box.Text = null;
+                Expiration_month_Box.Text = null;
+                Amount_Of_Money_Box.Text = null;
+                Card_Number_Box.Text = null;
+                CVV2_Box.Text = null;
+                return;
+            }
 
+            admin.safe_cash -= int.Parse(Amount_Of_Money_Box.Text);
+            MessageBox.Show("Transfored money from your safe box !!");
+            Expiration_Year_Box.Text = null;
+            Expiration_month_Box.Text = null;
+            Amount_Of_Money_Box.Text = null;
+            Card_Number_Box.Text = null;
+            CVV2_Box.Text = null;
         }
 
         private void Back_To_Safe_Setting_Button_Click(object sender, RoutedEventArgs e)

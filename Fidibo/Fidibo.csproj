@@ -20,4 +20,10 @@
     <Resource Include="Resources\closebutton.png" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Resources\data.mdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

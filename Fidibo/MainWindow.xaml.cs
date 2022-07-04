@@ -78,9 +78,20 @@ namespace Fidibo
 
         private void Admin_Login_Button_Click(object sender, RoutedEventArgs e)
         {
+
+
             if (admin_password_box.Password == "1234" && admin_email_box.Text == "Admin@gmail.com")
             {
-                Admin a = new Admin();
+                string command = "select * from T_Admin where Email = '" + admin_email_box.Text + "'";
+                SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=F:\aphw\Fidibo\Fidibo\Resources\data.mdf;Integrated Security=True");
+                con.Open();
+                SqlDataAdapter adapter = new SqlDataAdapter(command, con);
+                DataTable data = new DataTable();
+                adapter.Fill(data);
+
+                Admin_Class admin = new Admin_Class(data.Rows[0][0].ToString(), data.Rows[0][1].ToString(),int.Parse( data.Rows[0][3].ToString())  ); 
+
+                Admin a = new Admin(admin);
                 a.Show();
                 this.Close();
             }

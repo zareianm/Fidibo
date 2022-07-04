@@ -5,15 +5,15 @@ using System.Text;
 
 namespace Fidibo
 {
-    class Book_Class
+   public  class Book_Class
     {
         string name, writer;
-        double price;
-        int salesCount;
-        double rate, discount;
+       public double price;
+       public int salesCount;
+       public double rate, discount;
         bool isVIP;
 
-        static List<Book_Class> books = new List<Book_Class>();
+        public static List<Book_Class> books = new List<Book_Class>();
 
         public Book_Class(string name, string writer, double price)
         {

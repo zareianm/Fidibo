@@ -20,7 +20,7 @@ namespace Fidibo
         public Customer_Class(string email, string password, string phoneNumber, string userName)
         {
             if (!(IsValidEmail(email) && IsValidPassword(password) && IsValidPhoneNumber(phoneNumber) && IsValidUserName(userName)))
-                throw new Exception("Wrong input !!");
+                throw new Exception("Wrong input !! , please try again.");
 
             this.email = email;
             this.password = password;
