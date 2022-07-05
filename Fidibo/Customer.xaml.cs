@@ -17,6 +17,8 @@ namespace Fidibo
     /// </summary>
     public partial class Customer : Window
     {
+        Book_Class b;
+
         public Customer_Class customer;
         public List<Book_Class> libraryList { get; set; }
         public List<Book_Class> showData { get; set; }
@@ -87,7 +89,6 @@ namespace Fidibo
             Welcome_Border.Visibility = Visibility.Collapsed;
             Wallet_Border.Visibility = Visibility.Collapsed;
             Library_Border.Visibility = Visibility.Collapsed;
-            Cart_Border.Visibility = Visibility.Visible;
             Buy_VIP_Border.Visibility = Visibility.Collapsed;
             Search_Border.Visibility = Visibility.Collapsed;
             Bookmarks_Border.Visibility = Visibility.Collapsed;
@@ -95,6 +96,15 @@ namespace Fidibo
             Raise_Balance_Border.Visibility = Visibility.Collapsed;
             Show_Book_Border.Visibility = Visibility.Collapsed;
             Searched_Book_By_Writer_ItemContorol.Visibility = Visibility.Collapsed;
+            Cart_Border.Visibility = Visibility.Visible;
+            showData.Clear();
+
+            foreach (var item in books)
+            {
+                if (customer.cart.Contains(item.name))
+                    showData.Add(item);
+            }
+            Cart_Border.Visibility = Visibility.Visible;
 
         }
 
@@ -290,23 +300,38 @@ namespace Fidibo
 
             Searched_Book_By_Writer_ItemContorol.Visibility = Visibility.Visible;
         }
-        private void Open_Book_Search_Writer_Button_Click(object sender, RoutedEventArgs e)
+        private void Search_By_Book_Name_Click(object sender, RoutedEventArgs e)
+        {
+            showData.Clear();
+
+            Searched_Book_By_Name_ItemContorol.Visibility = Visibility.Visible;
+
+            foreach (var item in books)
+            {
+                if (item.name == Name_Search_Text_Box.Text)
+                    showData.Add(item);
+            }
+
+            Searched_Book_By_Name_ItemContorol.Visibility = Visibility.Visible;
+        }
+        private void Open_Book_Button_Click(object sender, RoutedEventArgs e)
         {
             SearchBy_Writer_Border.Visibility = Visibility.Collapsed;
             Search_Border.Visibility = Visibility.Collapsed;
             Show_Book_Border.Visibility = Visibility.Visible;
+            Library_Border.Visibility = Visibility.Collapsed;
 
             Button button = sender as Button;
-            Book_Class b = button.DataContext as Book_Class;
+            b = button.DataContext as Book_Class;
 
             Book_Text_block.Text = b.name;
             Writer_Text_block.Text = b.writer;
             summary_Text_Block.Text = b.summary;
 
             if (customer.buyedBooks.Contains(b.name))
-                Add_To_Cart_Button.Content = "Read";
+                Add_To_Cart_Or_Read_Button.Content = "Read";
             else
-                Add_To_Cart_Button.Content = "Buy " + b.price + "$";
+                Add_To_Cart_Or_Read_Button.Content = "Buy " + b.price + "$";
 
             if (customer.markedBooks.Contains(b.name))
             {
@@ -329,6 +354,129 @@ namespace Fidibo
         private void Mark_Book_Button_Click(object sender, RoutedEventArgs e)
         {
 
+            if (customer.markedBooks != null)
+            {
+                if (customer.markedBooks.Contains(b.name))
+                {
+                    Uri resourceUri = new Uri("Resources/emptybookmark.PNG", UriKind.Relative);
+                    BookMark_Image.Source = new BitmapImage(resourceUri);
+
+                    string temp = customer.markedBooks.Remove(customer.markedBooks.IndexOf(b.name), b.name.Length + 1);
+                    customer.markedBooks = temp;
+                }
+
+                else
+                {
+                    Uri resourceUri = new Uri("Resources/fullbookmark.PNG", UriKind.Relative);
+                    BookMark_Image.Source = new BitmapImage(resourceUri);
+                    customer.markedBooks += b.name + " ";
+                }
+            }
+            else
+            {
+                Uri resourceUri = new Uri("Resources/fullbookmark.PNG", UriKind.Relative);
+                BookMark_Image.Source = new BitmapImage(resourceUri);
+                customer.markedBooks = b.name + " ";
+            }
+
+            Customer_Class.UpdateCustomerTable(customer.email, customer);
+        }
+        private void Add_To_Cart_Or_Read_Button_Click(object sender, RoutedEventArgs e)
+        {
+
+            if (Add_To_Cart_Or_Read_Button.Content != null && Add_To_Cart_Or_Read_Button.Content == "Read")
+            {
+
+                string s = System.IO.Path.GetFullPath(@"PDFResources/" + b.name + ".pdf");
+                ////s += "file:/"+"/"+"/";
+                System.Uri i = new Uri(s);
+                PDF_Webbrowser.Source = i;
+                PDF_Webbrowser.Visibility = Visibility.Visible;
+                Close_PDF_Button.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                if (!customer.buyedBooks.Contains(b.name))
+                {
+                    if (!customer.cart.Contains(b.name))
+                    {
+                        if (customer.cart != null)
+                            customer.cart += b.name;
+                        else
+                            customer.cart = b.name;
+
+                        Customer_Class.UpdateCustomerTable(customer.email, customer);
+
+                        MessageBox.Show("Book were added into your cart !!");
+                    }
+                    else
+                        MessageBox.Show("This book is already in your cart !!");
+                }
+
+                else
+                    MessageBox.Show("You already have buyed this book");
+
+            }
+        }
+        private void Close_PDF_Button_Click(object sender, RoutedEventArgs e)
+        {
+            PDF_Webbrowser.Visibility = Visibility.Collapsed;
+            Close_PDF_Button.Visibility = Visibility.Collapsed;
+        }
+
+        private void Go_To_Delete_Item_From_Cart_Button_Click(object sender, RoutedEventArgs e)
+        {
+            Delete_Book_Cart_Border.Visibility = Visibility.Visible;
+            Cart_Border.Visibility = Visibility.Collapsed;
+
+        }
+
+        private void Pay_For_Book_In_Cart_Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Back_To_Cart_From_Deleting_Button_Click(object sender, RoutedEventArgs e)
+        {
+            Delete_Book_Cart_Border.Visibility = Visibility.Collapsed;
+
+            Welcome_Border.Visibility = Visibility.Collapsed;
+            Wallet_Border.Visibility = Visibility.Collapsed;
+            Library_Border.Visibility = Visibility.Collapsed;
+            Buy_VIP_Border.Visibility = Visibility.Collapsed;
+            Search_Border.Visibility = Visibility.Collapsed;
+            Bookmarks_Border.Visibility = Visibility.Collapsed;
+            Edit_Profile_Border.Visibility = Visibility.Collapsed;
+            Raise_Balance_Border.Visibility = Visibility.Collapsed;
+            Show_Book_Border.Visibility = Visibility.Collapsed;
+            Searched_Book_By_Writer_ItemContorol.Visibility = Visibility.Collapsed;
+            Cart_Border.Visibility = Visibility.Visible;
+
+            showData.Clear();
+
+            foreach (var item in books)
+            {
+                if (customer.cart.Contains(item.name))
+                    showData.Add(item);
+            }
+            Cart_Border.Visibility = Visibility.Visible;
+        }
+
+        private void Delete_Check_Box_Checked(object sender, RoutedEventArgs e)
+        {
+            CheckBox checkbox = sender as CheckBox;
+            b = checkbox.DataContext as Book_Class;
+
+            string temp = customer.cart.Remove(customer.cart.IndexOf(b.name), b.name.Length + 1);
+            customer.cart = temp;
+        }
+
+        private void Delete_Check_Box_Unchecked(object sender, RoutedEventArgs e)
+        {
+            CheckBox checkbox = sender as CheckBox;
+            b = checkbox.DataContext as Book_Class;
+
+            customer.cart += b.name + " ";
         }
     }
 }

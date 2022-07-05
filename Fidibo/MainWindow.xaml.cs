@@ -86,8 +86,6 @@ namespace Fidibo
 
         private void Admin_Login_Button_Click(object sender, RoutedEventArgs e)
         {
-
-
             if (admin_password_box.Password == "1234" && admin_email_box.Text == "Admin@gmail.com")
             {
                 string command = "select * from T_Admin where Email = '" + admin_email_box.Text + "'";
@@ -103,6 +101,9 @@ namespace Fidibo
                 a.Show();
                 this.Close();
             }
+
+            else
+                MessageBox.Show("Wrong email or password !!");
         }
 
         private void Customer_Login_Button_Click(object sender, RoutedEventArgs e)
