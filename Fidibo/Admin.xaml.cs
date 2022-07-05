@@ -27,9 +27,9 @@ namespace Fidibo
 
 
             this.admin = admin;
-            
+
             InitializeComponent();
-  
+
         }
 
         private void Add_Book_Button_Click(object sender, RoutedEventArgs e)
@@ -180,7 +180,7 @@ namespace Fidibo
 
             Safe_TextBlock.Text = admin.safe_cash + " $";
 
-            
+
 
 
         }
@@ -330,7 +330,7 @@ namespace Fidibo
         {
             // Create OpenFileDialog
 
-             Microsoft.Win32.OpenFileDialog openFileDlgCover = new Microsoft.Win32.OpenFileDialog();
+            Microsoft.Win32.OpenFileDialog openFileDlgCover = new Microsoft.Win32.OpenFileDialog();
             Nullable<bool> result = openFileDlgCover.ShowDialog();
 
             try
@@ -342,7 +342,7 @@ namespace Fidibo
                     Cover_Address_Text_Block.Text = openFileDlgCover.FileName;
 
                     string a = Name_Box.Text;
-                    coverPath = System.IO.Path.GetFullPath($@"coverResources/" + a + ".png");
+                    coverPath = System.IO.Path.GetFullPath($@"coverResources/" + a + ".jpg");
 
                     System.IO.File.Copy(openFileDlgCover.FileName, coverPath);
 
@@ -386,7 +386,7 @@ namespace Fidibo
                 return;
             }
 
-            new Book_Class(Name_Box.Text, Writer_Box.Text, double.Parse(Price_Box.Text));
+            new Book_Class(Name_Box.Text, Writer_Box.Text, double.Parse(Price_Box.Text), Summary_Text_Box.Text);
             MessageBox.Show("Book were added succesfully !!");
             PDF_Address_Text_Block.Text = null;
             Cover_Address_Text_Block.Text = null;

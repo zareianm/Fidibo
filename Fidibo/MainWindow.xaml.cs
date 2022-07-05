@@ -33,11 +33,19 @@ namespace Fidibo
 
             for (int i = 0; i < data.Rows.Count; i++)
             {
-  
-                    new Customer_Class(data.Rows[i][0].ToString(), data.Rows[i][3].ToString(), data.Rows[i][2].ToString(), data.Rows[i][1].ToString(), data.Rows[i][7].ToString(), data.Rows[i][6].ToString(), data.Rows[i][5].ToString(), DateTime.Now, double.Parse(data.Rows[i][4].ToString()));
-
+                new Customer_Class(data.Rows[i][0].ToString(), data.Rows[i][3].ToString(), data.Rows[i][2].ToString(), data.Rows[i][1].ToString(), data.Rows[i][7].ToString(), data.Rows[i][6].ToString(), data.Rows[i][5].ToString(), DateTime.Now, double.Parse(data.Rows[i][4].ToString()));
             }
             con.Close();
+
+            string command2 = "select * from T_Books";
+            SqlConnection con2 = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=F:\aphw\Fidibo\Fidibo\Resources\data.mdf;Integrated Security=True");
+            con2.Open();
+            SqlDataAdapter adapter2 = new SqlDataAdapter(command2, con2);
+            DataTable data2 = new DataTable();
+            adapter2.Fill(data2);
+            for (int i = 0; i < data2.Rows.Count; i++)
+                new Book_Class(data2.Rows[i][0].ToString(), data2.Rows[i][1].ToString(), double.Parse(data2.Rows[i][2].ToString()), int.Parse(data2.Rows[i][3].ToString()), double.Parse(data2.Rows[i][4].ToString()), double.Parse(data2.Rows[i][5].ToString()), bool.Parse(data2.Rows[i][6].ToString().ToLower()), data2.Rows[i][7].ToString().ToLower());
+            con2.Close();
             InitializeComponent();
         }
 
@@ -89,7 +97,7 @@ namespace Fidibo
                 DataTable data = new DataTable();
                 adapter.Fill(data);
 
-                Admin_Class admin = new Admin_Class(data.Rows[0][0].ToString(), data.Rows[0][1].ToString(),int.Parse( data.Rows[0][3].ToString())  ); 
+                Admin_Class admin = new Admin_Class(data.Rows[0][0].ToString(), data.Rows[0][1].ToString(), int.Parse(data.Rows[0][3].ToString()));
 
                 Admin a = new Admin(admin);
                 a.Show();
@@ -133,7 +141,6 @@ namespace Fidibo
             Customer_Login.Visibility = Visibility.Collapsed;
             Customer_sign_up.Visibility = Visibility.Visible;
         }
-
 
         private void Sign_Up_Button_Click(object sender, RoutedEventArgs e)
         {

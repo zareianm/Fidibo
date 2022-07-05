@@ -5,22 +5,24 @@ using System.Text;
 
 namespace Fidibo
 {
-   public  class Book_Class
+    public class Book_Class
     {
-        string name, writer;
-       public double price;
-       public int salesCount;
-       public double rate, discount;
-        bool isVIP;
-
+        public string name { get; set; }
+        public string writer { get; set; }
+        public double price { get; set; }
+        public int salesCount { get; set; }
+        public double rate { get; set; }
+        public double discount { get; set; }
+        public bool isVIP { get; set; }
+        public string summary { get; set; }
         public static List<Book_Class> books = new List<Book_Class>();
 
-        public Book_Class(string name, string writer, double price)
+        public Book_Class(string name, string writer, double price, string summary)
         {
             this.name = name;
             this.writer = writer;
             this.price = price;
-
+            this.summary = summary;
             salesCount = 0;
             rate = 0;
             discount = 0;
@@ -28,7 +30,7 @@ namespace Fidibo
 
             SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=F:\aphw\Fidibo\Fidibo\Resources\data.mdf;Integrated Security=True");
             con.Open();
-            string command = "insert into T_Books values ('" + name + "','" + writer + "','" + price + "','" + salesCount + "','" + rate + "','" + discount + "','" + isVIP + "')";
+            string command = "insert into T_Books values ('" + name + "','" + writer + "','" + price + "','" + salesCount + "','" + rate + "','" + discount + "','" + isVIP + "','" + summary + "' )";
             SqlCommand com = new SqlCommand(command, con);
             com.ExecuteNonQuery();
             con.Close();
@@ -36,6 +38,18 @@ namespace Fidibo
             books.Add(this);
         }
 
+        public Book_Class(string Name, string Writer, double Price, int Salescount, double Rate, double Discount, bool IsVIP, string Summary)
+        {
+            name = Name;
+            writer = Writer;
+            price = Price;
+            salesCount = Salescount;
+            rate = Rate;
+            discount = Discount;
+            isVIP = IsVIP;
+            summary = Summary;
+            books.Add(this);
+        }
         public static int IndexOfBook(string name)
         {
             for (int i = 0; i < books.Count; i++)

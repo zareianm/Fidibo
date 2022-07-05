@@ -17,16 +17,36 @@ namespace Fidibo
     /// </summary>
     public partial class Customer : Window
     {
-        Customer_Class customer;
+        public Customer_Class customer;
+        public List<Book_Class> libraryList { get; set; }
+        public List<Book_Class> showData { get; set; }
+        public List<Book_Class> books { get; set; }
         public Customer(Customer_Class cc)
         {
             customer = cc;
+            string[] s = customer.buyedBooks.Split(' ');
+
+            libraryList = new List<Book_Class>();
+            showData = new List<Book_Class>();
+            foreach (var item in s)
+            {
+                int a = Book_Class.IndexOfBook(item);
+                if (a != -1)
+                    libraryList.Add(Book_Class.books[a]);
+            }
+            books = new List<Book_Class>();
+            foreach (var item in Book_Class.books)
+            {
+                books.Add(item);
+            }
             InitializeComponent();
             New_Name_Text_Box.Text = customer.userName;
             New_Email_Text_Box.Text = customer.email;
             New_Password_Password_Box.Password = customer.password;
             New_Phone_Number_Text_Box.Text = customer.phoneNumber;
             Welcome_name_Text_Block.Text = customer.userName;
+
+            DataContext = this;
         }
 
         private void Wallet_Button_Click(object sender, RoutedEventArgs e)
@@ -41,6 +61,9 @@ namespace Fidibo
             Edit_Profile_Border.Visibility = Visibility.Collapsed;
             Raise_Balance_Border.Visibility = Visibility.Collapsed;
             Cash_TextBlock.Text = customer.wallet + " $";
+            Show_Book_Border.Visibility = Visibility.Collapsed;
+            Searched_Book_By_Writer_ItemContorol.Visibility = Visibility.Collapsed;
+
         }
 
         private void Library_Button_Click(object sender, RoutedEventArgs e)
@@ -54,6 +77,8 @@ namespace Fidibo
             Bookmarks_Border.Visibility = Visibility.Collapsed;
             Edit_Profile_Border.Visibility = Visibility.Collapsed;
             Raise_Balance_Border.Visibility = Visibility.Collapsed;
+            Show_Book_Border.Visibility = Visibility.Collapsed;
+            Searched_Book_By_Writer_ItemContorol.Visibility = Visibility.Collapsed;
 
         }
 
@@ -68,6 +93,8 @@ namespace Fidibo
             Bookmarks_Border.Visibility = Visibility.Collapsed;
             Edit_Profile_Border.Visibility = Visibility.Collapsed;
             Raise_Balance_Border.Visibility = Visibility.Collapsed;
+            Show_Book_Border.Visibility = Visibility.Collapsed;
+            Searched_Book_By_Writer_ItemContorol.Visibility = Visibility.Collapsed;
 
         }
 
@@ -82,6 +109,8 @@ namespace Fidibo
             Bookmarks_Border.Visibility = Visibility.Collapsed;
             Edit_Profile_Border.Visibility = Visibility.Collapsed;
             Raise_Balance_Border.Visibility = Visibility.Collapsed;
+            Show_Book_Border.Visibility = Visibility.Collapsed;
+            Searched_Book_By_Writer_ItemContorol.Visibility = Visibility.Collapsed;
 
         }
 
@@ -96,6 +125,8 @@ namespace Fidibo
             Bookmarks_Border.Visibility = Visibility.Collapsed;
             Edit_Profile_Border.Visibility = Visibility.Collapsed;
             Raise_Balance_Border.Visibility = Visibility.Collapsed;
+            Show_Book_Border.Visibility = Visibility.Collapsed;
+            Searched_Book_By_Writer_ItemContorol.Visibility = Visibility.Collapsed;
 
         }
 
@@ -110,6 +141,8 @@ namespace Fidibo
             Bookmarks_Border.Visibility = Visibility.Visible;
             Edit_Profile_Border.Visibility = Visibility.Collapsed;
             Raise_Balance_Border.Visibility = Visibility.Collapsed;
+            Show_Book_Border.Visibility = Visibility.Collapsed;
+            Searched_Book_By_Writer_ItemContorol.Visibility = Visibility.Collapsed;
 
         }
 
@@ -124,6 +157,8 @@ namespace Fidibo
             Bookmarks_Border.Visibility = Visibility.Collapsed;
             Edit_Profile_Border.Visibility = Visibility.Visible;
             Raise_Balance_Border.Visibility = Visibility.Collapsed;
+            Show_Book_Border.Visibility = Visibility.Collapsed;
+            Searched_Book_By_Writer_ItemContorol.Visibility = Visibility.Collapsed;
 
         }
 
@@ -146,7 +181,7 @@ namespace Fidibo
             double deposit;
             try
             {
-                string[] s = DateTime.Now.ToString().Split(new char[] {'/' ,' ' },StringSplitOptions.RemoveEmptyEntries);
+                string[] s = DateTime.Now.ToString().Split(new char[] { '/', ' ' }, StringSplitOptions.RemoveEmptyEntries);
                 deposit = double.Parse(Amount_Of_Money_Box.Text);
                 if (deposit < 0)
                     throw new Exception("Only nonnegative value !!");
@@ -159,7 +194,7 @@ namespace Fidibo
                 if (int.Parse(s[1]) + int.Parse(s[2]) * 12 > int.Parse(Expiration_Year_Box.Text) * 12 + int.Parse(Expiration_month_Box.Text))
                     throw new Exception("Your card is expired !!");
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
                 Expiration_Year_Box.Text = null;
@@ -190,12 +225,14 @@ namespace Fidibo
         {
             SearchBy_Writer_Border.Visibility = Visibility.Visible;
             SearchBy_Book_Border.Visibility = Visibility.Collapsed;
+
         }
 
         private void Go_To_Search_By_Book_Name_Click(object sender, RoutedEventArgs e)
         {
             SearchBy_Writer_Border.Visibility = Visibility.Collapsed;
             SearchBy_Book_Border.Visibility = Visibility.Visible;
+
         }
 
         private void Apply_Edit_Button_Click(object sender, RoutedEventArgs e)
@@ -216,7 +253,7 @@ namespace Fidibo
                 if (!Customer_Class.IsValidPassword(New_Password_Password_Box.Password))
                     throw new Exception("Wrong form for password !!");
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
                 New_Name_Text_Box.Text = customer.userName;
@@ -236,6 +273,61 @@ namespace Fidibo
             Customer_Class.UpdateCustomerTable(oldemail, customer);
 
             MessageBox.Show("Your profile were edited succesfully !!");
+
+        }
+
+        private void Search_By_Writer_Name_Click(object sender, RoutedEventArgs e)
+        {
+            showData.Clear();
+
+            Searched_Book_By_Writer_ItemContorol.Visibility = Visibility.Visible;
+
+            foreach (var item in books)
+            {
+                if (item.writer == Writer_Search_Text_Box.Text)
+                    showData.Add(item);
+            }
+
+            Searched_Book_By_Writer_ItemContorol.Visibility = Visibility.Visible;
+        }
+        private void Open_Book_Search_Writer_Button_Click(object sender, RoutedEventArgs e)
+        {
+            SearchBy_Writer_Border.Visibility = Visibility.Collapsed;
+            Search_Border.Visibility = Visibility.Collapsed;
+            Show_Book_Border.Visibility = Visibility.Visible;
+
+            Button button = sender as Button;
+            Book_Class b = button.DataContext as Book_Class;
+
+            Book_Text_block.Text = b.name;
+            Writer_Text_block.Text = b.writer;
+            summary_Text_Block.Text = b.summary;
+
+            if (customer.buyedBooks.Contains(b.name))
+                Add_To_Cart_Button.Content = "Read";
+            else
+                Add_To_Cart_Button.Content = "Buy " + b.price + "$";
+
+            if (customer.markedBooks.Contains(b.name))
+            {
+                Uri resourceUri = new Uri("Resources/fullbookmark.PNG", UriKind.Relative);
+                BookMark_Image.Source = new BitmapImage(resourceUri);
+            }
+
+            else
+            {
+                Uri resourceUri = new Uri("Resources/emptybookmark.PNG", UriKind.Relative);
+                BookMark_Image.Source = new BitmapImage(resourceUri);
+            }
+
+            string s = System.IO.Path.GetFullPath(@"coverResources/" + b.name + ".jpg");
+            ////s += "file:/"+"/"+"/";
+            System.Uri i = new Uri(s);
+            wb.Source = i;
+            wb.Visibility = Visibility.Visible;
+        }
+        private void Mark_Book_Button_Click(object sender, RoutedEventArgs e)
+        {
 
         }
     }
