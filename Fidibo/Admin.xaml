@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Fidibo"
         mc:Ignorable="d"
-        Title="Customer" Height="400" Width="750" WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Background="#1e272e" FontFamily="Trebuchet MS">
+        Title="Customer" Height="439" Width="750" WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Background="#1e272e" FontFamily="Trebuchet MS">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.25*"/>
@@ -32,8 +32,8 @@
         </Border>
 
         <Border x:Name="Add_Book_Border" Grid.Column="1" Margin="5" BorderBrush="#808e9b" BorderThickness="1" Visibility="Visible">
-           
-                        <Grid>
+
+            <Grid>
                 <StackPanel>
                     <TextBlock Text="Name of the new book :" Foreground="#dcdde1" Margin="30,10"/>
                     <TextBox x:Name="Name_Box" Margin="30,0,150,0" Background="#dcdde1" BorderThickness="0"/>
@@ -44,7 +44,7 @@
                     <TextBlock Text="Price of the new book :" Foreground="#dcdde1" Margin="30,10"/>
                     <TextBox x:Name="Price_Box" Margin="30,0,150,0" Background="#dcdde1" BorderThickness="0"/>
 
-                   
+
                     <TextBlock Text="Year of publication of the new book :" Foreground="#dcdde1" Margin="30,10"/>
                     <TextBox x:Name="Year_Box" Margin="30,0,150,0" Background="#dcdde1" BorderThickness="0"/>
 
@@ -52,19 +52,18 @@
                     <TextBox x:Name="Summary_Text_Box" TextWrapping="Wrap" AcceptsReturn="True" BorderThickness="0" Background="#CAD3C8" Margin="30,0,150,0" />
                     <Grid>
                         <Button x:Name="BrowsePDF_Button" Content="Browse for PDF" Margin="28,10,377,20" Background="#d1ccc0" Height="35" Click="BrowsePDFButton_Click"/>
-                        <TextBlock x:Name="PDF_Address_Text_Block" Background="#f7f1e3" Height="20" Margin="270,18,89,27" />
+                        <TextBlock x:Name="PDF_Address_Text_Block" Background="#f7f1e3" Margin="270,18,89,20" />
                     </Grid>
 
                     <Grid>
                         <Button x:Name="BrowseCover_Button" Content="Browse for cover" Margin="28,-4,377,24" Background="#d1ccc0" Height="35" Click="BrowseCover_Button_Click"/>
-                        <TextBlock x:Name="Cover_Address_Text_Block" Background="#f7f1e3" Height="20" Margin="270,4,89,31" />
-                        
+                        <TextBlock x:Name="Cover_Address_Text_Block" Background="#f7f1e3" Margin="270,0,89,27" />
+
                     </Grid>
-                    
-                    <Button x:Name="Add_Book_Into_store_Button" Content="Add book" Width="150" Height="40" Background="#833471" BorderThickness="0" Click="Add_Book_Into_store_Button_Click"/>
+                    <Button x:Name="Add_Book_Into_store_Button" Content="Add book" Width="150" Height="37" Background="#833471" BorderThickness="0" Click="Add_Book_Into_store_Button_Click"/>
                 </StackPanel>
             </Grid>
-                
+
         </Border>
 
         <Border x:Name="Edit_Book_Border" Grid.Column="1" Margin="5" BorderBrush="#808e9b" BorderThickness="1" Visibility="Collapsed">
@@ -74,7 +73,7 @@
 
                     <Grid>
                         <StackPanel>
-                            
+
 
                             <TextBlock Text="New writer of the new book :" Foreground="#dcdde1" Margin="30,10"/>
                             <TextBox x:Name="New_Writer_Box" Margin="30,0,150,0" Background="#dcdde1" BorderThickness="0"/>
@@ -88,9 +87,9 @@
 
                             <TextBlock Text="Please enter new summary :" Foreground="#dfe4ea" Margin="30,10"/>
                             <TextBox x:Name="New_Summary_Text_Box" TextWrapping="Wrap" AcceptsReturn="True" BorderThickness="0" Background="#CAD3C8" Margin="30,0,150,0" />
-                           
 
-                           
+
+
 
                             <Button x:Name="Apply_Changes_Of_Book_Button" Content="Apply change" Width="150" Height="40" Background="#833471" BorderThickness="0" Click="Apply_Changes_Of_Book_Button_Click" />
                         </StackPanel>
@@ -242,21 +241,21 @@
                 </Border>
 
                 <Border x:Name="Safe_Cash_Border" Grid.Column="1" Margin="5" BorderBrush="#808e9b" BorderThickness="1" Visibility="Collapsed">
-                <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
 
-                <TextBlock x:Name="Cash_TextBlock" Grid.Row="0" Text="Your safe's balance is : " FontSize="40" FontFamily="Cooper Black" Foreground="#fff200" HorizontalAlignment="Center" Margin="0,20"/>
-                <TextBlock x:Name="Safe_TextBlock"  FontSize="50" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,97,0,0" Foreground="#ff5e57"/>
-                <Button x:Name="Go_To_Transfer_Money_Button" Grid.Row="1" Margin="75,75" Content="To transfor money from safe click here" FontSize="20" Background="#808e9b" Click="Go_To_Transfer_Money_Button_Click"/>
-          
-                
-                </Grid>
-            </Border>
-      </Grid>
-            </Border>
+                        <TextBlock x:Name="Cash_TextBlock" Grid.Row="0" Text="Your safe's balance is : " FontSize="40" FontFamily="Cooper Black" Foreground="#fff200" HorizontalAlignment="Center" Margin="0,20"/>
+                        <TextBlock x:Name="Safe_TextBlock"  FontSize="50" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,97,0,0" Foreground="#ff5e57"/>
+                        <Button x:Name="Go_To_Transfer_Money_Button" Grid.Row="1" Margin="75,75" Content="To transfor money from safe click here" FontSize="20" Background="#808e9b" Click="Go_To_Transfer_Money_Button_Click"/>
+
+
+                    </Grid>
+                </Border>
+            </Grid>
+        </Border>
 
         <Border x:Name="Transfor_Money_Border" Grid.Column="1" Margin="5" BorderBrush="#808e9b" BorderThickness="1" Visibility="Collapsed">
             <StackPanel>
