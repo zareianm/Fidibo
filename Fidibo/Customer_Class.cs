@@ -12,7 +12,7 @@ namespace Fidibo
     {
         public string email, password, phoneNumber, userName;
         public string buyedBooks, markedBooks, cart;
-        DateTime? vipBegintTime;
+        public DateTime? vipBegintTime;
         public double wallet;
 
         public static List<Customer_Class> customers = new List<Customer_Class>();
@@ -176,6 +176,11 @@ namespace Fidibo
             com.BeginExecuteNonQuery();
             con.Close();
 
+        }
+
+        public int CalculateLeftTime()
+        {
+            throw new NotImplementedException();
         }
     }
 }

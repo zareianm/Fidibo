@@ -110,7 +110,7 @@
                             <ScrollViewer>
                                 <ItemsControl x:Name="Searched_Book_By_Writer_ItemContorol" ItemsSource="{Binding showData}" Visibility="Collapsed" >
                                     <ItemsControl.ItemTemplate >
-                                        <DataTemplate x:Name="t_DataTemplate">
+                                        <DataTemplate>
                                             <Grid>
                                                 <TextBlock x:Name="Name_Search_By_Writer_Text_Block" Text="{Binding name}" Background="#95a5a6" Height="30" Width="200" Margin="20,5" HorizontalAlignment="Left" FontSize="25" />
                                                 <Button x:Name="Open_Book_Search_Writer_Button" Content="Open" Background="#B53471" Height="30" Width="200" Margin="20,0" HorizontalAlignment="Right" BorderThickness="0" Click="Open_Book_Button_Click"/>
@@ -125,32 +125,67 @@
 
                 <Border x:Name="SearchBy_Book_Border" Grid.Row="1" Visibility="Collapsed">
                     <Grid>
-                        <TextBlock Text="Search by book's name : " Margin="25,5" Foreground="#a4b0be"/>
-                        <TextBox x:Name="Name_Search_Text_Box" Height="30" Width="400" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="25,35" Background="#dcdde1" BorderBrush="#fff200" BorderThickness="2"/>
-                        <Button x:Name="Search_By_Book_Name" Height="30" Width="60" HorizontalAlignment="Right"  VerticalAlignment="Top" Margin="30,35" Background="#0fb9b1" BorderThickness="1" Content="Search" Click="Search_By_Book_Name_Click"/>
-                        <ScrollViewer>
-                            <ItemsControl x:Name="Searched_Book_By_Name_ItemContorol" ItemsSource="{Binding showData}" Visibility="Collapsed" >
-                                <ItemsControl.ItemTemplate >
-                                    <DataTemplate x:Name="t_DataTemplate">
-                                        <Grid>
-                                            <TextBlock x:Name="Name_Search_By_Writer_Text_Block" Text="{Binding name}" Background="#95a5a6" Height="30" Width="200" Margin="20,5" HorizontalAlignment="Left" FontSize="25" />
-                                            <Button x:Name="Open_Book_Search_Writer_Button" Content="Open" Background="#B53471" Height="30" Width="200" Margin="20,0" HorizontalAlignment="Right" BorderThickness="0" Click="Open_Book_Button_Click"/>
-                                        </Grid>
-                                    </DataTemplate>
-                                </ItemsControl.ItemTemplate>
-                            </ItemsControl>
-                        </ScrollViewer>
+                        <StackPanel>
+                            <TextBlock Text="Search by name : " Margin="25,0" Foreground="#a4b0be"/>
+                            <Grid>
+                                <TextBox x:Name="Name_Search_Text_Box" Height="30" Width="400" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="25,35" Background="#dcdde1" BorderBrush="#fff200" BorderThickness="2"/>
+                                <Button x:Name="Search_By_Book_Name" Height="30" Width="60" HorizontalAlignment="Right"  VerticalAlignment="Top" Margin="30,35" Background="#0fb9b1" BorderThickness="1" Content="Search" Click="Search_By_Book_Name_Click"/>
+                            </Grid>
+
+                            <ScrollViewer>
+                                <ItemsControl x:Name="Searched_Book_By_Name_ItemContorol" ItemsSource="{Binding showData}" Visibility="Collapsed" >
+                                    <ItemsControl.ItemTemplate >
+                                        <DataTemplate>
+                                            <Grid>
+                                                <TextBlock x:Name="Name_Search_By_Name_Text_Block" Text="{Binding name}" Background="#95a5a6" Height="30" Width="200" Margin="20,5" HorizontalAlignment="Left" FontSize="25" />
+                                                <Button x:Name="Open_Book_Search_Name_Button" Content="Open" Background="#B53471" Height="30" Width="200" Margin="20,0" HorizontalAlignment="Right" BorderThickness="0" Click="Open_Book_Button_Click"/>
+                                            </Grid>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </ScrollViewer>
+                        </StackPanel>
                     </Grid>
                 </Border>
             </Grid>
         </Border>
 
         <Border x:Name="Buy_VIP_Border" Grid.Column="1" Margin="5" BorderBrush="#808e9b" BorderThickness="1" Visibility="Collapsed">
+            <Grid>
+                <Border x:Name="Pay_VIP_Border" Grid.Column="1" Margin="5" BorderBrush="#808e9b" BorderThickness="1" Visibility="Collapsed">
+                    <Grid>
+                        <TextBlock Height="50" Width="320" Margin="138,41,138,285" Text="The price of VIP is:" Foreground="#7ed6df" FontSize="35"/>
+                        <TextBlock x:Name="Amount_Of_VIP_Text_Block" Height="50" Width="300" Margin="138,106,138,220" TextAlignment="Center" Foreground="#f0932b" FontSize="45"/>
+                        <Button x:Name="Pay_VIP_By_Wallet_Button" Height="50" Margin="88,248,314,78" Background="#686de0" BorderThickness="0" Content="Pay by wallet" FontSize="20" Click="Pay_VIP_By_Wallet_Button_Click"/>
+                        <Button x:Name="Go_Pay_VIP_By_Card_Button" Height="50" Margin="322,248,80,78" Background="#686de0" BorderThickness="0" Content="Pay by card" FontSize="20" Click="Go_Pay_VIP_By_Card_Button_Click"/>
+                    </Grid>
 
+                </Border>
+
+                <Border x:Name="Show_VIP_Border" Grid.Column="1" Margin="5" BorderBrush="#808e9b" BorderThickness="1" Visibility="Collapsed">
+                    <Grid>
+                        <TextBlock Text="Your VIP time left is :" FontSize="50" Height="50" Width="480" Foreground="#f0932b" Margin="48,79,48,247"/>
+                        <TextBlock x:Name="Left_VIP_Time_Text_Block" Height="50" Margin="0,199,0,127" TextAlignment="Center"  FontSize="40" Foreground="#e056fd"/>
+                    </Grid>
+                </Border>
+            </Grid>
         </Border>
 
         <Border x:Name="Bookmarks_Border" Grid.Column="1" Margin="5" BorderBrush="#808e9b" BorderThickness="1" Visibility="Collapsed">
-
+            <Grid>
+                <ScrollViewer>
+                    <ItemsControl x:Name="Bookmarks_ItemContorol" ItemsSource="{Binding libraryList}" Visibility="Collapsed" >
+                        <ItemsControl.ItemTemplate >
+                            <DataTemplate>
+                                <Grid>
+                                    <TextBlock x:Name="Book_Name_Text_Block" Text="{Binding name}" Background="#95a5a6" Height="30" Width="200" Margin="20,5" HorizontalAlignment="Left" FontSize="25" />
+                                    <Button x:Name="Open_Book_Button" Content="Open" Background="#B53471" Height="30" Width="200" Margin="20,0" HorizontalAlignment="Right" BorderThickness="0" Click="Open_Book_Button_Click"/>
+                                </Grid>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
+            </Grid>
         </Border>
 
         <Border x:Name="Edit_Profile_Border" Grid.Column="1" Margin="5" BorderBrush="#808e9b" BorderThickness="1" Visibility="Collapsed">
@@ -208,7 +243,7 @@
             </Grid>
         </Border>
 
-        <Border x:Name="Delete_Book_Cart_Border" Grid.Column="1" Margin="5" BorderBrush="#808e9b" BorderThickness="1" Visibility="Visible">
+        <Border x:Name="Delete_Book_Cart_Border" Grid.Column="1" Margin="5" BorderBrush="#808e9b" BorderThickness="1" Visibility="Collapsed">
             <Grid>
                 <ScrollViewer Margin="0,0,0,58">
                     <ItemsControl x:Name="Delete_Book_Cart_ItemContorol" ItemsSource="{Binding showData}" >
@@ -223,8 +258,60 @@
                     </ItemsControl>
                 </ScrollViewer>
 
-                <Button x:Name="Delete_Selected_Item_Button" Height="30" Width="150" Margin="400,340,5,5" Background="#808e9b" Content="Back" FontSize="15" Foreground="Black" BorderThickness="0" Click="Delete_Selected_Item_Button_Click"/>
+                <Button x:Name="Back_To_Cart_From_Deleting_Button" Height="30" Width="150" Margin="400,340,5,5" Background="#808e9b" Content="Back" FontSize="15" Foreground="Black" BorderThickness="0" Click="Back_To_Cart_From_Deleting_Button_Click"/>
             </Grid>
+        </Border>
+
+        <Border x:Name="Pay_Border" Grid.Column="1" Margin="5" BorderBrush="#808e9b" BorderThickness="1" Visibility="Collapsed">
+            <Grid>
+                <TextBlock x:Name="Amount_Of_Money_To_Pay" Height="50" Width="200" Margin="194,45,194,293" TextAlignment="Center" FontSize="45" Foreground="#f0932b"/>
+                <Button x:Name="Pay_By_Wallet_Button" Content="Pay with my wallet" FontSize="20" Background="#e84393" BorderThickness="0" Height="50" Width="250" Margin="169,144,169,194" Click="Pay_By_Wallet_Button_Click"/>
+                <Button x:Name="Go_To_Pay_With_Card_Button" Content="Pay with card" FontSize="20" Height="50" Width="250" Background="#00b894" BorderThickness="0" Click="Go_Pay_With_Card_Click" Margin="169,220,169,118"/>
+                <Button x:Name="Back_Into_Cart_From_Pay_Order_Button" Content="Back" Height="30" Width="200" Margin="42,299,346,39" Background="#fdcb6e" BorderThickness="0" Click="Back_Into_Cart_From_Pay_Order_Button_Click"/>
+            </Grid>
+        </Border>
+
+        <Border x:Name="Pay_By_Card_Border" Grid.Column="1" Margin="5" BorderBrush="#808e9b" BorderThickness="1" Visibility="Collapsed">
+            <StackPanel>
+                <TextBlock Text="Ammout of cash : " Margin="20,10" Foreground="#a5b1c2"/>
+                <TextBlock  x:Name="Amount_Of_Money_Box2" Margin="20,0,150,0" Height="20" Background="#aaa69d"/>
+
+                <TextBlock  Text="Card number : " Margin="20,10" Foreground="#a5b1c2"/>
+                <TextBox x:Name="Card_Number_Box2" Margin="20,0,150,0" Height="20" Background="#aaa69d"/>
+
+                <TextBlock Text="CVV2 : " Margin="20,10" Foreground="#a5b1c2"/>
+                <TextBox x:Name="CVV2_Box2" Margin="20,0,150,0" Height="20" Background="#aaa69d"/>
+
+                <TextBlock Text="Expiration date : " Margin="20,10" Foreground="#a5b1c2"/>
+                <Grid>
+                    <TextBox x:Name="Expiration_Year_Box2" Margin="20,0,150,0" Height="20" Width="30" Background="#aaa69d" HorizontalAlignment="Left"/>
+                    <TextBox x:Name="Expiration_month_Box2" Margin="66,0,0,0" Height="20" Width="30" Background="#aaa69d" HorizontalAlignment="Left"/>
+                </Grid>
+
+                <Button x:Name="Pay_By_Card_Button" Height="30" Margin="200,30" Content="Pay" Background="#006266" FontSize="20" FontFamily="Trebuchet MS" BorderThickness="0" Click="Pay_By_Card_Button_Click"/>
+                <Button x:Name="Back_To_Cart_From_Pay_By_Card_Button" Height="25" Margin="5,20,500,5" Content="Back" Background="#B53471" BorderThickness="0" Click="Back_To_Cart_From_Pay_By_Card_Button_Click"/>
+            </StackPanel>
+        </Border>
+
+        <Border x:Name="Pay_VIP_By_Card_Border" Grid.Column="1" Margin="5" BorderBrush="#808e9b" BorderThickness="1" Visibility="Collapsed">
+            <StackPanel>
+                <TextBlock Text="Ammout of cash : " Margin="20,10" Foreground="#a5b1c2"/>
+                <TextBlock  x:Name="Amount_Of_Money_Box3" Margin="20,0,150,0" Height="20" Background="#aaa69d"/>
+
+                <TextBlock  Text="Card number : " Margin="20,10" Foreground="#a5b1c2"/>
+                <TextBox x:Name="Card_Number_Box3" Margin="20,0,150,0" Height="20" Background="#aaa69d"/>
+
+                <TextBlock Text="CVV2 : " Margin="20,10" Foreground="#a5b1c2"/>
+                <TextBox x:Name="CVV2_Box3" Margin="20,0,150,0" Height="20" Background="#aaa69d"/>
+
+                <TextBlock Text="Expiration date : " Margin="20,10" Foreground="#a5b1c2"/>
+                <Grid>
+                    <TextBox x:Name="Expiration_Year_Box3" Margin="20,0,150,0" Height="20" Width="30" Background="#aaa69d" HorizontalAlignment="Left"/>
+                    <TextBox x:Name="Expiration_month_Box3" Margin="66,0,0,0" Height="20" Width="30" Background="#aaa69d" HorizontalAlignment="Left"/>
+                </Grid>
+
+                <Button x:Name="Pay_VIP_By_Card_Button" Height="30" Margin="200,30" Content="Pay" Background="#006266" FontSize="20" FontFamily="Trebuchet MS" BorderThickness="0" Click="Pay_VIP_By_Card_Button_Click"/>
+            </StackPanel>
         </Border>
     </Grid>
 </Window>

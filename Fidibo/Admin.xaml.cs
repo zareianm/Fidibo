@@ -150,7 +150,7 @@ namespace Fidibo
         {
             Welcome_Border.Visibility = Visibility.Collapsed;
             Add_Book_Border.Visibility = Visibility.Collapsed;
-            Edit_Book_Border.Visibility = Visibility.Visible;
+            Edit_Book_Border.Visibility = Visibility.Collapsed;
             Customers_Border.Visibility = Visibility.Collapsed;
             VIP_Setting_Border.Visibility = Visibility.Collapsed;
             Discount_Setting_Border.Visibility = Visibility.Collapsed;
@@ -165,6 +165,7 @@ namespace Fidibo
             Search_By_Customer_Email_Border.Visibility = Visibility.Collapsed;
             Search_By_Customer_Name_Border.Visibility = Visibility.Collapsed;
             Show_Books_Border.Visibility = Visibility.Visible;
+
         }
 
         private void Customers_Button_Click(object sender, RoutedEventArgs e)
