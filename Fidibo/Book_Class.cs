@@ -15,9 +15,10 @@ namespace Fidibo
         public double discount { get; set; }
         public bool isVIP { get; set; }
         public string summary { get; set; }
+        public int year { get; set; }
         public static List<Book_Class> books = new List<Book_Class>();
 
-        public Book_Class(string name, string writer, double price, string summary)
+        public Book_Class(string name, string writer, double price, string summary  , int year)
         {
             this.name = name;
             this.writer = writer;
@@ -27,10 +28,10 @@ namespace Fidibo
             rate = 0;
             discount = 0;
             isVIP = false;
-
+            this.year = year;
             SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=F:\aphw\Fidibo\Fidibo\Resources\data.mdf;Integrated Security=True");
             con.Open();
-            string command = "insert into T_Books values ('" + name + "','" + writer + "','" + price + "','" + salesCount + "','" + rate + "','" + discount + "','" + isVIP + "','" + summary + "' )";
+            string command = "insert into T_Books values ('" + name + "','" + writer + "','" + price + "','" + salesCount + "','" + rate + "','" + discount + "','" + isVIP + "','" + summary + "','" + year + "' )";
             SqlCommand com = new SqlCommand(command, con);
             com.ExecuteNonQuery();
             con.Close();
@@ -38,7 +39,7 @@ namespace Fidibo
             books.Add(this);
         }
 
-        public Book_Class(string Name, string Writer, double Price, int Salescount, double Rate, double Discount, bool IsVIP, string Summary)
+        public Book_Class(string Name, string Writer, double Price, int Salescount, double Rate, double Discount, bool IsVIP, string Summary , int Year)
         {
             name = Name;
             writer = Writer;
@@ -48,6 +49,7 @@ namespace Fidibo
             discount = Discount;
             isVIP = IsVIP;
             summary = Summary;
+            year = Year;
             books.Add(this);
         }
         public static int IndexOfBook(string name)
