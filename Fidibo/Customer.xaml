@@ -13,7 +13,7 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <Border x:Name="Welcome_Border" Grid.Column="1" Margin="5" BorderBrush="#808e9b" BorderThickness="1" Visibility="Visible">
+        <Border x:Name="Welcome_Border" Grid.Column="1" Margin="5" BorderBrush="#808e9b" BorderThickness="1" Visibility="Collapsed">
             <Grid>
                 <TextBlock Text="Welcome" FontSize="40" VerticalAlignment="Top" HorizontalAlignment="Center" Foreground="#fff200" FontFamily="Tw Cen MT" Margin="0,101,0,0"/>
                 <TextBlock x:Name="Welcome_name_Text_Block" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="55" Foreground="#0be881" FontFamily="Segoe UI Semibold"/>
@@ -48,12 +48,40 @@
         </Border>
 
         <Border x:Name="Library_Border" Grid.Column="1" Margin="5" BorderBrush="#808e9b" BorderThickness="1" Visibility="Collapsed">
-
+            <Grid>
+                <ScrollViewer>
+                    <ItemsControl x:Name="Library_ItemContorol" ItemsSource="{Binding libraryList}" Visibility="Collapsed" >
+                        <ItemsControl.ItemTemplate >
+                            <DataTemplate>
+                                <Grid>
+                                    <TextBlock x:Name="Book_Name_Text_Block" Text="{Binding name}" Background="#95a5a6" Height="30" Width="200" Margin="20,5" HorizontalAlignment="Left" FontSize="25" />
+                                    <Button x:Name="Open_Book_Button" Content="Open" Background="#B53471" Height="30" Width="200" Margin="20,0" HorizontalAlignment="Right" BorderThickness="0" Click="Open_Book_Button_Click"/>
+                                </Grid>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
+            </Grid>
         </Border>
 
         <Border x:Name="Cart_Border" Grid.Column="1" Margin="5" BorderBrush="#808e9b" BorderThickness="1" Visibility="Collapsed">
-            <Grid>
-                <Button x:Name="Go_To_Delete_Item_From_Cart_Button" Height="30" Width="150" Margin="5,340,400,5" Background="#808e9b" Content="Delet item from cart" FontSize="15" Foreground="Black" BorderThickness="0"/>
+            <Grid Visibility="Visible">
+                <ScrollViewer Margin="0,0,0,58">
+                    <ItemsControl x:Name="Cart_ItemContorol" ItemsSource="{Binding showData}" >
+                        <ItemsControl.ItemTemplate >
+                            <DataTemplate>
+                                <Grid>
+                                    <TextBlock x:Name="Book_Name_Text_Block" Text="{Binding name}" Background="#95a5a6" Height="30" Width="200" Margin="20,5" HorizontalAlignment="Left" FontSize="25" />
+                                    <Button x:Name="Open_Book_Button" Content="Open" Background="#B53471" Height="30" Width="200" Margin="20,0" HorizontalAlignment="Right" BorderThickness="0" Click="Open_Book_Button_Click"/>
+                                </Grid>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
+
+                <Button x:Name="Go_To_Delete_Item_From_Cart_Button" Height="30" Width="150" Margin="5,340,400,5" Background="#808e9b" Content="Delet item from cart" FontSize="15" Foreground="Black" BorderThickness="0" Click="Go_To_Delete_Item_From_Cart_Button_Click"/>
+                <Button x:Name="Pay_For_Book_In_Cart_Button" Height="30" Width="150" Margin="400,340,5,5" Background="#808e9b" Content="Pay" FontSize="15" Foreground="Black" BorderThickness="0" Click="Pay_For_Book_In_Cart_Button_Click"/>
+
             </Grid>
         </Border>
 
@@ -81,11 +109,11 @@
 
                             <ScrollViewer>
                                 <ItemsControl x:Name="Searched_Book_By_Writer_ItemContorol" ItemsSource="{Binding showData}" Visibility="Collapsed" >
-                                    <ItemsControl.ItemTemplate>
-                                        <DataTemplate>
+                                    <ItemsControl.ItemTemplate >
+                                        <DataTemplate x:Name="t_DataTemplate">
                                             <Grid>
                                                 <TextBlock x:Name="Name_Search_By_Writer_Text_Block" Text="{Binding name}" Background="#95a5a6" Height="30" Width="200" Margin="20,5" HorizontalAlignment="Left" FontSize="25" />
-                                                <Button x:Name="Open_Book_Search_Writer_Button" Content="Open" Background="#B53471" Height="30" Width="200" Margin="20,0" HorizontalAlignment="Right" BorderThickness="0" Click="Open_Book_Search_Writer_Button_Click"/>
+                                                <Button x:Name="Open_Book_Search_Writer_Button" Content="Open" Background="#B53471" Height="30" Width="200" Margin="20,0" HorizontalAlignment="Right" BorderThickness="0" Click="Open_Book_Button_Click"/>
                                             </Grid>
                                         </DataTemplate>
                                     </ItemsControl.ItemTemplate>
@@ -98,8 +126,20 @@
                 <Border x:Name="SearchBy_Book_Border" Grid.Row="1" Visibility="Collapsed">
                     <Grid>
                         <TextBlock Text="Search by book's name : " Margin="25,5" Foreground="#a4b0be"/>
-                        <TextBox Height="30" Width="400" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="25,35" Background="#dcdde1" BorderBrush="#fff200" BorderThickness="2"/>
-                        <Button x:Name="Search_By_Book_Name" Height="30" Width="60" HorizontalAlignment="Right"  VerticalAlignment="Top" Margin="30,35" Background="#0fb9b1" BorderThickness="1" Content="Search"/>
+                        <TextBox x:Name="Name_Search_Text_Box" Height="30" Width="400" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="25,35" Background="#dcdde1" BorderBrush="#fff200" BorderThickness="2"/>
+                        <Button x:Name="Search_By_Book_Name" Height="30" Width="60" HorizontalAlignment="Right"  VerticalAlignment="Top" Margin="30,35" Background="#0fb9b1" BorderThickness="1" Content="Search" Click="Search_By_Book_Name_Click"/>
+                        <ScrollViewer>
+                            <ItemsControl x:Name="Searched_Book_By_Name_ItemContorol" ItemsSource="{Binding showData}" Visibility="Collapsed" >
+                                <ItemsControl.ItemTemplate >
+                                    <DataTemplate x:Name="t_DataTemplate">
+                                        <Grid>
+                                            <TextBlock x:Name="Name_Search_By_Writer_Text_Block" Text="{Binding name}" Background="#95a5a6" Height="30" Width="200" Margin="20,5" HorizontalAlignment="Left" FontSize="25" />
+                                            <Button x:Name="Open_Book_Search_Writer_Button" Content="Open" Background="#B53471" Height="30" Width="200" Margin="20,0" HorizontalAlignment="Right" BorderThickness="0" Click="Open_Book_Button_Click"/>
+                                        </Grid>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </ScrollViewer>
                     </Grid>
                 </Border>
             </Grid>
@@ -155,16 +195,35 @@
 
         <Border x:Name="Show_Book_Border" Grid.Column="1" Margin="5" BorderBrush="#808e9b" BorderThickness="1" Background="#1e272e"  Visibility="Collapsed">
             <Grid>
-                <WebBrowser x:Name="wb" HorizontalAlignment="Right" Width="250" Height="350" Visibility="Collapsed"></WebBrowser>
+                <WebBrowser x:Name="wb" HorizontalAlignment="Right" Width="250" Visibility="Visible" Margin="0,10,0,62"/>
                 <TextBlock x:Name="Book_Text_block" Height="50" Width="300" Background="#1e272e" Margin="39,44,249,294" Foreground="#fff200" FontSize="45" FontFamily="Georgia" TextAlignment="Center"/>
                 <TextBlock x:Name="Writer_Text_block" Width="300" Background="#1e272e" Margin="39,100,249,258" FontSize="20" TextAlignment="Center" Foreground="#0be881" FontFamily="Tw Cen MT"/>
-                <Button x:Name="Add_To_Cart_Button" Height="30" Width="150" Margin="114,135,324,223" Background="#006266" BorderThickness="0" Foreground="#dfe4ea"/>
+                <Button x:Name="Add_To_Cart_Or_Read_Button" Height="30" Width="150" Margin="114,135,324,223" Background="#006266" BorderThickness="0" Foreground="#dfe4ea" Click="Add_To_Cart_Or_Read_Button_Click" ClickMode="Press"/>
                 <Button  x:Name="Mark_Book_Button" Height="50" Width="50" Margin="28,125,510,213" BorderThickness="0" BorderBrush="#1e272e" Click="Mark_Book_Button_Click">
                     <Image x:Name="BookMark_Image" Height="51" Width="50"/>
                 </Button>
-                <ScrollViewer>
-                    <TextBlock x:Name="summary_Text_Block" Margin="28,194,294,134" Foreground="#ced6e0"/>
+                <TextBlock x:Name="summary_Text_Block" Margin="28,194,294,134" Foreground="#ced6e0"/>
+                <WebBrowser x:Name="PDF_Webbrowser"  Margin="0,0,0,50" Visibility="Collapsed"/>
+                <Button x:Name="Close_PDF_Button" Content="Close" Margin="216,354,216,10" Background="#eb3b5a" BorderThickness="0" Visibility="Collapsed" Click="Close_PDF_Button_Click"/>
+            </Grid>
+        </Border>
+
+        <Border x:Name="Delete_Book_Cart_Border" Grid.Column="1" Margin="5" BorderBrush="#808e9b" BorderThickness="1" Visibility="Visible">
+            <Grid>
+                <ScrollViewer Margin="0,0,0,58">
+                    <ItemsControl x:Name="Delete_Book_Cart_ItemContorol" ItemsSource="{Binding showData}" >
+                        <ItemsControl.ItemTemplate >
+                            <DataTemplate>
+                                <Grid>
+                                    <CheckBox x:Name="Delete_Check_Box" Checked="Delete_Check_Box_Checked" Unchecked="Delete_Check_Box_Unchecked"/>
+                                    <TextBlock x:Name="Book_Name_Text_Block" Text="{Binding name}" Background="#95a5a6" Height="30" Width="200" Margin="20,5" HorizontalAlignment="Left" FontSize="25" />
+                                </Grid>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
                 </ScrollViewer>
+
+                <Button x:Name="Delete_Selected_Item_Button" Height="30" Width="150" Margin="400,340,5,5" Background="#808e9b" Content="Back" FontSize="15" Foreground="Black" BorderThickness="0" Click="Delete_Selected_Item_Button_Click"/>
             </Grid>
         </Border>
     </Grid>

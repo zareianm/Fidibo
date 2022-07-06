@@ -9,6 +9,10 @@
   <ItemGroup>
     <None Remove="Resources\backbutton.png" />
     <None Remove="Resources\closebutton.png" />
+    <None Remove="Resources\data.mdf" />
+    <None Remove="Resources\data_log.ldf" />
+    <None Remove="Resources\emptybookmark.PNG" />
+    <None Remove="Resources\fullbookmark.PNG" />
   </ItemGroup>
 
   <ItemGroup>
@@ -18,12 +22,12 @@
   <ItemGroup>
     <Resource Include="Resources\backbutton.png" />
     <Resource Include="Resources\closebutton.png" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="Resources\data.mdf">
+    <Resource Include="Resources\data.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    </Resource>
+    <Resource Include="Resources\data_log.ldf" />
+    <Resource Include="Resources\emptybookmark.PNG" />
+    <Resource Include="Resources\fullbookmark.PNG" />
   </ItemGroup>
 
 </Project>

@@ -86,8 +86,12 @@ namespace Fidibo
 
         private void Admin_Login_Button_Click(object sender, RoutedEventArgs e)
         {
+<<<<<<< HEAD
 
             if (Admin_Class.IsValidEmail(admin_email_box.Text) && Admin_Class.IsValidPassword(admin_password_box.Password))
+=======
+            if (admin_password_box.Password == "1234" && admin_email_box.Text == "Admin@gmail.com")
+>>>>>>> 09c659916469eec2d56d2accf78546ad055e7c3e
             {
                 if (admin_password_box.Password == "1234" && admin_email_box.Text == "Admin@gmail.com")
                 {
@@ -120,6 +124,9 @@ namespace Fidibo
             {
                 MessageBox.Show("Email or password is invalid");
             }
+
+            else
+                MessageBox.Show("Wrong email or password !!");
         }
 
         private void Customer_Login_Button_Click(object sender, RoutedEventArgs e)

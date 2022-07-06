@@ -739,8 +739,13 @@ namespace Fidibo
             }
             _contentLoaded = true;
             System.Uri resourceLocater = new System.Uri("/Fidibo;component/admin.xaml", System.UriKind.Relative);
+<<<<<<< HEAD
 
 #line 1 "..\..\..\Admin.xaml"
+=======
+            
+            #line 1 "..\..\..\Admin.xaml"
+>>>>>>> 09c659916469eec2d56d2accf78546ad055e7c3e
             System.Windows.Application.LoadComponent(this, resourceLocater);
 
 #line default
