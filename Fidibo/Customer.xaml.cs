@@ -11,27 +11,25 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Microsoft.Data.SqlClient;
+using System.Collections.ObjectModel;
 
 namespace Fidibo
 {
-    /// <summary>
-    /// Interaction logic for Customer.xaml
-    /// </summary>
     public partial class Customer : Window
     {
         Book_Class b;
 
         public Customer_Class customer;
-        public List<Book_Class> libraryList { get; set; }
-        public List<Book_Class> showData { get; set; }
+        public ObservableCollection<Book_Class> libraryList { get; set; }
+        public ObservableCollection<Book_Class> showData { get; set; }
         public List<Book_Class> books { get; set; }
         public Customer(Customer_Class cc)
         {
             customer = cc;
             string[] s = customer.buyedBooks.Split(' ');
 
-            libraryList = new List<Book_Class>();
-            showData = new List<Book_Class>();
+            libraryList = new ObservableCollection<Book_Class>();
+            showData = new ObservableCollection<Book_Class>();
             foreach (var item in s)
             {
                 int a = Book_Class.IndexOfBook(item);
@@ -78,7 +76,6 @@ namespace Fidibo
         {
             Welcome_Border.Visibility = Visibility.Collapsed;
             Wallet_Border.Visibility = Visibility.Collapsed;
-            Library_Border.Visibility = Visibility.Visible;
             Cart_Border.Visibility = Visibility.Collapsed;
             Buy_VIP_Border.Visibility = Visibility.Collapsed;
             Search_Border.Visibility = Visibility.Collapsed;
@@ -95,11 +92,12 @@ namespace Fidibo
 
             showData.Clear();
 
-            foreach (var item in books)
+            foreach (var item in Book_Class.books)
             {
                 if (customer.buyedBooks.Contains(item.name))
                     showData.Add(item);
             }
+
             Library_Border.Visibility = Visibility.Visible;
 
         }
@@ -393,6 +391,7 @@ namespace Fidibo
             Show_Book_Border.Visibility = Visibility.Visible;
             Library_Border.Visibility = Visibility.Collapsed;
 
+
             Button button = sender as Button;
             b = button.DataContext as Book_Class;
 
@@ -416,6 +415,20 @@ namespace Fidibo
                 Uri resourceUri = new Uri("Resources/emptybookmark.PNG", UriKind.Relative);
                 BookMark_Image.Source = new BitmapImage(resourceUri);
             }
+
+            if (b.isVIP)
+                Is_VIP_Block_Text.Visibility = Visibility.Visible;
+            else
+                Is_VIP_Block_Text.Visibility = Visibility.Collapsed;
+
+            if (b.discount != 0 && b.discount != null)
+            {
+                Discount_Block_Text.Text = "Discount: " + b.discount + "%";
+                Discount_Block_Text.Visibility = Visibility.Visible;
+            }
+
+            else
+                Discount_Block_Text.Visibility = Visibility.Collapsed;
 
             string s = System.IO.Path.GetFullPath(@"coverResources/" + b.name + ".jpg");
             ////s += "file:/"+"/"+"/";
@@ -472,14 +485,19 @@ namespace Fidibo
                 {
                     if (!customer.cart.Contains(b.name))
                     {
-                        if (customer.cart != null)
-                            customer.cart += b.name;
+                        if ((b.isVIP && customer.vipBegintTime != null) || (!b.isVIP))
+                        {
+                            if (customer.cart != null)
+                                customer.cart += b.name + " ";
+                            else
+                                customer.cart = b.name + " ";
+
+                            Customer_Class.UpdateCustomerTable(customer.email, customer);
+
+                            MessageBox.Show("Book were added into your cart !!");
+                        }
                         else
-                            customer.cart = b.name;
-
-                        Customer_Class.UpdateCustomerTable(customer.email, customer);
-
-                        MessageBox.Show("Book were added into your cart !!");
+                            MessageBox.Show("To access this book you should have VIP !");
                     }
                     else
                         MessageBox.Show("This book is already in your cart !!");
@@ -512,7 +530,7 @@ namespace Fidibo
             double a = 0;
             for (int i = 0; i < s.Length; i++)
             {
-                a += Book_Class.books[Book_Class.IndexOfBook(s[i])].price * Book_Class.books[Book_Class.IndexOfBook(s[i])].discount * 0.01;
+                a += Book_Class.books[Book_Class.IndexOfBook(s[i])].price * (100 - Book_Class.books[Book_Class.IndexOfBook(s[i])].discount) * 0.01;
             }
 
             Amount_Of_Money_To_Pay.Text = a + "$";
@@ -551,6 +569,17 @@ namespace Fidibo
 
             string temp = customer.cart.Remove(customer.cart.IndexOf(b.name), b.name.Length + 1);
             customer.cart = temp;
+
+            showData.Clear();
+
+            foreach (var item in books)
+            {
+                if (customer.markedBooks.Contains(item.name))
+                    showData.Add(item);
+            }
+            Customer_Class.UpdateCustomerTable(customer.email, customer);
+
+            Bookmarks_Border.Visibility = Visibility.Visible;
         }
 
         private void Delete_Check_Box_Unchecked(object sender, RoutedEventArgs e)
@@ -559,6 +588,17 @@ namespace Fidibo
             b = checkbox.DataContext as Book_Class;
 
             customer.cart += b.name + " ";
+            showData.Clear();
+
+            foreach (var item in books)
+            {
+                if (customer.markedBooks.Contains(item.name))
+                    showData.Add(item);
+            }
+
+            Customer_Class.UpdateCustomerTable(customer.email, customer);
+
+            Bookmarks_Border.Visibility = Visibility.Visible;
         }
 
         private void Pay_By_Wallet_Button_Click(object sender, RoutedEventArgs e)
@@ -567,7 +607,7 @@ namespace Fidibo
             double a = 0;
             for (int i = 0; i < s.Length; i++)
             {
-                a += Book_Class.books[Book_Class.IndexOfBook(s[i])].price* (100 - Book_Class.books[Book_Class.IndexOfBook(s[i])].discount) * 0.01 ;
+                a += Book_Class.books[Book_Class.IndexOfBook(s[i])].price * (100 - Book_Class.books[Book_Class.IndexOfBook(s[i])].discount) * 0.01;
             }
 
             if (customer.wallet < a)
@@ -575,7 +615,7 @@ namespace Fidibo
             else
             {
                 customer.wallet -= a;
-                Amount_Of_Money_To_Pay.Text ="0$";
+                Amount_Of_Money_To_Pay.Text = "0$";
 
                 string command = "select * from T_Admin";
                 SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=F:\aphw\Fidibo\Fidibo\Resources\data.mdf;Integrated Security=True");
@@ -616,7 +656,15 @@ namespace Fidibo
         private void Go_Pay_With_Card_Click(object sender, RoutedEventArgs e)
         {
             Pay_By_Card_Border.Visibility = Visibility.Visible;
-            Cart_Border.Visibility = Visibility.Collapsed;        
+            Cart_Border.Visibility = Visibility.Collapsed;
+            Pay_Border.Visibility = Visibility.Collapsed;
+            string[] s2 = customer.cart.Split(' ');
+            double a = 0;
+            for (int i = 0; i < s2.Length; i++)
+            {
+                a += Book_Class.books[Book_Class.IndexOfBook(s2[i])].price * (100 - Book_Class.books[Book_Class.IndexOfBook(s2[i])].discount) * 0.01;
+            }
+            Amount_Of_Money_Box2.Text = a + "$";
 
         }
 
@@ -624,6 +672,7 @@ namespace Fidibo
         {
             Pay_Border.Visibility = Visibility.Collapsed;
             Cart_Border.Visibility = Visibility.Visible;
+            Pay_Border.Visibility = Visibility.Collapsed;
         }
 
         private void Pay_By_Card_Button_Click(object sender, RoutedEventArgs e)
@@ -634,8 +683,6 @@ namespace Fidibo
             {
                 a += Book_Class.books[Book_Class.IndexOfBook(s2[i])].price * (100 - Book_Class.books[Book_Class.IndexOfBook(s2[i])].discount) * 0.01;
             }
-
-            Amount_Of_Money_Box2.Text = a + "$";
 
             try
             {
@@ -680,7 +727,6 @@ namespace Fidibo
             com.BeginExecuteNonQuery();
             con2.Close();
 
-            customer.wallet -= a;
             MessageBox.Show("Payed succesfully ");
             Expiration_Year_Box2.Text = null;
             Expiration_month_Box2.Text = null;
@@ -695,7 +741,7 @@ namespace Fidibo
 
             for (int i = 0; i < s2.Length; i++)
             {
-               Book_Class.UpdateBookTable(Book_Class.books[Book_Class.IndexOfBook(s2[i])].name, Book_Class.books[Book_Class.IndexOfBook(s2[i])]);
+                Book_Class.UpdateBookTable(Book_Class.books[Book_Class.IndexOfBook(s2[i])].name, Book_Class.books[Book_Class.IndexOfBook(s2[i])]);
             }
 
             customer.buyedBooks += customer.cart;
@@ -812,7 +858,7 @@ namespace Fidibo
             CVV2_Box2.Text = null;
 
             customer.vipBegintTime = DateTime.Now;
-            
+
             Customer_Class.UpdateCustomerTable(customer.email, customer);
         }
     }

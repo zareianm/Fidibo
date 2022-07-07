@@ -12,6 +12,7 @@ using System.Windows.Shapes;
 using System.Data;
 using System.Data.SqlClient;
 using Microsoft.Data.SqlClient;
+using System.Collections.ObjectModel;
 
 namespace Fidibo
 {
@@ -25,14 +26,18 @@ namespace Fidibo
 
         Admin_Class admin;
 
+        public ObservableCollection<Customer_Class> customerData { get; set; }
+
+        Customer_Class c;
+
         public Admin(Admin_Class admin)
         {
-
-
             this.admin = admin;
 
-            InitializeComponent();
+            customerData = new ObservableCollection<Customer_Class>();
 
+            InitializeComponent();
+            DataContext = this;
         }
 
         private void Add_Book_Button_Click(object sender, RoutedEventArgs e)
@@ -54,11 +59,8 @@ namespace Fidibo
             Search_By_Customer_Email_Border.Visibility = Visibility.Collapsed;
             Search_By_Customer_Name_Border.Visibility = Visibility.Collapsed;
             Show_Books_Border.Visibility = Visibility.Collapsed;
-        
+            Show_Customer_Border.Visibility = Visibility.Collapsed;
         }
-
-       
-    
 
         private void Edit_Book_Button_Click(object sender, RoutedEventArgs e)
         {
@@ -80,6 +82,8 @@ namespace Fidibo
             Search_By_Customer_Email_Border.Visibility = Visibility.Collapsed;
             Search_By_Customer_Name_Border.Visibility = Visibility.Collapsed;
             Show_Books_Border.Visibility = Visibility.Collapsed;
+            Show_Customer_Border.Visibility = Visibility.Collapsed;
+
         }
         private void Search_By_Book_Name_BUtton_Edit_Click(object sender, RoutedEventArgs e)
         {
@@ -109,7 +113,7 @@ namespace Fidibo
                     Book_Class.books[Book_Class.IndexOfBook(Name_Box.Text)].price = int.Parse(New_Price_Box.Text);
                 }
             }
-            catch 
+            catch
             {
                 MessageBox.Show("Please enter an integer for  price ");
                 New_Price_Box.Text = null;
@@ -129,9 +133,9 @@ namespace Fidibo
             }
             if (New_Summary_Text_Box.Text != null)
             {
-                Book_Class.books[Book_Class.IndexOfBook(Name_Box.Text)].summary= New_Summary_Text_Box.Text;
+                Book_Class.books[Book_Class.IndexOfBook(Name_Box.Text)].summary = New_Summary_Text_Box.Text;
             }
-            string command = "update T_Books set Writer = '" + Book_Class.books[Book_Class.IndexOfBook(Name_Box.Text)].writer + "' , Price = '" + Book_Class.books[Book_Class.IndexOfBook(Name_Box.Text)].price  + "' , Summary = '" + Book_Class.books[Book_Class.IndexOfBook(Name_Box.Text)].summary + "' , Year = '" + Book_Class.books[Book_Class.IndexOfBook(Name_Box.Text)].year + "' where Name = '" + Book_Class.books[Book_Class.IndexOfBook(Name_Box.Text)].name + "'";
+            string command = "update T_Books set Writer = '" + Book_Class.books[Book_Class.IndexOfBook(Name_Box.Text)].writer + "' , Price = '" + Book_Class.books[Book_Class.IndexOfBook(Name_Box.Text)].price + "' , Summary = '" + Book_Class.books[Book_Class.IndexOfBook(Name_Box.Text)].summary + "' , Year = '" + Book_Class.books[Book_Class.IndexOfBook(Name_Box.Text)].year + "' where Name = '" + Book_Class.books[Book_Class.IndexOfBook(Name_Box.Text)].name + "'";
 
             SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=F:\aphw\Fidibo\Fidibo\Resources\data.mdf;Integrated Security=True");
             con.Open();
@@ -165,6 +169,7 @@ namespace Fidibo
             Search_By_Customer_Email_Border.Visibility = Visibility.Collapsed;
             Search_By_Customer_Name_Border.Visibility = Visibility.Collapsed;
             Show_Books_Border.Visibility = Visibility.Visible;
+            Show_Customer_Border.Visibility = Visibility.Collapsed;
 
         }
 
@@ -187,6 +192,8 @@ namespace Fidibo
             Search_By_Customer_Email_Border.Visibility = Visibility.Collapsed;
             Search_By_Customer_Name_Border.Visibility = Visibility.Collapsed;
             Show_Books_Border.Visibility = Visibility.Collapsed;
+            Show_Customer_Border.Visibility = Visibility.Collapsed;
+
         }
 
         private void VIP_Setting_Button_Click(object sender, RoutedEventArgs e)
@@ -208,6 +215,8 @@ namespace Fidibo
             Search_By_Customer_Email_Border.Visibility = Visibility.Collapsed;
             Search_By_Customer_Name_Border.Visibility = Visibility.Collapsed;
             Show_Books_Border.Visibility = Visibility.Collapsed;
+            Show_Customer_Border.Visibility = Visibility.Collapsed;
+
         }
 
         private void Discout_Button_Click(object sender, RoutedEventArgs e)
@@ -229,6 +238,8 @@ namespace Fidibo
             Search_By_Customer_Email_Border.Visibility = Visibility.Collapsed;
             Search_By_Customer_Name_Border.Visibility = Visibility.Collapsed;
             Show_Books_Border.Visibility = Visibility.Collapsed;
+            Show_Customer_Border.Visibility = Visibility.Collapsed;
+
         }
 
         private void Sale_Rate_Button_Click(object sender, RoutedEventArgs e)
@@ -252,13 +263,12 @@ namespace Fidibo
             SearchBy_Book_Border.Visibility = Visibility.Visible;
             Show_Rate_And_Sale_Border.Visibility = Visibility.Collapsed;
             Show_Books_Border.Visibility = Visibility.Collapsed;
+            Show_Customer_Border.Visibility = Visibility.Collapsed;
 
         }
 
         private void Search_By_Book_Name_Click(object sender, RoutedEventArgs e)
         {
-
-
 
             if (Book_Class.IndexOfBook(Name_Of_Book_Text_Box.Text) == -1)
             {
@@ -267,8 +277,6 @@ namespace Fidibo
             }
             else
             {
-
-
                 Rate_Text_Block.Text = Book_Class.books[Book_Class.IndexOfBook(Name_Of_Book_Text_Box.Text)].rate.ToString();
                 Sale_Text_Block.Text = (Book_Class.books[Book_Class.IndexOfBook(Name_Of_Book_Text_Box.Text)].salesCount * Book_Class.books[Book_Class.IndexOfBook(Name_Of_Book_Text_Box.Text)].price).ToString();
 
@@ -276,7 +284,6 @@ namespace Fidibo
                 Show_Rate_And_Sale_Border.Visibility = Visibility.Visible;
                 return;
             }
-          
 
         }
 
@@ -301,12 +308,7 @@ namespace Fidibo
             Check_Password_Border.Visibility = Visibility.Visible;
             Safe_Cash_Border.Visibility = Visibility.Collapsed;
             Show_Books_Border.Visibility = Visibility.Collapsed;
-
-
-
-
-
-
+            Show_Customer_Border.Visibility = Visibility.Collapsed;
 
         }
 
@@ -409,7 +411,7 @@ namespace Fidibo
 
         private void Go_To_Search_By_Customer_Email_Button_Click(object sender, RoutedEventArgs e)
         {
-            List_Of_Customer_Border.Visibility = Visibility.Collapsed;
+            Search_By_Customer_Name_Border.Visibility = Visibility.Collapsed;
             Search_By_Customer_Email_Border.Visibility = Visibility.Visible;
         }
 
@@ -514,10 +516,8 @@ namespace Fidibo
                     throw new Exception("This book already exists !!");
                 if (double.Parse(Price_Box.Text) < 0)
                     throw new Exception("Only nonnegative value for price !!");
-                if(int.Parse(Year_Box.Text)<0)
+                if (int.Parse(Year_Box.Text) < 0)
                     throw new Exception("Only nonnegative value for year !!");
-
-
 
             }
             catch (Exception ex)
@@ -534,7 +534,7 @@ namespace Fidibo
                 return;
             }
 
-            new Book_Class(Name_Box.Text, Writer_Box.Text, double.Parse(Price_Box.Text), Summary_Text_Box.Text , int.Parse(Year_Box.Text));
+            new Book_Class(Name_Box.Text, Writer_Box.Text, double.Parse(Price_Box.Text), Summary_Text_Box.Text, int.Parse(Year_Box.Text));
             MessageBox.Show("Book were added succesfully !!");
             PDF_Address_Text_Block.Text = null;
             Cover_Address_Text_Block.Text = null;
@@ -546,6 +546,50 @@ namespace Fidibo
 
         }
 
-       
+        private void Search_By_Email_Buton_Click(object sender, RoutedEventArgs e)
+        {
+            customerData.Clear();
+
+            foreach (var item in Customer_Class.customers)
+            {
+                if (item.email == Email_Search_Text_Box.Text)
+                    customerData.Add(item);
+            }
+            Searched_Customer_By_Email_ItemContorol.Visibility = Visibility.Visible;
+
+        }
+
+        private void Search_By_Name_Buton_Click(object sender, RoutedEventArgs e)
+        {
+            customerData.Clear();
+
+            foreach (var item in Customer_Class.customers)
+            {
+                if (item.userName == Name_Search_Text_Box.Text)
+                    customerData.Add(item);
+            }
+            Searched_Customer_By_Name_ItemContorol.Visibility = Visibility.Visible;
+        }
+
+        private void Open_Customer_Button_Click(object sender, RoutedEventArgs e)
+        {
+            Search_By_Customer_Email_Border.Visibility = Visibility.Collapsed;
+            Search_By_Customer_Name_Border.Visibility = Visibility.Collapsed;
+
+            Show_Customer_Border.Visibility = Visibility.Visible;
+            Customers_Border.Visibility = Visibility.Collapsed;
+
+            Button button = sender as Button;
+            c = button.DataContext as Customer_Class;
+
+            Customer_Name_Text_Block.Text = c.userName;
+            Customer_Buyedbook_Text_Block.Text = "Buyed book : "+c.buyedBooks;
+            Customer_Cartbook_Text_Block.Text = "Book in cart : " + c.cart;
+            Customer_Bookmark_Text_Block.Text ="Bookmark : "+ c.markedBooks;
+            Customer_VIPLeft_Time_Text_Block.Text = "VIP left time : " + c.CalculateLeftTime()+" days";
+
+            Show_Customer_Border.Visibility = Visibility.Visible;
+
+        }
     }
 }

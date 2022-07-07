@@ -50,7 +50,7 @@
         <Border x:Name="Library_Border" Grid.Column="1" Margin="5" BorderBrush="#808e9b" BorderThickness="1" Visibility="Collapsed">
             <Grid>
                 <ScrollViewer>
-                    <ItemsControl x:Name="Library_ItemContorol" ItemsSource="{Binding libraryList}" Visibility="Collapsed" >
+                    <ItemsControl x:Name="Library_ItemContorol" ItemsSource="{Binding showData, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                         <ItemsControl.ItemTemplate >
                             <DataTemplate>
                                 <Grid>
@@ -67,7 +67,7 @@
         <Border x:Name="Cart_Border" Grid.Column="1" Margin="5" BorderBrush="#808e9b" BorderThickness="1" Visibility="Collapsed">
             <Grid Visibility="Visible">
                 <ScrollViewer Margin="0,0,0,58">
-                    <ItemsControl x:Name="Cart_ItemContorol" ItemsSource="{Binding showData}" >
+                    <ItemsControl x:Name="Cart_ItemContorol" ItemsSource="{Binding showData,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" >
                         <ItemsControl.ItemTemplate >
                             <DataTemplate>
                                 <Grid>
@@ -108,7 +108,7 @@
                             </Grid>
 
                             <ScrollViewer>
-                                <ItemsControl x:Name="Searched_Book_By_Writer_ItemContorol" ItemsSource="{Binding showData}" Visibility="Collapsed" >
+                                <ItemsControl x:Name="Searched_Book_By_Writer_ItemContorol" ItemsSource="{Binding showData, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Visibility="Collapsed" >
                                     <ItemsControl.ItemTemplate >
                                         <DataTemplate>
                                             <Grid>
@@ -133,7 +133,7 @@
                             </Grid>
 
                             <ScrollViewer>
-                                <ItemsControl x:Name="Searched_Book_By_Name_ItemContorol" ItemsSource="{Binding showData}" Visibility="Collapsed" >
+                                <ItemsControl x:Name="Searched_Book_By_Name_ItemContorol" ItemsSource="{Binding showData, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Visibility="Collapsed" >
                                     <ItemsControl.ItemTemplate >
                                         <DataTemplate>
                                             <Grid>
@@ -174,7 +174,7 @@
         <Border x:Name="Bookmarks_Border" Grid.Column="1" Margin="5" BorderBrush="#808e9b" BorderThickness="1" Visibility="Collapsed">
             <Grid>
                 <ScrollViewer>
-                    <ItemsControl x:Name="Bookmarks_ItemContorol" ItemsSource="{Binding libraryList}" Visibility="Collapsed" >
+                    <ItemsControl x:Name="Bookmarks_ItemContorol" ItemsSource="{Binding libraryList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" >
                         <ItemsControl.ItemTemplate >
                             <DataTemplate>
                                 <Grid>
@@ -237,6 +237,8 @@
                 <Button  x:Name="Mark_Book_Button" Height="50" Width="50" Margin="28,125,510,213" BorderThickness="0" BorderBrush="#1e272e" Click="Mark_Book_Button_Click">
                     <Image x:Name="BookMark_Image" Height="51" Width="50"/>
                 </Button>
+                <TextBlock x:Name="Discount_Block_Text" Height="40" FontSize="20" Foreground="#ff9f1a" Margin="10,276,310,72" Visibility="Collapsed"/>
+                <TextBlock x:Name="Is_VIP_Block_Text" Height="50" Margin="277,276,255,62" Text="VIP" Foreground="#32ff7e" FontSize="30" Visibility="Collapsed"/>
                 <TextBlock x:Name="summary_Text_Block" Margin="28,194,294,134" Foreground="#ced6e0"/>
                 <WebBrowser x:Name="PDF_Webbrowser"  Margin="0,0,0,50" Visibility="Collapsed"/>
                 <Button x:Name="Close_PDF_Button" Content="Close" Margin="216,354,216,10" Background="#eb3b5a" BorderThickness="0" Visibility="Collapsed" Click="Close_PDF_Button_Click"/>
@@ -246,7 +248,7 @@
         <Border x:Name="Delete_Book_Cart_Border" Grid.Column="1" Margin="5" BorderBrush="#808e9b" BorderThickness="1" Visibility="Collapsed">
             <Grid>
                 <ScrollViewer Margin="0,0,0,58">
-                    <ItemsControl x:Name="Delete_Book_Cart_ItemContorol" ItemsSource="{Binding showData}" >
+                    <ItemsControl x:Name="Delete_Book_Cart_ItemContorol" ItemsSource="{Binding showData, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" >
                         <ItemsControl.ItemTemplate >
                             <DataTemplate>
                                 <Grid>
