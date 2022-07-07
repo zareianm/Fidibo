@@ -112,7 +112,7 @@
 
         <Border x:Name="Show_Books_Border" Grid.Column="1" Margin="5" BorderBrush="#808e9b" BorderThickness="1" Visibility="Collapsed">
             <Grid>
-                <Border x:Name="List_Of_Book_Border" Visibility="Visible">
+                <Border x:Name="Menu_Of_Search_Book_Border" Visibility="Visible">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="0.4*"/>
@@ -179,26 +179,57 @@
             </Grid>
         </Border>
 
+       
         <Border x:Name="VIP_Setting_Border" Grid.Column="1" Margin="5" BorderBrush="#808e9b" BorderThickness="1" Visibility="Collapsed">
             <Grid>
+                <Border x:Name="Search_By_Book_Name_Border_VIP" Visibility="Collapsed">
+                    <Grid>
+                        <TextBlock Text="Search by name of book : " Margin="25,10" Foreground="#a4b0be"/>
+                        <TextBox x:Name="Search_By_Book_Name_Box_VIP" Height="30" Width="400" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="25,35" Background="#dcdde1" BorderBrush="#fff200" BorderThickness="2" FontSize="20"/>
+                        <Button x:Name="Search_By_Book_Name_BUtton_VIP" Height="30" Width="60" HorizontalAlignment="Right"  VerticalAlignment="Top" Margin="30,35" Background="#0fb9b1" BorderThickness="1" Content="Search" Click="Search_By_Book_Name_BUtton_VIP_Click"/>
+
+                    </Grid>
+                </Border >
+                <Border x:Name="Add_Book_To_VIP_Border" Grid.Column="1" Margin="5" BorderBrush="#808e9b" BorderThickness="1" Visibility="Collapsed">
+                    <Grid>
+                        <Button x:Name="Add_Book_To_VIP_Button" FontSize="20" Height="30" Margin="0,274,0,64" Width="250" Background="#22a6b3" BorderThickness="0" Content="Add to VIP books" Click="Add_Book_To_VIP_Button_Click"/>
+                       
+                    </Grid>
+                </Border>
+                <Border x:Name="VIP_Setting1_Border"  Margin="5" BorderBrush="#808e9b" BorderThickness="1" Visibility="Collapsed">
+                <Grid>
                 <StackPanel>
-                    <TextBlock Text="Set new price for monthly subscription :" FontSize="15" Foreground="#dcdde1" Margin="20,20,20,15"/>
+                    <TextBlock Text="Set new price for monthly subscription :"  FontSize="15" Foreground="#dcdde1" Margin="20,20,20,15"/>
                     <TextBox x:Name="New_Price_For_VIP_Box"  Margin="20,0,100,0" Background="#7f8fa6" BorderThickness="0" Height="20" FontSize="15"/>
                     <Button x:Name="Go_To_Add_New_Book_To_VIP_Button" Content="Add new book to VIP section" Height="40" Margin="70,140" VerticalAlignment="Bottom" FontSize="20" Background="#95afc0" BorderThickness="0" Click="Go_To_Add_New_Book_To_VIP_Button_Click"/>
                 </StackPanel>
             </Grid>
-        </Border>
-
-        <Border x:Name="Add_Book_To_VIP_Border" Grid.Column="1" Margin="5" BorderBrush="#808e9b" BorderThickness="1" Visibility="Collapsed">
-            <Grid>
-                <Button x:Name="Add_Book_To_VIP_Button" FontSize="20" Height="30" Margin="0,274,0,64" Width="250" Background="#22a6b3" BorderThickness="0" Content="Add to VIP books"/>
-                <Button x:Name="Back_To_VIP_Button" Height="40" Width="80" Content="Back" Background="#B53471" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10" Click="Back_To_VIP_Button_Click"/>
+           
+            </Border>
             </Grid>
         </Border>
 
-        <Border x:Name="Discount_Setting_Border" Grid.Column="1" Margin="5" BorderBrush="#808e9b" BorderThickness="1" Visibility="Collapsed">
 
+
+        <Border x:Name="Discount_Setting_Border" Grid.Column="1" Margin="5" BorderBrush="#808e9b" BorderThickness="1" Visibility="Collapsed">
+            <Grid>
+                <StackPanel>
+
+                    <TextBlock Text="Enter the name of book :" FontSize="15" Foreground="#dcdde1" Margin="20,20,20,15"/>
+                    <TextBox x:Name="Name_Of_Book_Box_Discount"  Margin="20,0,100,0" Background="#7f8fa6" BorderThickness="0" Height="20" FontSize="15"/>
+                    <TextBlock Text="Enter the discount amount :" FontSize="15" Foreground="#dcdde1" Margin="20,20,20,15"/>
+                    <TextBox x:Name="Discount_amount_Box_Discount"  Margin="20,0,100,0" Background="#7f8fa6" BorderThickness="0" Height="20" FontSize="15"/>
+
+                    <Button x:Name="Search_And_Set_Discount_Button" Content="Add new book to VIP section" Height="40" Margin="70,140" VerticalAlignment="Bottom" FontSize="20" Background="#95afc0" BorderThickness="0" Click="Search_And_Set_Discount_Button_Click"/>
+
+
+                </StackPanel>
+
+
+
+            </Grid>
         </Border>
+
 
         <Border x:Name="Sale_Rate_Setting_Border" Grid.Column="1" Margin="5" BorderBrush="#808e9b" BorderThickness="1" Visibility="Collapsed">
             <Grid>
