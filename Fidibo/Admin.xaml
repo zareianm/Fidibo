@@ -18,14 +18,14 @@
 
         <Border Grid.Column="0" Margin="5" BorderBrush="#808e9b" BorderThickness="1" Visibility="Visible">
             <StackPanel>
-                <Button x:Name="Add_Book_Button" Height="33" Width="105" Margin="5,8" Background="#2C3A47" BorderBrush="#808e9b" Content="Add book" Foreground="#9AECDB" FontFamily="Segoe UI Black" Click="Add_Book_Button_Click"/>
-                <Button x:Name="Edit_Book_Button" Height="33" Width="105" Margin="5,8" Background="#2C3A47" BorderBrush="#808e9b" Content="Edit book" Foreground="#9AECDB" FontFamily="Segoe UI Black" Click="Edit_Book_Button_Click"/>
-                <Button x:Name="Show_Books_Button" Height="27" Width="105" Margin="5,8" Background="#2C3A47" BorderBrush="#808e9b" Content="Show books" Foreground="#9AECDB" FontFamily="Segoe UI Black" Click="Show_Books_Button_Click"/>
-                <Button x:Name="Customers_Button" Height="33" Width="105" Margin="5,8" Background="#2C3A47" BorderBrush="#808e9b" Content="Customers" Foreground="#9AECDB" FontFamily="Segoe UI Black" Click ="Customers_Button_Click"/>
-                <Button x:Name="VIP_Setting_Button" Height="33" Width="105" Margin="5,8" Background="#2C3A47" BorderBrush="#808e9b" Content="VIP setting" Foreground="#9AECDB" FontFamily="Segoe UI Black" Click="VIP_Setting_Button_Click"/>
-                <Button x:Name="Discout_Button" Height="33" Width="105" Margin="5,8" Background="#2C3A47" BorderBrush="#808e9b" Content="Discount" Foreground="#9AECDB" FontFamily="Segoe UI Black" Click="Discout_Button_Click"/>
-                <Button x:Name="Sale_Rate_Button" Height="33" Width="105" Margin="5,8" Background="#2C3A47" BorderBrush="#808e9b" Content="Sale rate" Foreground="#9AECDB" FontFamily="Segoe UI Black" Click="Sale_Rate_Button_Click"/>
-                <Button x:Name="Safe_Button" Height="33" Width="105" Margin="5,8" Background="#2C3A47" BorderBrush="#808e9b" Content="Safe" Foreground="#9AECDB" FontFamily="Segoe UI Black" Click="Safe_Button_Click"/>
+                <Button x:Name="Add_Book_Button" Height="32" Width="105" Margin="5,8" Background="#2C3A47" BorderBrush="#808e9b" Content="Add book" Foreground="#9AECDB" FontFamily="Segoe UI Black" Click="Add_Book_Button_Click"/>
+                <Button x:Name="Edit_Book_Button" Height="32" Width="105" Margin="5,8" Background="#2C3A47" BorderBrush="#808e9b" Content="Edit book" Foreground="#9AECDB" FontFamily="Segoe UI Black" Click="Edit_Book_Button_Click"/>
+                <Button x:Name="Show_Books_Button" Height="32" Width="105" Margin="5,8" Background="#2C3A47" BorderBrush="#808e9b" Content="Show books" Foreground="#9AECDB" FontFamily="Segoe UI Black" Click="Show_Books_Button_Click"/>
+                <Button x:Name="Customers_Button" Height="32" Width="105" Margin="5,8" Background="#2C3A47" BorderBrush="#808e9b" Content="Customers" Foreground="#9AECDB" FontFamily="Segoe UI Black" Click ="Customers_Button_Click"/>
+                <Button x:Name="VIP_Setting_Button" Height="32" Width="105" Margin="5,8" Background="#2C3A47" BorderBrush="#808e9b" Content="VIP setting" Foreground="#9AECDB" FontFamily="Segoe UI Black" Click="VIP_Setting_Button_Click"/>
+                <Button x:Name="Discout_Button" Height="32" Width="105" Margin="5,8" Background="#2C3A47" BorderBrush="#808e9b" Content="Discount" Foreground="#9AECDB" FontFamily="Segoe UI Black" Click="Discout_Button_Click"/>
+                <Button x:Name="Sale_Rate_Button" Height="32" Width="105" Margin="5,8" Background="#2C3A47" BorderBrush="#808e9b" Content="Sale rate" Foreground="#9AECDB" FontFamily="Segoe UI Black" Click="Sale_Rate_Button_Click"/>
+                <Button x:Name="Safe_Button" Height="32" Width="105" Margin="5,8" Background="#2C3A47" BorderBrush="#808e9b" Content="Safe" Foreground="#9AECDB" FontFamily="Segoe UI Black" Click="Safe_Button_Click"/>
 
                 <Button x:Name="Exit_Button" Height="25" Width="66" Margin="5,8" Background="#2C3A47" BorderBrush="#808e9b" Content="Exit" Foreground="#9AECDB" FontFamily="Segoe UI Black" Click="Exit_Button_Click"/>
             </StackPanel>
@@ -108,41 +108,72 @@
             </Grid>
 
         </Border>
-
+        
         <Border x:Name="Show_Books_Border" Grid.Column="1" Margin="5" BorderBrush="#808e9b" BorderThickness="1" Visibility="Collapsed">
             <Grid>
-                <Border x:Name="Menu_Of_Search_Book_Border" Visibility="Visible">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.4*"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Border>
                     <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="0.4*"/>
-                            <RowDefinition/>
-                        </Grid.RowDefinitions>
-                        <Button x:Name="Go_To_Search_By_Writer_Name_Button" Content="Search by writer" Foreground="#fff200" Height="40" Width="100" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="150,15" Background="#7f8fa6" Click="Go_To_Search_By_Writer_Name_Button_Click"/>
-                        <Button x:Name="Go_To_Search_By_Book_Name_Button" Content="Search by book" Foreground="#fff200" Height="40" Width="100" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="150,15" Background="#7f8fa6" Click="Go_To_Search_By_Book_Name_Button_Click"/>
+                        <Button x:Name="Go_To_Search_By_Writer_Name_Button" Content="Search by writer" Foreground="#fff200" Height="40" Width="100" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="150,30" Background="#7f8fa6" Click="Go_To_Search_By_Writer_Name_Button_Click"/>
+                        <Button x:Name="Go_To_Search_By_Book_Name_Button" Content="Search by book" Foreground="#fff200" Height="40" Width="100" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="150,30" Background="#7f8fa6" Click="Go_To_Search_By_Book_Name_Button_Click"/>
                     </Grid>
                 </Border>
 
-                <Border x:Name="Search_By_Writer_Border" Visibility="Collapsed">
+                <Border x:Name="Search_By_Writer_Border" Grid.Row="1" Visibility="Visible" >
                     <Grid>
-                        <TextBlock Text="Search by writer : " Margin="25,10" Foreground="#a4b0be"/>
-                        <TextBox x:Name="Search_By_Writer_Box" Height="30" Width="400" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="25,35" Background="#dcdde1" BorderBrush="#fff200" BorderThickness="2" FontSize="20"/>
-                        <Button x:Name="Search_By_Writer_Name_Button" Height="30" Width="60" HorizontalAlignment="Right"  VerticalAlignment="Top" Margin="30,35" Background="#0fb9b1" BorderThickness="1" Content="Search"/>
-                        <Button x:Name="Back_To_List_Of_Book_Button" Height="40" Width="80" Content="Back" Background="#B53471" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10" Click="Back_To_List_Of_Book_Button_Click"/>
+                        <StackPanel>
+                            <TextBlock Text="Search by writer : " Margin="25,0" Foreground="#a4b0be"/>
+                            <Grid>
+                                <TextBox x:Name="Search_By_Writer_Box" Height="30" Width="400" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="25,35" Background="#dcdde1" BorderBrush="#fff200" BorderThickness="2"/>
+                                <Button x:Name="Search_By_Writer_Name_Button" Height="30" Width="60" HorizontalAlignment="Right"  VerticalAlignment="Top" Margin="30,35" Background="#0fb9b1" BorderThickness="1" Content="Search" Click="Search_By_Writer_Name_Button_Click"/>
+                            </Grid>
+
+                            <ScrollViewer>
+                                <ItemsControl x:Name="Searched_Book_By_Writer_ItemContorol" ItemsSource="{Binding showData, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Visibility="Collapsed" >
+                                    <ItemsControl.ItemTemplate >
+                                        <DataTemplate>
+                                            <Grid>
+                                                <TextBlock x:Name="Name_Search_By_Writer_Text_Block" Text="{Binding name}" Background="#95a5a6" Height="30" Width="200" Margin="20,5" HorizontalAlignment="Left" FontSize="25" />
+                                                <Button x:Name="Open_Book_Search_Writer_Button" Content="Open" Background="#B53471" Height="30" Width="200" Margin="20,0" HorizontalAlignment="Right" BorderThickness="0" Click="Open_Book_Button_Click"/>
+                                            </Grid>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </ScrollViewer>
+                        </StackPanel>
                     </Grid>
                 </Border>
 
-                <Border x:Name="Search_By_Book_Name_Border" Visibility="Collapsed">
+                <Border x:Name="Search_By_Book_Name_Border" Grid.Row="1" Visibility="Collapsed">
                     <Grid>
-                        <TextBlock Text="Search by name of book : " Margin="25,10" Foreground="#a4b0be"/>
-                        <TextBox x:Name="Search_By_Book_Name_Box" Height="30" Width="400" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="25,35" Background="#dcdde1" BorderBrush="#fff200" BorderThickness="2" FontSize="20"/>
-                        <Button x:Name="Search_By_Book_Name_BUtton" Height="30" Width="60" HorizontalAlignment="Right"  VerticalAlignment="Top" Margin="30,35" Background="#0fb9b1" BorderThickness="1" Content="Search"/>
-                        <Button x:Name="Back_To_List_Of_Book_Button2" Height="40" Width="80" Content="Back" Background="#B53471" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10" Click="Back_To_List_Of_Book_Button_Click"/>
+                        <StackPanel>
+                            <TextBlock Text="Search by name : " Margin="25,0" Foreground="#a4b0be"/>
+                            <Grid>
+                                <TextBox x:Name="Search_By_Book_Name_Box" Height="30" Width="400" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="25,35" Background="#dcdde1" BorderBrush="#fff200" BorderThickness="2"/>
+                                <Button x:Name="Search_By_Book_Name2" Height="30" Width="60" HorizontalAlignment="Right"  VerticalAlignment="Top" Margin="30,35" Background="#0fb9b1" BorderThickness="1" Content="Search" Click="Search_By_Book_Name_Click"/>
+                            </Grid>
+
+                            <ScrollViewer>
+                                <ItemsControl x:Name="Searched_Book_By_Name_ItemContorol" ItemsSource="{Binding showData, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Visibility="Collapsed" >
+                                    <ItemsControl.ItemTemplate >
+                                        <DataTemplate>
+                                            <Grid>
+                                                <TextBlock x:Name="Name_Search_By_Name_Text_Block" Text="{Binding name}" Background="#95a5a6" Height="30" Width="200" Margin="20,5" HorizontalAlignment="Left" FontSize="25" />
+                                                <Button x:Name="Open_Book_Search_Name_Button" Content="Open" Background="#B53471" Height="30" Width="200" Margin="20,0" HorizontalAlignment="Right" BorderThickness="0" Click="Open_Book_Button_Click"/>
+                                            </Grid>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </ScrollViewer>
+                        </StackPanel>
                     </Grid>
                 </Border>
-
             </Grid>
         </Border>
-
+        
         <Border x:Name="Customers_Border" Grid.Column="1" Margin="5" BorderBrush="#808e9b" BorderThickness="1" Visibility="Collapsed">
             <Grid>
                 <Border x:Name="List_Of_Customer_Border" Visibility="Visible">
@@ -210,7 +241,6 @@
             </Grid>
         </Border>
 
-       
         <Border x:Name="VIP_Setting_Border" Grid.Column="1" Margin="5" BorderBrush="#808e9b" BorderThickness="1" Visibility="Collapsed">
             <Grid>
                 <Border x:Name="Search_By_Book_Name_Border_VIP" Visibility="Collapsed">
@@ -224,23 +254,21 @@
                 <Border x:Name="Add_Book_To_VIP_Border" Grid.Column="1" Margin="5" BorderBrush="#808e9b" BorderThickness="1" Visibility="Collapsed">
                     <Grid>
                         <Button x:Name="Add_Book_To_VIP_Button" FontSize="20" Height="30" Margin="0,274,0,64" Width="250" Background="#22a6b3" BorderThickness="0" Content="Add to VIP books" Click="Add_Book_To_VIP_Button_Click"/>
-                       
+
                     </Grid>
                 </Border>
                 <Border x:Name="VIP_Setting1_Border"  Margin="5" BorderBrush="#808e9b" BorderThickness="1" Visibility="Collapsed">
-                <Grid>
-                <StackPanel>
-                    <TextBlock Text="Set new price for monthly subscription :"  FontSize="15" Foreground="#dcdde1" Margin="20,20,20,15"/>
-                    <TextBox x:Name="New_Price_For_VIP_Box"  Margin="20,0,100,0" Background="#7f8fa6" BorderThickness="0" Height="20" FontSize="15"/>
-                    <Button x:Name="Go_To_Add_New_Book_To_VIP_Button" Content="Add new book to VIP section" Height="40" Margin="70,140" VerticalAlignment="Bottom" FontSize="20" Background="#95afc0" BorderThickness="0" Click="Go_To_Add_New_Book_To_VIP_Button_Click"/>
-                </StackPanel>
-            </Grid>
-           
-            </Border>
+                    <Grid>
+                        <StackPanel>
+                            <TextBlock Text="Set new price for monthly subscription :"  FontSize="15" Foreground="#dcdde1" Margin="20,20,20,15"/>
+                            <TextBox x:Name="New_Price_For_VIP_Box"  Margin="20,0,100,0" Background="#7f8fa6" BorderThickness="0" Height="20" FontSize="15"/>
+                            <Button x:Name="Go_To_Add_New_Book_To_VIP_Button" Content="Add new book to VIP section" Height="40" Margin="70,140" VerticalAlignment="Bottom" FontSize="20" Background="#95afc0" BorderThickness="0" Click="Go_To_Add_New_Book_To_VIP_Button_Click"/>
+                        </StackPanel>
+                    </Grid>
+
+                </Border>
             </Grid>
         </Border>
-
-
 
         <Border x:Name="Discount_Setting_Border" Grid.Column="1" Margin="5" BorderBrush="#808e9b" BorderThickness="1" Visibility="Collapsed">
             <Grid>
@@ -260,7 +288,6 @@
 
             </Grid>
         </Border>
-
 
         <Border x:Name="Sale_Rate_Setting_Border" Grid.Column="1" Margin="5" BorderBrush="#808e9b" BorderThickness="1" Visibility="Collapsed">
             <Grid>
@@ -341,7 +368,7 @@
             </StackPanel>
         </Border>
 
-        <Border x:Name="Show_Customer_Border" Grid.Column="1" Margin="5" BorderBrush="#808e9b" BorderThickness="1" Visibility="Visible">
+        <Border x:Name="Show_Customer_Border" Grid.Column="1" Margin="5" BorderBrush="#808e9b" BorderThickness="1" Visibility="Collapsed">
             <StackPanel>
                 <TextBlock x:Name="Customer_Name_Text_Block" FontSize="45" TextAlignment="Center" Foreground="#EE5A24" Margin="0,50,0,0"/>
                 <TextBlock x:Name="Customer_Buyedbook_Text_Block" FontSize="30" TextAlignment="Left"  Foreground="#F8EFBA" Margin="40,20,40,0"/>
@@ -349,6 +376,21 @@
                 <TextBlock x:Name="Customer_Bookmark_Text_Block" FontSize="30" TextAlignment="Left"  Foreground="#F8EFBA" Margin="40,20,40,0"/>
                 <TextBlock x:Name="Customer_VIPLeft_Time_Text_Block" FontSize="30" TextAlignment="Left"  Foreground="#F8EFBA" Margin="40,20,40,0"/>
             </StackPanel>
+        </Border>
+
+        <Border x:Name="Open_Book_Border" Grid.Column="1" Margin="5" BorderBrush="#808e9b" BorderThickness="1" Background="#1e272e"  Visibility="Collapsed">
+            <Grid>
+                <WebBrowser x:Name="wb" HorizontalAlignment="Right" Width="250" Visibility="Visible" Margin="0,10,0,62"/>
+                <TextBlock x:Name="Book_Text_block" Text="boofekoor" Height="50" Width="300" Background="#1e272e" Margin="39,44,249,333" Foreground="#fff200" FontSize="45" FontFamily="Georgia" TextAlignment="Center"/>
+                <TextBlock x:Name="Writer_Text_block" Text="writer : hedayat" Width="300" Background="#1e272e" Margin="39,100,249,258" FontSize="20" TextAlignment="Center" Foreground="#0be881" FontFamily="Tw Cen MT"/>
+                <TextBlock x:Name="Year_Text_Block" Text="Year : 1325" Height="50" Width="300" Margin="39,139,249,238" FontSize="20" TextAlignment="Center" Foreground="#f368e0" FontFamily="Tw Cen MT" /> 
+                <TextBlock x:Name="Discount_Block_Text" Text="Discount : 20%" Height="40" FontSize="20" Foreground="#ff9f1a" Margin="10,276,310,72"/>
+                <Button x:Name="Open_PDF_Button" Height="30" Width="100" Margin="139,250,349,147" Content="Open PDF" Background="#54a0ff" BorderThickness="0" Click="Open_PDF_Button_Click"/>
+                <TextBlock x:Name="Is_VIP_Block_Text" Height="50" Margin="277,276,255,62" Text="VIP" Foreground="#32ff7e" FontSize="30"/>
+                <TextBlock x:Name="summary_Text_Block" Margin="28,169,294,208" Foreground="#ced6e0" Height="50"/>
+                <WebBrowser x:Name="PDF_Webbrowser"  Margin="0,0,0,50" Visibility="Collapsed"/>
+                <Button x:Name="Close_PDF_Button" Content="Close" Margin="216,354,216,10" Background="#eb3b5a" BorderThickness="0" Visibility="Collapsed" Click="Close_PDF_Button_Click"/>
+            </Grid>
         </Border>
 
     </Grid>

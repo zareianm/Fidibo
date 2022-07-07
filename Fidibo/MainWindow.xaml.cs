@@ -86,16 +86,8 @@ namespace Fidibo
 
         private void Admin_Login_Button_Click(object sender, RoutedEventArgs e)
         {
-<<<<<<< HEAD
-
-
-            if (Admin_Class.IsValidEmail(admin_email_box.Text) && Admin_Class.IsValidPassword(admin_password_box.Password))
-
             if (admin_password_box.Password == "1234" && admin_email_box.Text == "Admin@gmail.com")
 
-=======
-            if (admin_password_box.Password == "1234" && admin_email_box.Text == "Admin@gmail.com")
->>>>>>> 9fdabb5c515c393eeb686837b327bdc4f8f248e1
             {
 
                 string command = "select * from T_Admin where Email = '" + admin_email_box.Text + "'";

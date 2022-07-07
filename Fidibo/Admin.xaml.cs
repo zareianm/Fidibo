@@ -27,15 +27,16 @@ namespace Fidibo
         Admin_Class admin;
 
         public ObservableCollection<Customer_Class> customerData { get; set; }
+        public ObservableCollection<Book_Class> showData { get; set; }
 
         Customer_Class c;
-
+        Book_Class b;
         public Admin(Admin_Class admin)
         {
             this.admin = admin;
 
             customerData = new ObservableCollection<Customer_Class>();
-
+            showData = new ObservableCollection<Book_Class>();
             InitializeComponent();
             DataContext = this;
         }
@@ -52,7 +53,6 @@ namespace Fidibo
             Safe_Setting_Border.Visibility = Visibility.Collapsed;
             Transfor_Money_Border.Visibility = Visibility.Collapsed;
             Add_Book_To_VIP_Border.Visibility = Visibility.Collapsed;
-            Menu_Of_Search_Book_Border.Visibility = Visibility.Visible;
             Search_By_Writer_Border.Visibility = Visibility.Collapsed;
             Search_By_Book_Name_Border.Visibility = Visibility.Collapsed;
             List_Of_Customer_Border.Visibility = Visibility.Visible;
@@ -60,6 +60,7 @@ namespace Fidibo
             Search_By_Customer_Name_Border.Visibility = Visibility.Collapsed;
             Show_Books_Border.Visibility = Visibility.Collapsed;
             Show_Customer_Border.Visibility = Visibility.Collapsed;
+            Open_Book_Border.Visibility = Visibility.Collapsed;
         }
 
         private void Edit_Book_Button_Click(object sender, RoutedEventArgs e)
@@ -75,7 +76,6 @@ namespace Fidibo
             Safe_Setting_Border.Visibility = Visibility.Collapsed;
             Transfor_Money_Border.Visibility = Visibility.Collapsed;
             Add_Book_To_VIP_Border.Visibility = Visibility.Collapsed;
-            Menu_Of_Search_Book_Border.Visibility = Visibility.Visible;
             Search_By_Writer_Border.Visibility = Visibility.Collapsed;
             Search_By_Book_Name_Border.Visibility = Visibility.Collapsed;
             List_Of_Customer_Border.Visibility = Visibility.Visible;
@@ -83,6 +83,7 @@ namespace Fidibo
             Search_By_Customer_Name_Border.Visibility = Visibility.Collapsed;
             Show_Books_Border.Visibility = Visibility.Collapsed;
             Show_Customer_Border.Visibility = Visibility.Collapsed;
+            Open_Book_Border.Visibility = Visibility.Collapsed;
 
         }
         private void Search_By_Book_Name_BUtton_Edit_Click(object sender, RoutedEventArgs e)
@@ -162,7 +163,6 @@ namespace Fidibo
             Safe_Setting_Border.Visibility = Visibility.Collapsed;
             Transfor_Money_Border.Visibility = Visibility.Collapsed;
             Add_Book_To_VIP_Border.Visibility = Visibility.Collapsed;
-            Menu_Of_Search_Book_Border.Visibility = Visibility.Visible;
             Search_By_Writer_Border.Visibility = Visibility.Collapsed;
             Search_By_Book_Name_Border.Visibility = Visibility.Collapsed;
             List_Of_Customer_Border.Visibility = Visibility.Collapsed;
@@ -170,6 +170,7 @@ namespace Fidibo
             Search_By_Customer_Name_Border.Visibility = Visibility.Collapsed;
             Show_Books_Border.Visibility = Visibility.Visible;
             Show_Customer_Border.Visibility = Visibility.Collapsed;
+            Open_Book_Border.Visibility = Visibility.Collapsed;
 
         }
 
@@ -185,7 +186,6 @@ namespace Fidibo
             Safe_Setting_Border.Visibility = Visibility.Collapsed;
             Transfor_Money_Border.Visibility = Visibility.Collapsed;
             Add_Book_To_VIP_Border.Visibility = Visibility.Collapsed;
-            Menu_Of_Search_Book_Border.Visibility = Visibility.Visible;
             Search_By_Writer_Border.Visibility = Visibility.Collapsed;
             Search_By_Book_Name_Border.Visibility = Visibility.Collapsed;
             List_Of_Customer_Border.Visibility = Visibility.Visible;
@@ -193,6 +193,7 @@ namespace Fidibo
             Search_By_Customer_Name_Border.Visibility = Visibility.Collapsed;
             Show_Books_Border.Visibility = Visibility.Collapsed;
             Show_Customer_Border.Visibility = Visibility.Collapsed;
+            Open_Book_Border.Visibility = Visibility.Collapsed;
 
         }
 
@@ -208,17 +209,17 @@ namespace Fidibo
             Safe_Setting_Border.Visibility = Visibility.Collapsed;
             Transfor_Money_Border.Visibility = Visibility.Collapsed;
             Add_Book_To_VIP_Border.Visibility = Visibility.Collapsed;
-            Menu_Of_Search_Book_Border.Visibility = Visibility.Visible;
             Search_By_Writer_Border.Visibility = Visibility.Collapsed;
             Search_By_Book_Name_Border.Visibility = Visibility.Collapsed;
             List_Of_Customer_Border.Visibility = Visibility.Visible;
             Search_By_Customer_Email_Border.Visibility = Visibility.Collapsed;
             Search_By_Customer_Name_Border.Visibility = Visibility.Collapsed;
             Show_Books_Border.Visibility = Visibility.Collapsed;
-<<<<<<< HEAD
             VIP_Setting1_Border.Visibility = Visibility.Visible;
             Search_By_Book_Name_Border_VIP.Visibility = Visibility.Collapsed;
             Add_Book_To_VIP_Border.Visibility = Visibility.Collapsed;
+            Open_Book_Border.Visibility = Visibility.Collapsed;
+
         }
         private void Go_To_Add_New_Book_To_VIP_Button_Click(object sender, RoutedEventArgs e)
         {
@@ -274,9 +275,6 @@ namespace Fidibo
                 Add_Book_To_VIP_Border.Visibility = Visibility.Collapsed;
 
             }
-=======
-            Show_Customer_Border.Visibility = Visibility.Collapsed;
->>>>>>> 9fdabb5c515c393eeb686837b327bdc4f8f248e1
 
         }
 
@@ -292,7 +290,6 @@ namespace Fidibo
             Safe_Setting_Border.Visibility = Visibility.Collapsed;
             Transfor_Money_Border.Visibility = Visibility.Collapsed;
             Add_Book_To_VIP_Border.Visibility = Visibility.Collapsed;
-            Menu_Of_Search_Book_Border.Visibility = Visibility.Visible;
             Search_By_Writer_Border.Visibility = Visibility.Collapsed;
             Search_By_Book_Name_Border.Visibility = Visibility.Collapsed;
             List_Of_Customer_Border.Visibility = Visibility.Visible;
@@ -300,6 +297,7 @@ namespace Fidibo
             Search_By_Customer_Name_Border.Visibility = Visibility.Collapsed;
             Show_Books_Border.Visibility = Visibility.Collapsed;
             Show_Customer_Border.Visibility = Visibility.Collapsed;
+            Open_Book_Border.Visibility = Visibility.Collapsed;
 
         }
 
@@ -361,7 +359,6 @@ namespace Fidibo
             Safe_Setting_Border.Visibility = Visibility.Collapsed;
             Transfor_Money_Border.Visibility = Visibility.Collapsed;
             Add_Book_To_VIP_Border.Visibility = Visibility.Collapsed;
-            Menu_Of_Search_Book_Border.Visibility = Visibility.Visible;
             Search_By_Writer_Border.Visibility = Visibility.Collapsed;
             Search_By_Book_Name_Border.Visibility = Visibility.Collapsed;
             List_Of_Customer_Border.Visibility = Visibility.Visible;
@@ -371,6 +368,7 @@ namespace Fidibo
             Show_Rate_And_Sale_Border.Visibility = Visibility.Collapsed;
             Show_Books_Border.Visibility = Visibility.Collapsed;
             Show_Customer_Border.Visibility = Visibility.Collapsed;
+            Open_Book_Border.Visibility = Visibility.Collapsed;
 
         }
 
@@ -406,7 +404,6 @@ namespace Fidibo
             Safe_Setting_Border.Visibility = Visibility.Visible;
             Transfor_Money_Border.Visibility = Visibility.Collapsed;
             Add_Book_To_VIP_Border.Visibility = Visibility.Collapsed;
-            Menu_Of_Search_Book_Border.Visibility = Visibility.Visible;
             Search_By_Writer_Border.Visibility = Visibility.Collapsed;
             Search_By_Book_Name_Border.Visibility = Visibility.Collapsed;
             List_Of_Customer_Border.Visibility = Visibility.Visible;
@@ -416,6 +413,7 @@ namespace Fidibo
             Safe_Cash_Border.Visibility = Visibility.Collapsed;
             Show_Books_Border.Visibility = Visibility.Collapsed;
             Show_Customer_Border.Visibility = Visibility.Collapsed;
+            Open_Book_Border.Visibility = Visibility.Collapsed;
 
         }
 
@@ -500,27 +498,22 @@ namespace Fidibo
         private void Go_To_Search_By_Writer_Name_Button_Click(object sender, RoutedEventArgs e)
         {
             Show_Books_Border.Visibility = Visibility.Visible;
-            Menu_Of_Search_Book_Border.Visibility = Visibility.Collapsed;
             Search_By_Writer_Border.Visibility = Visibility.Visible;
-            Search_By_Book_Name_Border.Visibility = Visibility.Collapsed;
+            SearchBy_Book_Border.Visibility = Visibility.Collapsed;
         }
 
         private void Go_To_Search_By_Book_Name_Button_Click(object sender, RoutedEventArgs e)
         {
             Show_Books_Border.Visibility = Visibility.Visible;
-            Menu_Of_Search_Book_Border.Visibility = Visibility.Collapsed;
             Search_By_Writer_Border.Visibility = Visibility.Collapsed;
-            Search_By_Book_Name_Border.Visibility = Visibility.Visible;
-
-
+            SearchBy_Book_Border.Visibility = Visibility.Visible;
         }
 
         private void Back_To_List_Of_Book_Button_Click(object sender, RoutedEventArgs e)
         {
             Show_Books_Border.Visibility = Visibility.Visible;
             Search_By_Writer_Border.Visibility = Visibility.Collapsed;
-            Search_By_Book_Name_Border.Visibility = Visibility.Collapsed;
-            Menu_Of_Search_Book_Border.Visibility = Visibility.Visible;
+            SearchBy_Book_Border.Visibility = Visibility.Visible;
         }
 
         private void Go_To_Search_By_Customer_Email_Button_Click(object sender, RoutedEventArgs e)
@@ -648,9 +641,6 @@ namespace Fidibo
 
         }
 
-<<<<<<< HEAD
-     
-=======
         private void Search_By_Email_Buton_Click(object sender, RoutedEventArgs e)
         {
             customerData.Clear();
@@ -696,6 +686,86 @@ namespace Fidibo
             Show_Customer_Border.Visibility = Visibility.Visible;
 
         }
->>>>>>> 9fdabb5c515c393eeb686837b327bdc4f8f248e1
+
+        private void Search_By_Writer_Name_Button_Click(object sender, RoutedEventArgs e)
+        {
+            showData.Clear();
+
+            Searched_Book_By_Writer_ItemContorol.Visibility = Visibility.Visible;
+
+            foreach (var item in Book_Class.books)
+            {
+                if (item.writer == Search_By_Writer_Box.Text)
+                    showData.Add(item);
+            }
+
+            Searched_Book_By_Writer_ItemContorol.Visibility = Visibility.Visible;
+        }
+
+        private void Search_By_Book_Name_Click_1(object sender, RoutedEventArgs e)
+        {
+            showData.Clear();
+
+            Searched_Book_By_Name_ItemContorol.Visibility = Visibility.Visible;
+
+            foreach (var item in Book_Class.books)
+            {
+                if (item.name == Search_By_Book_Name_Box.Text)
+                    showData.Add(item);
+            }
+
+            Searched_Book_By_Name_ItemContorol.Visibility = Visibility.Visible;
+        }
+
+        private void Open_Book_Button_Click(object sender, RoutedEventArgs e)
+        {
+            Show_Books_Border.Visibility = Visibility.Collapsed;
+            Search_By_Writer_Border.Visibility = Visibility.Collapsed;
+            Search_By_Book_Name_Border.Visibility = Visibility.Collapsed;
+            Open_Book_Border.Visibility = Visibility.Visible;
+
+
+            Button button = sender as Button;
+            b = button.DataContext as Book_Class;
+
+            Book_Text_block.Text = b.name;
+            Writer_Text_block.Text = b.writer;
+            summary_Text_Block.Text = b.summary;
+            Year_Text_Block.Text = b.year.ToString();
+
+            if (b.isVIP)
+                Is_VIP_Block_Text.Visibility = Visibility.Visible;
+            else
+                Is_VIP_Block_Text.Visibility = Visibility.Collapsed;
+
+            if (b.discount != null)
+            {
+                Discount_Block_Text.Text = "Discount: " + b.discount + "%";
+                Discount_Block_Text.Visibility = Visibility.Visible;
+            }
+
+            else
+                Discount_Block_Text.Visibility = Visibility.Collapsed;
+
+            string s = System.IO.Path.GetFullPath(@"coverResources/" + b.name + ".jpg");
+            System.Uri i = new Uri(s);
+            wb.Source = i;
+            wb.Visibility = Visibility.Visible;
+        }
+
+        private void Open_PDF_Button_Click(object sender, RoutedEventArgs e)
+        {
+            string s = System.IO.Path.GetFullPath(@"PDFResources/" + b.name + ".pdf");
+            System.Uri i = new Uri(s);
+            PDF_Webbrowser.Source = i;
+            PDF_Webbrowser.Visibility = Visibility.Visible;
+            Close_PDF_Button.Visibility = Visibility.Visible;
+        }
+
+        private void Close_PDF_Button_Click(object sender, RoutedEventArgs e)
+        {
+            PDF_Webbrowser.Visibility = Visibility.Collapsed;
+            Close_PDF_Button.Visibility = Visibility.Collapsed;
+        }
     }
 }
