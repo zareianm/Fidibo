@@ -62,5 +62,17 @@ namespace Fidibo
 
             return -1;
         }
+
+        public static void UpdateBookTable(string oldName, Book_Class bc)
+        {
+            string command = "update T_Books set Name = '" + bc.name + "' , Writer = '" + bc.writer + "' , Price = '" + bc.price + "' , SalesCount = '" + bc.salesCount + "' , Rate = '" + bc.rate + "' , Discount = '" + bc.discount + "' , IsVIP = '" + bc.isVIP + "' , Summary = '" + bc.summary + "' , Year = '" + bc.year + "' where Name = '" + oldName + "'";
+
+            SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=F:\aphw\Fidibo\Fidibo\Resources\data.mdf;Integrated Security=True");
+            con.Open();
+            SqlCommand com = new SqlCommand(command, con);
+            com.BeginExecuteNonQuery();
+            con.Close();
+
+        }
     }
 }

@@ -31,7 +31,7 @@
             </StackPanel>
         </Border>
 
-        <Border x:Name="Add_Book_Border" Grid.Column="1" Margin="5" BorderBrush="#808e9b" BorderThickness="1" Visibility="Visible">
+        <Border x:Name="Add_Book_Border" Grid.Column="1" Margin="5" BorderBrush="#808e9b" BorderThickness="1" Visibility="Collapsed">
 
             <Grid>
                 <StackPanel>
@@ -80,7 +80,6 @@
 
                             <TextBlock Text="New price of the new book :" Foreground="#dcdde1" Margin="30,10"/>
                             <TextBox x:Name="New_Price_Box" Margin="30,0,150,0" Background="#dcdde1" BorderThickness="0"/>
-
 
                             <TextBlock Text="New year of publication of the new book :" Foreground="#dcdde1" Margin="30,10"/>
                             <TextBox x:Name="New_Year_Box" Margin="30,0,150,0" Background="#dcdde1" BorderThickness="0"/>
@@ -158,21 +157,53 @@
                     </Grid>
                 </Border>
 
-                <Border x:Name="Search_By_Customer_Email_Border" Visibility="Collapsed">
+                <Border x:Name="Search_By_Customer_Email_Border" Grid.Row="1" Visibility="Collapsed" >
                     <Grid>
-                        <TextBlock Text="Search by Email : " Margin="25,10" Foreground="#a4b0be"/>
-                        <TextBox x:Name="Search_By_Customer_Email_Box" Height="30" Width="400" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="25,35" Background="#dcdde1" BorderBrush="#fff200" BorderThickness="2" FontSize="20"/>
-                        <Button x:Name="Search_By_Customer_Email_Button" Height="30" Width="60" HorizontalAlignment="Right"  VerticalAlignment="Top" Margin="30,35" Background="#0fb9b1" BorderThickness="1" Content="Search"/>
-                        <Button x:Name="Back_To_List_Of_Customer_Button" Height="40" Width="80" Content="Back" Background="#B53471" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10" Click="Back_To_List_Of_Customer_Button_Click"/>
+                        <StackPanel>
+                            <TextBlock Text="Search by email : " Margin="25,100,25,0" Foreground="#a4b0be"/>
+                            <Grid>
+                                <TextBox x:Name="Email_Search_Text_Box" Height="30" Width="400" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="25,35" Background="#dcdde1" BorderBrush="#fff200" BorderThickness="2"/>
+                                <Button x:Name="Search_By_Email_Buton" Height="30" Width="60" HorizontalAlignment="Right"  VerticalAlignment="Top" Margin="30,35" Background="#0fb9b1" BorderThickness="1" Content="Search" Click="Search_By_Email_Buton_Click"/>
+                            </Grid>
+
+                            <ScrollViewer>
+                                <ItemsControl x:Name="Searched_Customer_By_Email_ItemContorol" ItemsSource="{Binding customerData, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Visibility="Collapsed" >
+                                    <ItemsControl.ItemTemplate >
+                                        <DataTemplate>
+                                            <Grid>
+                                                <TextBlock x:Name="Name_Search_By_Email_Text_Block" Text="{Binding userName}" Background="#95a5a6" Height="30" Width="200" Margin="20,5" HorizontalAlignment="Left" FontSize="25" />
+                                                <Button x:Name="Open_Customer_Search_Email_Button" Content="Open" Background="#B53471" Height="30" Width="200" Margin="20,0" HorizontalAlignment="Right" BorderThickness="0" Click="Open_Customer_Button_Click"/>
+                                            </Grid>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </ScrollViewer>
+                        </StackPanel>
                     </Grid>
                 </Border>
-
-                <Border x:Name="Search_By_Customer_Name_Border" Visibility="Collapsed">
+                
+                <Border x:Name="Search_By_Customer_Name_Border" Grid.Row="1" Visibility="Collapsed" >
                     <Grid>
-                        <TextBlock Text="Search by name : " Margin="25,10" Foreground="#a4b0be"/>
-                        <TextBox x:Name="Search_By_Customer_Name_Box" Height="30" Width="400" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="25,35" Background="#dcdde1" BorderBrush="#fff200" BorderThickness="2" FontSize="20"/>
-                        <Button x:Name="Search_By_Customer_Name_Button" Height="30" Width="60" HorizontalAlignment="Right"  VerticalAlignment="Top" Margin="30,35" Background="#0fb9b1" BorderThickness="1" Content="Search"/>
-                        <Button x:Name="Back_To_List_Of_Customer_Button2" Height="40" Width="80" Content="Back" Background="#B53471" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10" Click="Back_To_List_Of_Customer_Button_Click"/>
+                        <StackPanel>
+                            <TextBlock Text="Search by name : " Margin="25,100,25,0" Foreground="#a4b0be"/>
+                            <Grid>
+                                <TextBox x:Name="Name_Search_Text_Box" Height="30" Width="400" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="25,35" Background="#dcdde1" BorderBrush="#fff200" BorderThickness="2"/>
+                                <Button x:Name="Search_By_Name_Buton" Height="30" Width="60" HorizontalAlignment="Right"  VerticalAlignment="Top" Margin="30,35" Background="#0fb9b1" BorderThickness="1" Content="Search" Click="Search_By_Name_Buton_Click"/>
+                            </Grid>
+
+                            <ScrollViewer>
+                                <ItemsControl x:Name="Searched_Customer_By_Name_ItemContorol" ItemsSource="{Binding customerData, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Visibility="Collapsed" >
+                                    <ItemsControl.ItemTemplate >
+                                        <DataTemplate>
+                                            <Grid>
+                                                <TextBlock x:Name="Name_Search_By_Name_Text_Block" Text="{Binding userName}" Background="#95a5a6" Height="30" Width="200" Margin="20,5" HorizontalAlignment="Left" FontSize="25" />
+                                                <Button x:Name="Open_Customer_Search_Name_Button" Content="Open" Background="#B53471" Height="30" Width="200" Margin="20,0" HorizontalAlignment="Right" BorderThickness="0" Click="Open_Customer_Button_Click"/>
+                                            </Grid>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </ScrollViewer>
+                        </StackPanel>
                     </Grid>
                 </Border>
 
@@ -307,6 +338,16 @@
 
                 <Button x:Name="Transfer_Money_Button" Height="30" Margin="200,30" Content="Pay" Background="#006266" FontSize="20" FontFamily="Trebuchet MS" BorderThickness="0" Click="Transfer_Money_Button_Click"/>
                 <Button x:Name="Back_To_Safe_Setting_Button" Height="25" Margin="5,20,500,5" Content="Back" Background="#B53471" BorderThickness="0" Click="Back_To_Safe_Setting_Button_Click"/>
+            </StackPanel>
+        </Border>
+
+        <Border x:Name="Show_Customer_Border" Grid.Column="1" Margin="5" BorderBrush="#808e9b" BorderThickness="1" Visibility="Visible">
+            <StackPanel>
+                <TextBlock x:Name="Customer_Name_Text_Block" FontSize="45" TextAlignment="Center" Foreground="#EE5A24" Margin="0,50,0,0"/>
+                <TextBlock x:Name="Customer_Buyedbook_Text_Block" FontSize="30" TextAlignment="Left"  Foreground="#F8EFBA" Margin="40,20,40,0"/>
+                <TextBlock x:Name="Customer_Cartbook_Text_Block" FontSize="30" TextAlignment="Left"  Foreground="#F8EFBA" Margin="40,20,40,0"/>
+                <TextBlock x:Name="Customer_Bookmark_Text_Block" FontSize="30" TextAlignment="Left"  Foreground="#F8EFBA" Margin="40,20,40,0"/>
+                <TextBlock x:Name="Customer_VIPLeft_Time_Text_Block" FontSize="30" TextAlignment="Left"  Foreground="#F8EFBA" Margin="40,20,40,0"/>
             </StackPanel>
         </Border>
 

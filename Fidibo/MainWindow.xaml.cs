@@ -44,7 +44,7 @@ namespace Fidibo
             DataTable data2 = new DataTable();
             adapter2.Fill(data2);
             for (int i = 0; i < data2.Rows.Count; i++)
-                new Book_Class(data2.Rows[i][0].ToString(), data2.Rows[i][1].ToString(), double.Parse(data2.Rows[i][2].ToString()), int.Parse(data2.Rows[i][3].ToString()), double.Parse(data2.Rows[i][4].ToString()), double.Parse(data2.Rows[i][5].ToString()), bool.Parse(data2.Rows[i][6].ToString().ToLower()), data2.Rows[i][7].ToString().ToLower() , int.Parse(data2.Rows[i][8].ToString()));
+                new Book_Class(data2.Rows[i][0].ToString(), data2.Rows[i][1].ToString(), double.Parse(data2.Rows[i][2].ToString()), int.Parse(data2.Rows[i][3].ToString()), double.Parse(data2.Rows[i][4].ToString()), double.Parse(data2.Rows[i][5].ToString()), bool.Parse(data2.Rows[i][6].ToString().ToLower()), data2.Rows[i][7].ToString().ToLower(), int.Parse(data2.Rows[i][8].ToString()));
             con2.Close();
             InitializeComponent();
         }
@@ -86,47 +86,41 @@ namespace Fidibo
 
         private void Admin_Login_Button_Click(object sender, RoutedEventArgs e)
         {
+<<<<<<< HEAD
 
 
             if (Admin_Class.IsValidEmail(admin_email_box.Text) && Admin_Class.IsValidPassword(admin_password_box.Password))
 
             if (admin_password_box.Password == "1234" && admin_email_box.Text == "Admin@gmail.com")
 
+=======
+            if (admin_password_box.Password == "1234" && admin_email_box.Text == "Admin@gmail.com")
+>>>>>>> 9fdabb5c515c393eeb686837b327bdc4f8f248e1
             {
-                if (admin_password_box.Password == "1234" && admin_email_box.Text == "Admin@gmail.com")
-                {
 
-                  
+                string command = "select * from T_Admin where Email = '" + admin_email_box.Text + "'";
+                SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=F:\aphw\Fidibo\Fidibo\Resources\data.mdf;Integrated Security=True");
+                con.Open();
+                SqlDataAdapter adapter = new SqlDataAdapter(command, con);
+                DataTable data = new DataTable();
+                adapter.Fill(data);
 
-                    string command = "select * from T_Admin where Email = '" + admin_email_box.Text + "'";
-                    SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=F:\aphw\Fidibo\Fidibo\Resources\data.mdf;Integrated Security=True");
-                    con.Open();
-                    SqlDataAdapter adapter = new SqlDataAdapter(command, con);
-                    DataTable data = new DataTable();
-                    adapter.Fill(data);
 
-                  
-                        Admin_Class admin = new Admin_Class(data.Rows[0][0].ToString(), data.Rows[0][1].ToString(), double.Parse(data.Rows[0][2].ToString()), double.Parse(data.Rows[0][3].ToString()));
+                Admin_Class admin = new Admin_Class(data.Rows[0][0].ToString(), data.Rows[0][1].ToString(), double.Parse(data.Rows[0][2].ToString()), double.Parse(data.Rows[0][3].ToString()));
 
-                        Admin a = new Admin(admin);
-                        a.Show();
-                        this.Close();
-                    
-                    
-                }
-                else
-                {
-                    MessageBox.Show("Email or password is incorrect !!");
-                    return;
-                }
+                Admin a = new Admin(admin);
+                a.Show();
+                this.Close();
+
+
             }
             else
             {
-                MessageBox.Show("Email or password is invalid");
+                MessageBox.Show("Email or password is incorrect !!");
+                return;
             }
 
-            else
-                MessageBox.Show("Wrong email or password !!");
+
         }
 
         private void Customer_Login_Button_Click(object sender, RoutedEventArgs e)

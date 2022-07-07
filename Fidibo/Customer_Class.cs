@@ -10,10 +10,16 @@ namespace Fidibo
 {
     public class Customer_Class
     {
-        public string email, password, phoneNumber, userName;
-        public string buyedBooks, markedBooks, cart;
-        DateTime? vipBegintTime;
-        public double wallet;
+        public string email { get; set; }
+        public string password { get; set; }
+        public string phoneNumber { get; set; }
+        public string userName { get; set; }
+        public string buyedBooks { get; set; }
+        public string markedBooks { get; set; }
+        public string cart { get; set; }
+
+        public DateTime? vipBegintTime { get; set; }
+        public double wallet { get; set; }
 
         public static List<Customer_Class> customers = new List<Customer_Class>();
 
@@ -176,6 +182,11 @@ namespace Fidibo
             com.BeginExecuteNonQuery();
             con.Close();
 
+        }
+
+        public int CalculateLeftTime()
+        {
+            throw new NotImplementedException();
         }
     }
 }

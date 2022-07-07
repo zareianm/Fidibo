@@ -8,15 +8,15 @@ using Microsoft.Data.SqlClient;
 
 namespace Fidibo
 {
-   public  class Admin_Class
+    public class Admin_Class
     {
         public string email, password;
-        public double  vip_price;
+        public double vip_price;
         public double safe_cash;
-      
-        
 
-        public Admin_Class(string email, string password )
+
+
+        public Admin_Class(string email, string password)
         {
             if (!IsValidEmail(email) && !IsValidPassword(password))
                 throw new Exception("wrong input !! , please try again");
@@ -37,20 +37,13 @@ namespace Fidibo
 
         }
 
-        public Admin_Class(string email, string password  , double safe_cash ,double vip_price )
+        public Admin_Class(string email, string password, double safe_cash, double vip_price)
         {
-            if (!IsValidEmail(email) && !IsValidPassword(password))
-                throw new Exception("wrong input !! , please try again");
-            else
-            {
+            this.email = email;
+            this.password = password;
 
-                this.email = email;
-                this.password = password;
-
-                this.safe_cash = safe_cash;
-                this.vip_price = vip_price;
-
-            }
+            this.safe_cash = safe_cash;
+            this.vip_price = vip_price;
         }
 
         public static bool IsValidEmail(string email)
