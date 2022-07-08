@@ -211,7 +211,7 @@ namespace Fidibo
             Add_Book_To_VIP_Border.Visibility = Visibility.Collapsed;
             Search_By_Writer_Border.Visibility = Visibility.Collapsed;
             Search_By_Book_Name_Border.Visibility = Visibility.Collapsed;
-            List_Of_Customer_Border.Visibility = Visibility.Visible;
+            List_Of_Customer_Border.Visibility = Visibility.Collapsed;
             Search_By_Customer_Email_Border.Visibility = Visibility.Collapsed;
             Search_By_Customer_Name_Border.Visibility = Visibility.Collapsed;
             Show_Books_Border.Visibility = Visibility.Collapsed;
@@ -219,6 +219,7 @@ namespace Fidibo
             Search_By_Book_Name_Border_VIP.Visibility = Visibility.Collapsed;
             Add_Book_To_VIP_Border.Visibility = Visibility.Collapsed;
             Open_Book_Border.Visibility = Visibility.Collapsed;
+            New_Price_For_VIP_Box.Text = admin.vip_price.ToString();
 
         }
         private void Go_To_Add_New_Book_To_VIP_Button_Click(object sender, RoutedEventArgs e)
@@ -245,8 +246,7 @@ namespace Fidibo
                 MessageBox.Show("the book was not found !");
             }
             else
-            {
-               
+            {               
                 Search_By_Book_Name_Border_VIP.Visibility = Visibility.Collapsed;
                 Add_Book_To_VIP_Border.Visibility = Visibility.Visible;
             }
@@ -274,7 +274,7 @@ namespace Fidibo
                 SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Ali\Fidibo\Fidibo\Resources\data.mdf;Integrated Security=True");
                 con.Open();
                 SqlCommand com = new SqlCommand(command, con);
-                com.BeginExecuteNonQuery();
+                com.ExecuteNonQuery();
                 con.Close();
 
                 VIP_Setting_Border.Visibility = Visibility.Visible;
@@ -283,6 +283,9 @@ namespace Fidibo
                 Add_Book_To_VIP_Border.Visibility = Visibility.Collapsed;
 
             }
+
+            else
+                MessageBox.Show("This book is already VIP !!");
 
         }
 
@@ -485,6 +488,15 @@ namespace Fidibo
             }
 
             admin.safe_cash -= int.Parse(Amount_Of_Money_Box.Text);
+
+            string command = "update T_Admin set Safe_Cash = '" + admin.safe_cash + "'";
+
+            SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=F:\aphw\Fidibo\Fidibo\Resources\data.mdf;Integrated Security=True");
+            con.Open();
+            SqlCommand com = new SqlCommand(command, con);
+            com.ExecuteNonQuery();
+            con.Close();
+
             MessageBox.Show("Transfored money from your safe box !!");
             Expiration_Year_Box.Text = "";
             Expiration_month_Box.Text = "";
@@ -511,7 +523,7 @@ namespace Fidibo
         {
             Show_Books_Border.Visibility = Visibility.Visible;
             Search_By_Writer_Border.Visibility = Visibility.Collapsed;
-            SearchBy_Book_Border.Visibility = Visibility.Visible;
+            Search_By_Book_Name_Border.Visibility = Visibility.Visible;
         }
 
         private void Back_To_List_Of_Book_Button_Click(object sender, RoutedEventArgs e)
@@ -583,10 +595,10 @@ namespace Fidibo
             {
                 if (result == true)
                 {
-                    PDF_Address_Text_Block.Text = openFileDlgPDF.FileName;
+                    Sample_Address_Text_Block.Text = openFileDlgPDF.FileName;
 
                     string a = Name_Box.Text;
-                    PDFPath = System.IO.Path.GetFullPath($@"SampleResources/" + a + ".pdf");
+                    PDFPath = System.IO.Path.GetFullPath($@"SampleResources/" + a + ".jpg");
 
                     System.IO.File.Copy(openFileDlgPDF.FileName, PDFPath);
 
@@ -737,6 +749,21 @@ namespace Fidibo
             Searched_Book_By_Writer_ItemContorol.Visibility = Visibility.Visible;
         }
 
+        private void Search_By_Book_Name2_Click(object sender, RoutedEventArgs e)
+        {
+            showData.Clear();
+
+            Searched_Book_By_Name_ItemContorol.Visibility = Visibility.Visible;
+
+            foreach (var item in Book_Class.books)
+            {
+                if (item.name == Search_By_Book_Name_Box.Text)
+                    showData.Add(item);
+            }
+
+            Searched_Book_By_Name_ItemContorol.Visibility = Visibility.Visible;
+        }
+
         private void Search_By_Book_Name_Click_1(object sender, RoutedEventArgs e)
         {
             showData.Clear();
@@ -764,9 +791,9 @@ namespace Fidibo
             b = button.DataContext as Book_Class;
 
             Book_Text_block.Text = b.name;
-            Writer_Text_block.Text = b.writer;
+            Writer_Text_block.Text = "Writed by " +b.writer;
             summary_Text_Block.Text = b.summary;
-            Year_Text_Block.Text = b.year.ToString();
+            Year_Text_Block.Text = "Published year : " + b.year.ToString();
 
             if (b.isVIP)
                 Is_VIP_Block_Text.Visibility = Visibility.Visible;
@@ -801,6 +828,35 @@ namespace Fidibo
         {
             PDF_Webbrowser.Visibility = Visibility.Collapsed;
             Close_PDF_Button.Visibility = Visibility.Collapsed;
+        }
+
+        private void Set_VIP_Price_Button_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                double d = double.Parse(New_Price_For_VIP_Box.Text);
+
+                if (d < 0)
+                    throw new Exception("Only nonnegative values !!");
+
+                admin.vip_price = d;
+
+
+                string command = "update T_Admin set VIP_Price = '" + admin.vip_price + "'";
+
+                SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=F:\aphw\Fidibo\Fidibo\Resources\data.mdf;Integrated Security=True");
+                con.Open();
+                SqlCommand com = new SqlCommand(command, con);
+                com.ExecuteNonQuery();
+                con.Close();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return;
+            }
+
+            MessageBox.Show("The VIP Price was Updated ");
         }
 
 
