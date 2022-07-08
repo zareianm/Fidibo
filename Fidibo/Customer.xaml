@@ -173,7 +173,7 @@
         <Border x:Name="Bookmarks_Border" Grid.Column="1" Margin="5" BorderBrush="#808e9b" BorderThickness="1" Visibility="Collapsed">
             <Grid>
                 <ScrollViewer>
-                    <ItemsControl x:Name="Bookmarks_ItemContorol" ItemsSource="{Binding libraryList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" >
+                    <ItemsControl x:Name="Bookmarks_ItemContorol" ItemsSource="{Binding showData, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" >
                         <ItemsControl.ItemTemplate >
                             <DataTemplate>
                                 <Grid>

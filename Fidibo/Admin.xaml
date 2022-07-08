@@ -71,7 +71,7 @@
 
         </Border>
 
-        <Border x:Name="Edit_Book_Border" Grid.Column="1" Margin="5" BorderBrush="#808e9b" BorderThickness="1" Visibility="Visible">
+        <Border x:Name="Edit_Book_Border" Grid.Column="1" Margin="5" BorderBrush="#808e9b" BorderThickness="1" Visibility="Collapsed">
             <Grid>
 
                 <Border x:Name="Edit__Information_Of_Book_Border" Grid.Column="1" Margin="5" BorderBrush="#808e9b" BorderThickness="1" Visibility="Collapsed">
@@ -97,7 +97,7 @@
 
                 </Border>
 
-                <Border x:Name="Search_By_Book_Name_Border_Edit" Visibility="Visible">
+                <Border x:Name="Search_By_Book_Name_Border_Edit" Visibility="Collapsed">
                     <Grid>
                         <TextBlock Text="Search by name of book : " Margin="25,10" Foreground="#a4b0be"/>
                         <TextBox x:Name="Search_By_Book_Name_Box_Edit" Height="30" Width="400" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="25,35" Background="#dcdde1" BorderBrush="#fff200" BorderThickness="2" FontSize="20"/>
@@ -118,7 +118,7 @@
                 <Border>
                     <Grid>
                         <Button x:Name="Go_To_Search_By_Writer_Name_Button" Content="Search by writer" Foreground="#fff200" Height="40" Width="100" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="150,30" Background="#7f8fa6" Click="Go_To_Search_By_Writer_Name_Button_Click"/>
-                        <Button x:Name="Go_To_Search_By_Book_Name_Button" Content="Search by book" Foreground="#fff200" Height="40" Width="100" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="150,30" Background="#7f8fa6" Click="Go_To_Search_By_Book_Name_Button_Click"/>
+                        <Button x:Name="Go_To_Search_By_Book_Name_Button" Content="Search by name" Foreground="#fff200" Height="40" Width="100" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="150,30" Background="#7f8fa6" Click="Go_To_Search_By_Book_Name_Button_Click"/>
                     </Grid>
                 </Border>
 
@@ -153,7 +153,7 @@
                             <TextBlock Text="Search by name : " Margin="25,0" Foreground="#a4b0be"/>
                             <Grid>
                                 <TextBox x:Name="Search_By_Book_Name_Box" Height="30" Width="400" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="25,35" Background="#dcdde1" BorderBrush="#fff200" BorderThickness="2"/>
-                                <Button x:Name="Search_By_Book_Name2" Height="30" Width="60" HorizontalAlignment="Right"  VerticalAlignment="Top" Margin="30,35" Background="#0fb9b1" BorderThickness="1" Content="Search" Click="Search_By_Book_Name_Click"/>
+                                <Button x:Name="Search_By_Book_Name2" Height="30" Width="60" HorizontalAlignment="Right"  VerticalAlignment="Top" Margin="30,35" Background="#0fb9b1" BorderThickness="1" Content="Search" Click="Search_By_Book_Name2_Click"/>
                             </Grid>
 
                             <ScrollViewer>
@@ -262,6 +262,7 @@
                         <StackPanel>
                             <TextBlock Text="Set new price for monthly subscription :"  FontSize="15" Foreground="#dcdde1" Margin="20,20,20,15"/>
                             <TextBox x:Name="New_Price_For_VIP_Box"  Margin="20,0,100,0" Background="#7f8fa6" BorderThickness="0" Height="20" FontSize="15"/>
+                            <Button x:Name="Set_VIP_Price_Button" Height="35" Width="250" Margin="0,40,0,0" Content="Set new price" FontSize="20" Background="#a29bfe" BorderThickness="0" Click="Set_VIP_Price_Button_Click"/>
                             <Button x:Name="Go_To_Add_New_Book_To_VIP_Button" Content="Add new book to VIP section" Height="40" Margin="70,140" VerticalAlignment="Bottom" FontSize="20" Background="#95afc0" BorderThickness="0" Click="Go_To_Add_New_Book_To_VIP_Button_Click"/>
                         </StackPanel>
                     </Grid>
@@ -389,7 +390,7 @@
                 <TextBlock x:Name="Is_VIP_Block_Text" Height="50" Margin="277,276,255,62" Text="VIP" Foreground="#32ff7e" FontSize="30"/>
                 <TextBlock x:Name="summary_Text_Block" Margin="28,169,294,208" Foreground="#ced6e0" Height="50"/>
                 <WebBrowser x:Name="PDF_Webbrowser"  Margin="0,0,0,50" Visibility="Collapsed"/>
-                <Button x:Name="Close_PDF_Button" Content="Close" Margin="216,354,216,10" Background="#eb3b5a" BorderThickness="0" Visibility="Collapsed" Click="Close_PDF_Button_Click"/>
+                <Button x:Name="Close_PDF_Button" Content="Close"  Height="30" Margin="216,382,216,15" Background="#eb3b5a" BorderThickness="0" Visibility="Collapsed" Click="Close_PDF_Button_Click"/>
             </Grid>
         </Border>
 

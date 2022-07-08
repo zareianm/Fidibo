@@ -180,12 +180,12 @@ namespace Fidibo
         }
         public static void UpdateCustomerTable(string oldEmail, Customer_Class cc)
         {
-            string command = "update T_Customers set Email = '" + cc.email + "' , Username = '" + cc.userName + "' , PhoneNumber = '" + cc.phoneNumber + "' , Password = '" + cc.password + "' , Wallet = '" + cc.wallet + "' , Cart = '" + cc.cart + "' , Marked_Book = '" + cc.markedBooks + "' , Buyed_Book = '" + cc.vipBegintTimeYear + "' , Year = '" + cc.vipBegintTimeMonth + "' , Month = '" + cc.vipBegintTimeDay + "' , Day = '" + cc.buyedBooks + "' where Email = '" + oldEmail + "'";
+            string command = "update T_Customers set Email = '" + cc.email + "' , Username = '" + cc.userName + "' , PhoneNumber = '" + cc.phoneNumber + "' , Password = '" + cc.password + "' , Wallet = '" + cc.wallet + "' , Cart = '" + cc.cart + "' , Marked_Book = '" + cc.markedBooks + "' , Buyed_Book = '" + cc.buyedBooks + "' , Year = '" + cc.vipBegintTimeYear + "' , Month = '" + cc.vipBegintTimeMonth + "' , Day = '" + cc.vipBegintTimeDay + "' where Email = '" + oldEmail + "'";
 
             SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=F:\aphw\Fidibo\Fidibo\Resources\data.mdf;Integrated Security=True");
             con.Open();
             SqlCommand com = new SqlCommand(command, con);
-            com.BeginExecuteNonQuery();
+            com.ExecuteNonQuery();
             con.Close();
 
         }

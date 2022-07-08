@@ -192,6 +192,7 @@ namespace Fidibo
             Delete_Book_Cart_Border.Visibility = Visibility.Collapsed;
             Pay_By_Card_Border.Visibility = Visibility.Collapsed;
             Pay_Border.Visibility = Visibility.Collapsed;
+            Pay_VIP_By_Card_Border.Visibility = Visibility.Collapsed;
 
             if (customer.CalculateLeftTime() <= 0)
             {
@@ -394,8 +395,6 @@ namespace Fidibo
         {
             showData.Clear();
 
-            Searched_Book_By_Writer_ItemContorol.Visibility = Visibility.Visible;
-
             foreach (var item in books)
             {
                 if (item.writer == Writer_Search_Text_Box.Text)
@@ -407,8 +406,6 @@ namespace Fidibo
         private void Search_By_Book_Name_Click(object sender, RoutedEventArgs e)
         {
             showData.Clear();
-
-            Searched_Book_By_Name_ItemContorol.Visibility = Visibility.Visible;
 
             foreach (var item in books)
             {
@@ -907,6 +904,16 @@ namespace Fidibo
         {
             Pay_VIP_By_Card_Border.Visibility = Visibility.Visible;
             Buy_VIP_Border.Visibility = Visibility.Collapsed;
+
+            string command = "select * from T_Admin";
+            SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=F:\aphw\Fidibo\Fidibo\Resources\data.mdf;Integrated Security=True");
+            con.Open();
+            SqlDataAdapter adapter = new SqlDataAdapter(command, con);
+            DataTable data = new DataTable();
+            adapter.Fill(data);
+            con.Close();
+
+            Amount_Of_Money_Box3.Text = data.Rows[0][3].ToString()+"$";
         }
 
         private void Pay_VIP_By_Card_Button_Click(object sender, RoutedEventArgs e)
@@ -960,7 +967,6 @@ namespace Fidibo
                 com.BeginExecuteNonQuery();
                 con2.Close();
 
-                customer.wallet -= a;
                 MessageBox.Show("Payed succesfully ");
                 Expiration_Year_Box2.Text = null;
                 Expiration_month_Box2.Text = null;
@@ -990,7 +996,7 @@ namespace Fidibo
 
         private void View_Sample_Button_Click(object sender, RoutedEventArgs e)
         {
-            string s = System.IO.Path.GetFullPath(@"SampleResources/" + b.name + ".pdf");
+            string s = System.IO.Path.GetFullPath(@"SampleResources/" + b.name + ".jpg");
             ////s += "file:/"+"/"+"/";
             System.Uri i = new Uri(s);
             View_Sample_Webbrowser.Source = i;
