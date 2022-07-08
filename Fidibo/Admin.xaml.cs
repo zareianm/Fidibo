@@ -470,7 +470,7 @@ namespace Fidibo
                     throw new Exception("Wrong CVV2");
                 if (int.Parse(s[1]) + int.Parse(s[2]) * 12 > int.Parse(Expiration_Year_Box.Text) * 12 + int.Parse(Expiration_month_Box.Text))
                     throw new Exception("Your card is expired !!");
-                if (admin.safe_cash <= int.Parse(Amount_Of_Money_Box.Text))
+                if (admin.safe_cash < int.Parse(Amount_Of_Money_Box.Text))
                     throw new Exception("the amount of money is greater than your balance");
             }
             catch (Exception ex)
