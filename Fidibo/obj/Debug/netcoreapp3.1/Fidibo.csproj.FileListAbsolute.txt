@@ -121,5 +121,4 @@ C:\Users\Ali\Fidibo\Fidibo\obj\Debug\netcoreapp3.1\Fidibo.csproj.CopyComplete
 C:\Users\Ali\Fidibo\Fidibo\obj\Debug\netcoreapp3.1\Fidibo.dll
 C:\Users\Ali\Fidibo\Fidibo\obj\Debug\netcoreapp3.1\Fidibo.pdb
 C:\Users\Ali\Fidibo\Fidibo\obj\Debug\netcoreapp3.1\Fidibo.genruntimeconfig.cache
-C:\Users\Ali\Fidibo\Fidibo\bin\Debug\netcoreapp3.1\Resources\data.mdf
 F:\aphw\Fidibo\Fidibo\obj\Debug\netcoreapp3.1\Fidibo.csproj.AssemblyReference.cache

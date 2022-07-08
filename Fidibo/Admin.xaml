@@ -147,13 +147,13 @@
                     </Grid>
                 </Border>
 
-                <Border x:Name="Search_By_Book_Name_Border" Grid.Row="1" Visibility="Collapsed">
+                <Border x:Name="Search_By_Book_Name_Border" Grid.Row="1" Visibility="Visible">
                     <Grid>
                         <StackPanel>
                             <TextBlock Text="Search by name : " Margin="25,0" Foreground="#a4b0be"/>
                             <Grid>
                                 <TextBox x:Name="Search_By_Book_Name_Box" Height="30" Width="400" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="25,35" Background="#dcdde1" BorderBrush="#fff200" BorderThickness="2"/>
-                                <Button x:Name="Search_By_Book_Name2" Height="30" Width="60" HorizontalAlignment="Right"  VerticalAlignment="Top" Margin="30,35" Background="#0fb9b1" BorderThickness="1" Content="Search" Click="Search_By_Book_Name_Click"/>
+                                <Button x:Name="Search_By_Book_Name2" Height="30" Width="60" HorizontalAlignment="Right"  VerticalAlignment="Top" Margin="30,35" Background="#0fb9b1" BorderThickness="1" Content="Search" Click="Search_By_Book_Name_Click_1"/>
                             </Grid>
 
                             <ScrollViewer>

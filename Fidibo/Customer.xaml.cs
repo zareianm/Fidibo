@@ -199,7 +199,7 @@ namespace Fidibo
                 Show_VIP_Border.Visibility = Visibility.Collapsed;
 
                 string command = "select * from T_Admin";
-                SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=F:\aphw\Fidibo\Fidibo\Resources\data.mdf;Integrated Security=True");
+                SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Ali\Fidibo\Fidibo\Resources\data.mdf;Integrated Security=True");
                 con.Open();
                 SqlDataAdapter adapter = new SqlDataAdapter(command, con);
                 DataTable data = new DataTable();
@@ -311,21 +311,21 @@ namespace Fidibo
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-                Expiration_Year_Box.Text = null;
-                Expiration_month_Box.Text = null;
-                Amount_Of_Money_Box.Text = null;
-                Card_Number_Box.Text = null;
-                CVV2_Box.Text = null;
+                Expiration_Year_Box.Text = "";
+                Expiration_month_Box.Text = "";
+                Amount_Of_Money_Box.Text = "";
+                Card_Number_Box.Text = "";
+                CVV2_Box.Text = "";
                 return;
             }
 
             customer.wallet += deposit;
             MessageBox.Show("Transfored money into your wallet !!");
-            Expiration_Year_Box.Text = null;
-            Expiration_month_Box.Text = null;
-            Amount_Of_Money_Box.Text = null;
-            Card_Number_Box.Text = null;
-            CVV2_Box.Text = null;
+            Expiration_Year_Box.Text = "";
+            Expiration_month_Box.Text = "";
+            Amount_Of_Money_Box.Text = "";
+            Card_Number_Box.Text = "";
+            CVV2_Box.Text = "";
         }
 
         private void Back_To_Wallet_Click(object sender, RoutedEventArgs e)
@@ -456,7 +456,7 @@ namespace Fidibo
                 else
                     Is_VIP_Block_Text.Visibility = Visibility.Collapsed;
 
-                if (b.discount != 0 && b.discount != null)
+                if (b.discount != 0 && b.discount.ToString() != "")
                 {
                     Discount_Block_Text.Text = "Discount: " + b.discount + "%";
                     Discount_Block_Text.Visibility = Visibility.Visible;
@@ -480,7 +480,7 @@ namespace Fidibo
         {
             try
             {
-                if (customer.markedBooks != null)
+                if (customer.markedBooks != "")
                 {
                     if (customer.markedBooks.Contains(b.name))
                     {
@@ -516,7 +516,7 @@ namespace Fidibo
         {
             try
             {
-                if (Add_To_Cart_Or_Read_Button.Content != null && Add_To_Cart_Or_Read_Button.Content == "Read")
+                if (Add_To_Cart_Or_Read_Button.Content.ToString() != "" && Add_To_Cart_Or_Read_Button.Content.ToString() == "Read")
                 {
                     string s = System.IO.Path.GetFullPath(@"PDFResources/" + b.name + ".pdf");
                     ////s += "file:/"+"/"+"/";
@@ -533,7 +533,7 @@ namespace Fidibo
                         {
                             if ((b.isVIP && customer.CalculateLeftTime() >= 0) || (!b.isVIP))
                             {
-                                if (customer.cart != null)
+                                if (customer.cart != "")
                                     customer.cart += b.name + " ";
                                 else
                                     customer.cart = b.name + " ";
@@ -696,7 +696,7 @@ namespace Fidibo
                     Amount_Of_Money_To_Pay.Text = "0$";
 
                     string command = "select * from T_Admin";
-                    SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=F:\aphw\Fidibo\Fidibo\Resources\data.mdf;Integrated Security=True");
+                    SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Ali\Fidibo\Fidibo\Resources\data.mdf;Integrated Security=True");
                     con.Open();
                     SqlDataAdapter adapter = new SqlDataAdapter(command, con);
                     DataTable data = new DataTable();
@@ -707,7 +707,7 @@ namespace Fidibo
 
                     string c = "update T_Admin set Safe_Cash = '" + d + "'";
 
-                    SqlConnection con2 = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=F:\aphw\Fidibo\Fidibo\Resources\data.mdf;Integrated Security=True");
+                    SqlConnection con2 = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Ali\Fidibo\Fidibo\Resources\data.mdf;Integrated Security=True");
                     con2.Open();
                     SqlCommand com = new SqlCommand(c, con2);
                     com.BeginExecuteNonQuery();
@@ -796,15 +796,15 @@ namespace Fidibo
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
-                    Expiration_Year_Box2.Text = null;
-                    Expiration_month_Box2.Text = null;
-                    Card_Number_Box2.Text = null;
-                    CVV2_Box2.Text = null;
+                    Expiration_Year_Box2.Text = "";
+                    Expiration_month_Box2.Text = "";
+                    Card_Number_Box2.Text = "";
+                    CVV2_Box2.Text = "";
                     return;
                 }
 
                 string command = "select * from T_Admin";
-                SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=F:\aphw\Fidibo\Fidibo\Resources\data.mdf;Integrated Security=True");
+                SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Ali\Fidibo\Fidibo\Resources\data.mdf;Integrated Security=True");
                 con.Open();
                 SqlDataAdapter adapter = new SqlDataAdapter(command, con);
                 DataTable data = new DataTable();
@@ -813,20 +813,21 @@ namespace Fidibo
 
                 double d = double.Parse(data.Rows[0][2].ToString()) + a;
 
-                string c = "update T_Admin set Safe_Cash = '" + d + "'";
+                string c = "update T_Admin set Safe_Cash = '" + d + "'  where Email = '" + "Admin@gmail.com" + "'";
 
-                SqlConnection con2 = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=F:\aphw\Fidibo\Fidibo\Resources\data.mdf;Integrated Security=True");
+
+                SqlConnection con2 = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Ali\Fidibo\Fidibo\Resources\data.mdf;Integrated Security=True");
                 con2.Open();
                 SqlCommand com = new SqlCommand(c, con2);
                 com.BeginExecuteNonQuery();
                 con2.Close();
 
                 MessageBox.Show("Payed succesfully ");
-                Expiration_Year_Box2.Text = null;
-                Expiration_month_Box2.Text = null;
-                Amount_Of_Money_Box2.Text = null;
-                Card_Number_Box2.Text = null;
-                CVV2_Box2.Text = null;
+                Expiration_Year_Box2.Text = "";
+                Expiration_month_Box2.Text = "";
+                Amount_Of_Money_Box2.Text = "";
+                Card_Number_Box2.Text = "";
+                CVV2_Box2.Text = "";
 
                 for (int i = 0; i < s2.Length; i++)
                 {
@@ -861,7 +862,7 @@ namespace Fidibo
             try
             {
                 string command = "select * from T_Admin";
-                SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=F:\aphw\Fidibo\Fidibo\Resources\data.mdf;Integrated Security=True");
+                SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Ali\Fidibo\Fidibo\Resources\data.mdf;Integrated Security=True");
                 con.Open();
                 SqlDataAdapter adapter = new SqlDataAdapter(command, con);
                 DataTable data = new DataTable();
@@ -880,7 +881,7 @@ namespace Fidibo
 
                     string c = "update T_Admin set Safe_Cash = '" + d + "'";
 
-                    SqlConnection con2 = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=F:\aphw\Fidibo\Fidibo\Resources\data.mdf;Integrated Security=True");
+                    SqlConnection con2 = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Ali\Fidibo\Fidibo\Resources\data.mdf;Integrated Security=True");
                     con2.Open();
                     SqlCommand com = new SqlCommand(c, con2);
                     com.BeginExecuteNonQuery();
@@ -914,7 +915,7 @@ namespace Fidibo
             try
             {
                 string command = "select * from T_Admin";
-                SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=F:\aphw\Fidibo\Fidibo\Resources\data.mdf;Integrated Security=True");
+                SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Ali\Fidibo\Fidibo\Resources\data.mdf;Integrated Security=True");
                 con.Open();
                 SqlDataAdapter adapter = new SqlDataAdapter(command, con);
                 DataTable data = new DataTable();
@@ -943,10 +944,10 @@ namespace Fidibo
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
-                    Expiration_Year_Box3.Text = null;
-                    Expiration_month_Box3.Text = null;
-                    Card_Number_Box3.Text = null;
-                    CVV2_Box3.Text = null;
+                    Expiration_Year_Box3.Text = "";
+                    Expiration_month_Box3.Text = "";
+                    Card_Number_Box3.Text = "";
+                    CVV2_Box3.Text = "";
                     return;
                 }
 
@@ -954,7 +955,7 @@ namespace Fidibo
 
                 string c = "update T_Admin set Safe_Cash = '" + d + "'";
 
-                SqlConnection con2 = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=F:\aphw\Fidibo\Fidibo\Resources\data.mdf;Integrated Security=True");
+                SqlConnection con2 = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Ali\Fidibo\Fidibo\Resources\data.mdf;Integrated Security=True");
                 con2.Open();
                 SqlCommand com = new SqlCommand(c, con2);
                 com.BeginExecuteNonQuery();
@@ -962,11 +963,11 @@ namespace Fidibo
 
                 customer.wallet -= a;
                 MessageBox.Show("Payed succesfully ");
-                Expiration_Year_Box2.Text = null;
-                Expiration_month_Box2.Text = null;
-                Amount_Of_Money_Box2.Text = null;
-                Card_Number_Box2.Text = null;
-                CVV2_Box2.Text = null;
+                Expiration_Year_Box2.Text = "";
+                Expiration_month_Box2.Text = "";
+                Amount_Of_Money_Box2.Text = "";
+                Card_Number_Box2.Text = "";
+                CVV2_Box2.Text = "";
 
                 string[] v = DateTime.Now.ToString().Split(new char[] { ' ', '/' }, StringSplitOptions.RemoveEmptyEntries);
 

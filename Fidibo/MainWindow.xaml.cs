@@ -25,7 +25,7 @@ namespace Fidibo
         public MainWindow()
         {
             string command = "select * from T_Customers";
-            SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=F:\aphw\Fidibo\Fidibo\Resources\data.mdf;Integrated Security=True");
+            SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Ali\Fidibo\Fidibo\Resources\data.mdf;Integrated Security=True");
             con.Open();
             SqlDataAdapter adapter = new SqlDataAdapter(command, con);
             DataTable data = new DataTable();
@@ -38,7 +38,7 @@ namespace Fidibo
             con.Close();
 
             string command2 = "select * from T_Books";
-            SqlConnection con2 = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=F:\aphw\Fidibo\Fidibo\Resources\data.mdf;Integrated Security=True");
+            SqlConnection con2 = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Ali\Fidibo\Fidibo\Resources\data.mdf;Integrated Security=True");
             con2.Open();
             SqlDataAdapter adapter2 = new SqlDataAdapter(command2, con2);
             DataTable data2 = new DataTable();
@@ -89,7 +89,7 @@ namespace Fidibo
             if (admin_password_box.Password == "1234" && admin_email_box.Text == "Admin@gmail.com")
             {
                 string command = "select * from T_Admin where Email = '" + admin_email_box.Text + "'";
-                SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=F:\aphw\Fidibo\Fidibo\Resources\data.mdf;Integrated Security=True");
+                SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Ali\Fidibo\Fidibo\Resources\data.mdf;Integrated Security=True");
                 con.Open();
                 SqlDataAdapter adapter = new SqlDataAdapter(command, con);
                 DataTable data = new DataTable();
@@ -104,8 +104,8 @@ namespace Fidibo
             else
             {
                 MessageBox.Show("Email or password is incorrect !!");
-                admin_email_box.Text = null;
-                admin_password_box.Password = null;
+                admin_email_box.Text = "";
+                admin_password_box.Password = "";
                 return;
             }
 
@@ -115,7 +115,7 @@ namespace Fidibo
         private void Customer_Login_Button_Click(object sender, RoutedEventArgs e)
         {
             string command = "select * from T_Customers where Email = '" + customer_email_box.Text + "'";
-            SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=F:\aphw\Fidibo\Fidibo\Resources\data.mdf;Integrated Security=True");
+            SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Ali\Fidibo\Fidibo\Resources\data.mdf;Integrated Security=True");
             con.Open();
             SqlDataAdapter adapter = new SqlDataAdapter(command, con);
             DataTable data = new DataTable();
@@ -124,8 +124,8 @@ namespace Fidibo
             if (data.Rows.Count == 0)
             {
                 MessageBox.Show("There is no customer by that email !!");
-                customer_email_box.Text = null;
-                customer_password_box.Password = null;
+                customer_email_box.Text = "";
+                customer_password_box.Password = "";
                 return;
             }
 
@@ -133,8 +133,8 @@ namespace Fidibo
             {
                 MessageBox.Show("Wrong password !!");
                 MessageBox.Show("There is no customer by that email !!");
-                customer_email_box.Text = null;
-                customer_password_box.Password = null;
+                customer_email_box.Text = "";
+                customer_password_box.Password = "";
                 return;
             }
 
@@ -165,10 +165,10 @@ namespace Fidibo
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-                Name_Box.Text = null;
-                Password_Sign_Up_Box.Password = null;
-                Email_Sign_Up_Box.Text = null;
-                Phone_Box.Text = null;
+                Name_Box.Text = "";
+                Password_Sign_Up_Box.Password = "";
+                Email_Sign_Up_Box.Text = "";
+                Phone_Box.Text = "";
                 return;
             }
 

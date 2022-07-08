@@ -25,7 +25,7 @@ namespace Fidibo
             this.password = password;
             safe_cash = 0;
             vip_price = 0;
-            SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=F:\aphw\Fidibo\Fidibo\Resources\data.mdf;Integrated Security=True");
+            SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Ali\Fidibo\Fidibo\Resources\data.mdf;Integrated Security=True");
             con.Open();
             string command = "insert into T_Admin values ('" + email + "','" + password + "','" + safe_cash + "','" + vip_price + "')";
             SqlCommand com = new SqlCommand(command, con);

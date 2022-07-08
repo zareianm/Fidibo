@@ -103,13 +103,13 @@ namespace Fidibo
         {
             string temp = Book_Class.books[Book_Class.IndexOfBook(Search_By_Book_Name_Box_Edit.Text)].name;
 
-            if (New_Writer_Box.Text != null)
+            if (New_Writer_Box.Text != "")
             {
                 Book_Class.books[Book_Class.IndexOfBook(Search_By_Book_Name_Box_Edit.Text)].writer = New_Writer_Box.Text;
             }
             try
             {
-                if (New_Price_Box.Text != null)
+                if (New_Price_Box.Text != "")
                 {
                     Book_Class.books[Book_Class.IndexOfBook(Search_By_Book_Name_Box_Edit.Text)].price = int.Parse(New_Price_Box.Text);
                 }
@@ -117,12 +117,12 @@ namespace Fidibo
             catch
             {
                 MessageBox.Show("Please enter an integer for  price ");
-                New_Price_Box.Text = null;
+                New_Price_Box.Text = "";
 
             }
             try
             {
-                if (New_Year_Box.Text != null)
+                if (New_Year_Box.Text != "")
                 {
                     Book_Class.books[Book_Class.IndexOfBook(Search_By_Book_Name_Box_Edit.Text)].year = int.Parse(New_Year_Box.Text);
                 }
@@ -130,23 +130,23 @@ namespace Fidibo
             catch
             {
                 MessageBox.Show("Please enter an integer for year ");
-                New_Price_Box.Text = null;
+                New_Price_Box.Text = "";
             }
-            if (New_Summary_Text_Box.Text != null)
+            if (New_Summary_Text_Box.Text != "")
             {
                 Book_Class.books[Book_Class.IndexOfBook(Search_By_Book_Name_Box_Edit.Text)].summary = New_Summary_Text_Box.Text;
             }
             string command = "update T_Books set Writer = '" + Book_Class.books[Book_Class.IndexOfBook(Search_By_Book_Name_Box_Edit.Text)].writer + "' , Price = '" + Book_Class.books[Book_Class.IndexOfBook(Search_By_Book_Name_Box_Edit.Text)].price + "' , Summary = '" + Book_Class.books[Book_Class.IndexOfBook(Search_By_Book_Name_Box_Edit.Text)].summary + "' , Year = '" + Book_Class.books[Book_Class.IndexOfBook(Search_By_Book_Name_Box_Edit.Text)].year + "' where Name = '" + temp + "'";
 
-            SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=F:\aphw\Fidibo\Fidibo\Resources\data.mdf;Integrated Security=True");
+            SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Ali\Fidibo\Fidibo\Resources\data.mdf;Integrated Security=True");
             con.Open();
             SqlCommand com = new SqlCommand(command, con);
             com.BeginExecuteNonQuery();
             con.Close();
-            New_Summary_Text_Box.Text = null;
-            New_Year_Box.Text = null;
-            New_Price_Box.Text = null;
-            New_Writer_Box.Text = null;
+            New_Summary_Text_Box.Text = "";
+            New_Year_Box.Text = "";
+            New_Price_Box.Text = "";
+            New_Writer_Box.Text = "";
             MessageBox.Show("Changes applied successfully ");
             Edit_Book_Border.Visibility = Visibility.Collapsed;
             Edit__Information_Of_Book_Border.Visibility = Visibility.Collapsed;
@@ -236,7 +236,7 @@ namespace Fidibo
             Search_By_Book_Name_Border_VIP.Visibility = Visibility.Visible;
             Add_Book_To_VIP_Border.Visibility = Visibility.Collapsed;
 
-            if (Search_By_Book_Name_Box_VIP.Text == null)
+            if (Search_By_Book_Name_Box_VIP.Text == "")
             {
                 MessageBox.Show("Please enter a name !!");
             }
@@ -259,11 +259,19 @@ namespace Fidibo
 
 
 
-                MessageBox.Show("successfully !");
+                MessageBox.Show("successfully.!");
+
+                string command2 = "update T_Admin set VIP_Price = '" + double.Parse(New_Price_For_VIP_Box.Text) + "'  where Email = '" + "Admin@gmail.com" + "'";
+
+                SqlConnection con2 = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Ali\Fidibo\Fidibo\Resources\data.mdf;Integrated Security=True");
+                con2.Open();
+                SqlCommand com2 = new SqlCommand(command2, con2);
+                com2.BeginExecuteNonQuery();
+                con2.Close();
 
                 string command = "update T_Books set IsVIP = '" + Book_Class.books[Book_Class.IndexOfBook(Search_By_Book_Name_Box_VIP.Text)].isVIP + "'  where Name = '" + Book_Class.books[Book_Class.IndexOfBook(Search_By_Book_Name_Box_VIP.Text)].name + "'";
 
-                SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=F:\aphw\Fidibo\Fidibo\Resources\data.mdf;Integrated Security=True");
+                SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Ali\Fidibo\Fidibo\Resources\data.mdf;Integrated Security=True");
                 con.Open();
                 SqlCommand com = new SqlCommand(command, con);
                 com.BeginExecuteNonQuery();
@@ -303,23 +311,20 @@ namespace Fidibo
 
         private void Search_And_Set_Discount_Button_Click(object sender, RoutedEventArgs e)
         {
-            if (Book_Class.IndexOfBook(Name_Of_Book_Box_Discount.Text) == -1 || Name_Of_Book_Box_Discount.Text==null)
+            if (Book_Class.IndexOfBook(Name_Of_Book_Box_Discount.Text) == -1 || Name_Of_Book_Box_Discount.Text=="")
             {
                 MessageBox.Show("The book was not found");
-                Name_Of_Book_Box_Discount.Text = null;
-                Discount_amount_Box_Discount.Text = null;
+                Name_Of_Book_Box_Discount.Text = "";
+                Discount_amount_Box_Discount.Text = "";
 
             }
-            if (Discount_amount_Box_Discount.Text != null)
-            {
-                MessageBox.Show("Can not be blank , please enter an integer");
-            }
+           
             try
             {
              if(double.Parse(Discount_amount_Box_Discount.Text)>100 || double.Parse( Discount_amount_Box_Discount.Text)<0 )
                 {
                     MessageBox.Show("Discount must be between 0 and 100");
-                    Discount_amount_Box_Discount.Text = null;
+                    Discount_amount_Box_Discount.Text = "";
                 }
              else
                 {
@@ -328,14 +333,14 @@ namespace Fidibo
                     Book_Class.books[Book_Class.IndexOfBook(Name_Of_Book_Box_Discount.Text)].price = Book_Class.books[Book_Class.IndexOfBook(Name_Of_Book_Box_Discount.Text)].price * (100 - Book_Class.books[Book_Class.IndexOfBook(Name_Of_Book_Box_Discount.Text)].discount) / 100;
                     string command = "update T_Books set Discount = '" + double.Parse(Discount_amount_Box_Discount.Text) + "' ,Price= '" + Book_Class.books[Book_Class.IndexOfBook(Name_Of_Book_Box_Discount.Text)].price + "'   where Name = '" + Name_Of_Book_Box_Discount.Text + "'";
 
-                    SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=F:\aphw\Fidibo\Fidibo\Resources\data.mdf;Integrated Security=True");
+                    SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Ali\Fidibo\Fidibo\Resources\data.mdf;Integrated Security=True");
                     con.Open();
                     SqlCommand com = new SqlCommand(command, con);
                     com.BeginExecuteNonQuery();
                     con.Close();
                     MessageBox.Show("Discount applied");
-                    Discount_amount_Box_Discount.Text = null;
-                    Name_Of_Book_Box_Discount.Text = null;
+                    Discount_amount_Box_Discount.Text = "";
+                    Name_Of_Book_Box_Discount.Text = "";
                 }
 
                 
@@ -343,7 +348,7 @@ namespace Fidibo
             catch(Exception ex)
             {
                 MessageBox.Show(ex.Message);
-                Discount_amount_Box_Discount.Text = null;
+                Discount_amount_Box_Discount.Text = "";
             }
 
         }
@@ -377,7 +382,7 @@ namespace Fidibo
 
             if (Book_Class.IndexOfBook(Name_Of_Book_Text_Box.Text) == -1)
             {
-                MessageBox.Show("the book not found !");
+                MessageBox.Show("the book was not found !");
                 return;
             }
             else
@@ -471,21 +476,21 @@ namespace Fidibo
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-                Expiration_Year_Box.Text = null;
-                Expiration_month_Box.Text = null;
-                Amount_Of_Money_Box.Text = null;
-                Card_Number_Box.Text = null;
-                CVV2_Box.Text = null;
+                Expiration_Year_Box.Text = "";
+                Expiration_month_Box.Text = "";
+                Amount_Of_Money_Box.Text = "";
+                Card_Number_Box.Text = "";
+                CVV2_Box.Text = "";
                 return;
             }
 
             admin.safe_cash -= int.Parse(Amount_Of_Money_Box.Text);
             MessageBox.Show("Transfored money from your safe box !!");
-            Expiration_Year_Box.Text = null;
-            Expiration_month_Box.Text = null;
-            Amount_Of_Money_Box.Text = null;
-            Card_Number_Box.Text = null;
-            CVV2_Box.Text = null;
+            Expiration_Year_Box.Text = "";
+            Expiration_month_Box.Text = "";
+            Amount_Of_Money_Box.Text = "";
+            Card_Number_Box.Text = "";
+            CVV2_Box.Text = "";
             return;
         }
 
@@ -559,11 +564,11 @@ namespace Fidibo
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-                PDF_Address_Text_Block.Text = null;
-                Cover_Address_Text_Block.Text = null;
-                Name_Box.Text = null;
-                Writer_Box.Text = null;
-                Price_Box.Text = null;
+                PDF_Address_Text_Block.Text = "";
+                Cover_Address_Text_Block.Text = "";
+                Name_Box.Text = "";
+                Writer_Box.Text = "";
+                Price_Box.Text = "";
             }
         }
 
@@ -590,11 +595,11 @@ namespace Fidibo
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-                PDF_Address_Text_Block.Text = null;
-                Cover_Address_Text_Block.Text = null;
-                Name_Box.Text = null;
-                Writer_Box.Text = null;
-                Price_Box.Text = null;
+                PDF_Address_Text_Block.Text = "";
+                Cover_Address_Text_Block.Text = "";
+                Name_Box.Text = "";
+                Writer_Box.Text = "";
+                Price_Box.Text = "";
             }
         }
         private void BrowseCover_Button_Click(object sender, RoutedEventArgs e)
@@ -622,11 +627,11 @@ namespace Fidibo
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-                PDF_Address_Text_Block.Text = null;
-                Cover_Address_Text_Block.Text = null;
-                Name_Box.Text = null;
-                Writer_Box.Text = null;
-                Price_Box.Text = null;
+                PDF_Address_Text_Block.Text = "";
+                Cover_Address_Text_Block.Text = "";
+                Name_Box.Text = "";
+                Writer_Box.Text = "";
+                Price_Box.Text = "";
             }
         }
 
@@ -634,7 +639,7 @@ namespace Fidibo
         {
             try
             {
-                if (PDF_Address_Text_Block.Text == null || Cover_Address_Text_Block.Text == null || Name_Box.Text == null || Writer_Box.Text == null || Price_Box.Text == null || Year_Box.Text == null)
+                if (PDF_Address_Text_Block.Text == "" || Cover_Address_Text_Block.Text == "" || Name_Box.Text == "" || Writer_Box.Text == "" || Price_Box.Text == "" || Year_Box.Text == "")
                     throw new Exception("Please fill all of the fields !!");
 
                 if (Book_Class.IndexOfBook(Name_Box.Text) != -1)
@@ -648,12 +653,12 @@ namespace Fidibo
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-                PDF_Address_Text_Block.Text = null;
-                Cover_Address_Text_Block.Text = null;
-                Name_Box.Text = null;
-                Writer_Box.Text = null;
-                Price_Box.Text = null;
-                Year_Box.Text = null;
+                PDF_Address_Text_Block.Text = "";
+                Cover_Address_Text_Block.Text = "";
+                Name_Box.Text = "";
+                Writer_Box.Text = "";
+                Price_Box.Text = "";
+                Year_Box.Text = "";
                 System.IO.File.Delete(PDFPath);
                 System.IO.File.Delete(coverPath);
                 return;
@@ -661,12 +666,12 @@ namespace Fidibo
 
             new Book_Class(Name_Box.Text, Writer_Box.Text, double.Parse(Price_Box.Text), Summary_Text_Box.Text, int.Parse(Year_Box.Text));
             MessageBox.Show("Book were added succesfully !!");
-            PDF_Address_Text_Block.Text = null;
-            Cover_Address_Text_Block.Text = null;
-            Name_Box.Text = null;
-            Writer_Box.Text = null;
-            Price_Box.Text = null;
-            Year_Box.Text = null;
+            PDF_Address_Text_Block.Text = "";
+            Cover_Address_Text_Block.Text = "";
+            Name_Box.Text = "";
+            Writer_Box.Text = "";
+            Price_Box.Text = "";
+            Year_Box.Text = "";
             return;
 
         }
@@ -768,7 +773,7 @@ namespace Fidibo
             else
                 Is_VIP_Block_Text.Visibility = Visibility.Collapsed;
 
-            if (b.discount != null)
+            if (b.discount.ToString() != "")
             {
                 Discount_Block_Text.Text = "Discount: " + b.discount + "%";
                 Discount_Block_Text.Visibility = Visibility.Visible;

@@ -29,7 +29,7 @@ namespace Fidibo
             discount = 0;
             isVIP = false;
             this.year = year;
-            SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=F:\aphw\Fidibo\Fidibo\Resources\data.mdf;Integrated Security=True");
+            SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Ali\Fidibo\Fidibo\Resources\data.mdf;Integrated Security=True");
             con.Open();
             string command = "insert into T_Books values ('" + name + "','" + writer + "','" + price + "','" + salesCount + "','" + rate + "','" + discount + "','" + isVIP + "','" + summary + "','" + year + "' )";
             SqlCommand com = new SqlCommand(command, con);
@@ -67,7 +67,7 @@ namespace Fidibo
         {
             string command = "update T_Books set Name = '" + bc.name + "' , Writer = '" + bc.writer + "' , Price = '" + bc.price + "' , SalesCount = '" + bc.salesCount + "' , Rate = '" + bc.rate + "' , Discount = '" + bc.discount + "' , IsVIP = '" + bc.isVIP + "' , Summary = '" + bc.summary + "' , Year = '" + bc.year + "' where Name = '" + oldName + "'";
 
-            SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=F:\aphw\Fidibo\Fidibo\Resources\data.mdf;Integrated Security=True");
+            SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Ali\Fidibo\Fidibo\Resources\data.mdf;Integrated Security=True");
             con.Open();
             SqlCommand com = new SqlCommand(command, con);
             com.BeginExecuteNonQuery();

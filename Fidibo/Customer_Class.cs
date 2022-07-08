@@ -44,7 +44,7 @@ namespace Fidibo
             vipBegintTimeDay = 0;
             wallet = 0;
 
-            SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=F:\aphw\Fidibo\Fidibo\Resources\data.mdf;Integrated Security=True");
+            SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Ali\Fidibo\Fidibo\Resources\data.mdf;Integrated Security=True");
             con.Open();
             string command = "insert into T_Customers values ('" + email + "','" + userName + "','" + phoneNumber + "','" + password + "','" + wallet + "','" + cart + "','" + markedBooks + "','" + buyedBooks + "','" + vipBegintTimeYear + "','" + vipBegintTimeMonth + "','" + vipBegintTimeDay + "')";
             SqlCommand com = new SqlCommand(command, con);
@@ -182,7 +182,7 @@ namespace Fidibo
         {
             string command = "update T_Customers set Email = '" + cc.email + "' , Username = '" + cc.userName + "' , PhoneNumber = '" + cc.phoneNumber + "' , Password = '" + cc.password + "' , Wallet = '" + cc.wallet + "' , Cart = '" + cc.cart + "' , Marked_Book = '" + cc.markedBooks + "' , Buyed_Book = '" + cc.vipBegintTimeYear + "' , Year = '" + cc.vipBegintTimeMonth + "' , Month = '" + cc.vipBegintTimeDay + "' , Day = '" + cc.buyedBooks + "' where Email = '" + oldEmail + "'";
 
-            SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=F:\aphw\Fidibo\Fidibo\Resources\data.mdf;Integrated Security=True");
+            SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Ali\Fidibo\Fidibo\Resources\data.mdf;Integrated Security=True");
             con.Open();
             SqlCommand com = new SqlCommand(command, con);
             com.BeginExecuteNonQuery();
