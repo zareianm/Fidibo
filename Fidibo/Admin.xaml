@@ -51,30 +51,34 @@
                     <TextBlock Text="Please enter a summary :" Foreground="#dfe4ea" Margin="30,10"/>
                     <TextBox x:Name="Summary_Text_Box" TextWrapping="Wrap" AcceptsReturn="True" BorderThickness="0" Background="#CAD3C8" Margin="30,0,150,0" />
                     <Grid>
-                        <Button x:Name="BrowsePDF_Button" Content="Browse for PDF" Margin="28,10,377,20" Background="#d1ccc0" Height="35" Click="BrowsePDFButton_Click"/>
+                        <Button x:Name="BrowsePDF_Button" Content="Browse for PDF" Margin="28,10,377,20" Background="#d1ccc0" Height="30" Click="BrowsePDFButton_Click"/>
                         <TextBlock x:Name="PDF_Address_Text_Block" Background="#f7f1e3" Margin="270,18,89,20" />
+                    </Grid>
+                    
+                    <Grid>
+                        <Button x:Name="BrowseSample_Button" Content="Browse for Sample" Margin="28,-8,377,38" Background="#d1ccc0" Height="30" Click="BrowseSample_Button_Click"/>
+                        <TextBlock x:Name="Sample_Address_Text_Block" Background="#f7f1e3" Margin="270,-4,89,42" />
                     </Grid>
 
                     <Grid>
-                        <Button x:Name="BrowseCover_Button" Content="Browse for cover" Margin="28,-4,377,24" Background="#d1ccc0" Height="35" Click="BrowseCover_Button_Click"/>
-                        <TextBlock x:Name="Cover_Address_Text_Block" Background="#f7f1e3" Margin="270,0,89,27" />
+                        <Button x:Name="BrowseCover_Button" Content="Browse for cover" Margin="29,-19,376,39" Background="#d1ccc0" Height="30" Click="BrowseCover_Button_Click"/>
+                        <TextBlock x:Name="Cover_Address_Text_Block" Background="#f7f1e3" Margin="271,-16,88,42" />
+                        <Button x:Name="Add_Book_Into_store_Button" Content="Add book" Background="#833471" BorderThickness="0" Click="Add_Book_Into_store_Button_Click" Margin="219,25,219,-12"/>
 
                     </Grid>
-                    <Button x:Name="Add_Book_Into_store_Button" Content="Add book" Width="150" Height="37" Background="#833471" BorderThickness="0" Click="Add_Book_Into_store_Button_Click"/>
                 </StackPanel>
             </Grid>
 
         </Border>
 
-        <Border x:Name="Edit_Book_Border" Grid.Column="1" Margin="5" BorderBrush="#808e9b" BorderThickness="1" Visibility="Collapsed">
+        <Border x:Name="Edit_Book_Border" Grid.Column="1" Margin="5" BorderBrush="#808e9b" BorderThickness="1" Visibility="Visible">
             <Grid>
 
-                <Border x:Name="Edit__Information_Of_Book_Border" Grid.Column="1" Margin="5" BorderBrush="#808e9b" BorderThickness="1" Visibility="Visible">
+                <Border x:Name="Edit__Information_Of_Book_Border" Grid.Column="1" Margin="5" BorderBrush="#808e9b" BorderThickness="1" Visibility="Collapsed">
 
                     <Grid>
                         <StackPanel>
-
-
+                            
                             <TextBlock Text="New writer of the new book :" Foreground="#dcdde1" Margin="30,10"/>
                             <TextBox x:Name="New_Writer_Box" Margin="30,0,150,0" Background="#dcdde1" BorderThickness="0"/>
 
@@ -87,28 +91,24 @@
                             <TextBlock Text="Please enter new summary :" Foreground="#dfe4ea" Margin="30,10"/>
                             <TextBox x:Name="New_Summary_Text_Box" TextWrapping="Wrap" AcceptsReturn="True" BorderThickness="0" Background="#CAD3C8" Margin="30,0,150,0" />
 
-
-
-
                             <Button x:Name="Apply_Changes_Of_Book_Button" Content="Apply change" Width="150" Height="40" Background="#833471" BorderThickness="0" Click="Apply_Changes_Of_Book_Button_Click" />
                         </StackPanel>
                     </Grid>
 
                 </Border>
 
-                <Border x:Name="Search_By_Book_Name_Border_Edit" Visibility="Collapsed">
+                <Border x:Name="Search_By_Book_Name_Border_Edit" Visibility="Visible">
                     <Grid>
                         <TextBlock Text="Search by name of book : " Margin="25,10" Foreground="#a4b0be"/>
                         <TextBox x:Name="Search_By_Book_Name_Box_Edit" Height="30" Width="400" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="25,35" Background="#dcdde1" BorderBrush="#fff200" BorderThickness="2" FontSize="20"/>
                         <Button x:Name="Search_By_Book_Name_BUtton_Edit" Height="30" Width="60" HorizontalAlignment="Right"  VerticalAlignment="Top" Margin="30,35" Background="#0fb9b1" BorderThickness="1" Content="Search" Click="Search_By_Book_Name_BUtton_Edit_Click"/>
-
                     </Grid>
                 </Border>
 
             </Grid>
 
         </Border>
-        
+
         <Border x:Name="Show_Books_Border" Grid.Column="1" Margin="5" BorderBrush="#808e9b" BorderThickness="1" Visibility="Collapsed">
             <Grid>
                 <Grid.RowDefinitions>
@@ -173,7 +173,7 @@
                 </Border>
             </Grid>
         </Border>
-        
+
         <Border x:Name="Customers_Border" Grid.Column="1" Margin="5" BorderBrush="#808e9b" BorderThickness="1" Visibility="Collapsed">
             <Grid>
                 <Border x:Name="List_Of_Customer_Border" Visibility="Visible">
@@ -188,7 +188,7 @@
                     </Grid>
                 </Border>
 
-                <Border x:Name="Search_By_Customer_Email_Border" Grid.Row="1" Visibility="Collapsed" >
+                <Border x:Name="Search_By_Customer_Email_Border" Grid.Row="1" Visibility="Visible" >
                     <Grid>
                         <StackPanel>
                             <TextBlock Text="Search by email : " Margin="25,100,25,0" Foreground="#a4b0be"/>
@@ -212,7 +212,7 @@
                         </StackPanel>
                     </Grid>
                 </Border>
-                
+
                 <Border x:Name="Search_By_Customer_Name_Border" Grid.Row="1" Visibility="Collapsed" >
                     <Grid>
                         <StackPanel>
@@ -383,7 +383,7 @@
                 <WebBrowser x:Name="wb" HorizontalAlignment="Right" Width="250" Visibility="Visible" Margin="0,10,0,62"/>
                 <TextBlock x:Name="Book_Text_block" Text="boofekoor" Height="50" Width="300" Background="#1e272e" Margin="39,44,249,333" Foreground="#fff200" FontSize="45" FontFamily="Georgia" TextAlignment="Center"/>
                 <TextBlock x:Name="Writer_Text_block" Text="writer : hedayat" Width="300" Background="#1e272e" Margin="39,100,249,258" FontSize="20" TextAlignment="Center" Foreground="#0be881" FontFamily="Tw Cen MT"/>
-                <TextBlock x:Name="Year_Text_Block" Text="Year : 1325" Height="50" Width="300" Margin="39,139,249,238" FontSize="20" TextAlignment="Center" Foreground="#f368e0" FontFamily="Tw Cen MT" /> 
+                <TextBlock x:Name="Year_Text_Block" Text="Year : 1325" Height="50" Width="300" Margin="39,139,249,238" FontSize="20" TextAlignment="Center" Foreground="#f368e0" FontFamily="Tw Cen MT" />
                 <TextBlock x:Name="Discount_Block_Text" Text="Discount : 20%" Height="40" FontSize="20" Foreground="#ff9f1a" Margin="10,276,310,72"/>
                 <Button x:Name="Open_PDF_Button" Height="30" Width="100" Margin="139,250,349,147" Content="Open PDF" Background="#54a0ff" BorderThickness="0" Click="Open_PDF_Button_Click"/>
                 <TextBlock x:Name="Is_VIP_Block_Text" Height="50" Margin="277,276,255,62" Text="VIP" Foreground="#32ff7e" FontSize="30"/>

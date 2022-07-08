@@ -18,7 +18,10 @@ namespace Fidibo
         public string markedBooks { get; set; }
         public string cart { get; set; }
 
-        public DateTime? vipBegintTime { get; set; }
+        public int? vipBegintTimeYear { get; set; }
+        public int? vipBegintTimeMonth { get; set; }
+
+        public int? vipBegintTimeDay { get; set; }
         public double wallet { get; set; }
 
         public static List<Customer_Class> customers = new List<Customer_Class>();
@@ -36,12 +39,14 @@ namespace Fidibo
             markedBooks = "";
             buyedBooks = "";
             cart = "";
-            vipBegintTime = null;
+            vipBegintTimeYear = 0;
+            vipBegintTimeMonth = 0;
+            vipBegintTimeDay = 0;
             wallet = 0;
 
             SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=F:\aphw\Fidibo\Fidibo\Resources\data.mdf;Integrated Security=True");
             con.Open();
-            string command = "insert into T_Customers values ('" + email + "','" + userName + "','" + phoneNumber + "','" + password + "','" + wallet + "','" + cart + "','" + markedBooks + "','" + buyedBooks + "','" + vipBegintTime + "')";
+            string command = "insert into T_Customers values ('" + email + "','" + userName + "','" + phoneNumber + "','" + password + "','" + wallet + "','" + cart + "','" + markedBooks + "','" + buyedBooks + "','" + vipBegintTimeYear + "','" + vipBegintTimeMonth + "','" + vipBegintTimeDay + "')";
             SqlCommand com = new SqlCommand(command, con);
             com.ExecuteNonQuery();
             con.Close();
@@ -49,7 +54,7 @@ namespace Fidibo
             customers.Add(this);
         }
 
-        public Customer_Class(string email, string password, string phoneNumber, string userName, string buyedBooks, string markedBooks, string cart, DateTime? vipBegintTime, double wallet)
+        public Customer_Class(string email, string userName, string phoneNumber, string password, double wallet, string cart, string markedBooks, string buyedBooks, int vipBegintTimeYear, int vipBegintTimeMonth, int vipBegintTimeDay)
         {
             this.email = email;
             this.password = password;
@@ -58,7 +63,9 @@ namespace Fidibo
             this.markedBooks = markedBooks;
             this.buyedBooks = buyedBooks;
             this.cart = cart;
-            this.vipBegintTime = vipBegintTime;
+            this.vipBegintTimeYear = vipBegintTimeYear;
+            this.vipBegintTimeMonth = vipBegintTimeMonth;
+            this.vipBegintTimeDay = vipBegintTimeDay;
             this.wallet = wallet;
 
             customers.Add(this);
@@ -171,10 +178,9 @@ namespace Fidibo
 
             return sum % 10 == 0;
         }
-
         public static void UpdateCustomerTable(string oldEmail, Customer_Class cc)
         {
-            string command = "update T_Customers set Email = '" + cc.email + "' , Username = '" + cc.userName + "' , PhoneNumber = '" + cc.phoneNumber + "' , Password = '" + cc.password + "' , Wallet = '" + cc.wallet + "' , Cart = '" + cc.cart + "' , Marked_Book = '" + cc.markedBooks + "' , Buyed_Book = '" + cc.buyedBooks + "' where Email = '" + oldEmail + "'";
+            string command = "update T_Customers set Email = '" + cc.email + "' , Username = '" + cc.userName + "' , PhoneNumber = '" + cc.phoneNumber + "' , Password = '" + cc.password + "' , Wallet = '" + cc.wallet + "' , Cart = '" + cc.cart + "' , Marked_Book = '" + cc.markedBooks + "' , Buyed_Book = '" + cc.vipBegintTimeYear + "' , Year = '" + cc.vipBegintTimeMonth + "' , Month = '" + cc.vipBegintTimeDay + "' , Day = '" + cc.buyedBooks + "' where Email = '" + oldEmail + "'";
 
             SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=F:\aphw\Fidibo\Fidibo\Resources\data.mdf;Integrated Security=True");
             con.Open();
@@ -183,10 +189,27 @@ namespace Fidibo
             con.Close();
 
         }
-
-        public int CalculateLeftTime()
+        public int? CalculateLeftTime()
         {
-            throw new NotImplementedException();
+            int? s = 0;
+            s += this.vipBegintTimeYear * 365;
+            s += this.vipBegintTimeMonth * 30;
+            s += this.vipBegintTimeDay;
+
+            s += 30;
+
+            string[] v = DateTime.Now.ToString().Split(new char[] { ' ', '/' }, StringSplitOptions.RemoveEmptyEntries);
+
+            int a = int.Parse(v[2]) * 365 + int.Parse(v[1]) * 30 + int.Parse(v[0]);
+
+            if (s - a <= 0)
+            {
+                this.vipBegintTimeYear = 0;
+                this.vipBegintTimeMonth = 0;
+                this.vipBegintTimeDay = 0;
+            }
+
+            return s - a;
         }
     }
 }

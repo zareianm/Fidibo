@@ -55,7 +55,7 @@ namespace Fidibo
             Add_Book_To_VIP_Border.Visibility = Visibility.Collapsed;
             Search_By_Writer_Border.Visibility = Visibility.Collapsed;
             Search_By_Book_Name_Border.Visibility = Visibility.Collapsed;
-            List_Of_Customer_Border.Visibility = Visibility.Visible;
+            List_Of_Customer_Border.Visibility = Visibility.Collapsed;
             Search_By_Customer_Email_Border.Visibility = Visibility.Collapsed;
             Search_By_Customer_Name_Border.Visibility = Visibility.Collapsed;
             Show_Books_Border.Visibility = Visibility.Collapsed;
@@ -78,7 +78,7 @@ namespace Fidibo
             Add_Book_To_VIP_Border.Visibility = Visibility.Collapsed;
             Search_By_Writer_Border.Visibility = Visibility.Collapsed;
             Search_By_Book_Name_Border.Visibility = Visibility.Collapsed;
-            List_Of_Customer_Border.Visibility = Visibility.Visible;
+            List_Of_Customer_Border.Visibility = Visibility.Collapsed;
             Search_By_Customer_Email_Border.Visibility = Visibility.Collapsed;
             Search_By_Customer_Name_Border.Visibility = Visibility.Collapsed;
             Show_Books_Border.Visibility = Visibility.Collapsed;
@@ -88,10 +88,8 @@ namespace Fidibo
         }
         private void Search_By_Book_Name_BUtton_Edit_Click(object sender, RoutedEventArgs e)
         {
-            if (Book_Class.IndexOfBook(Name_Box.Text) != -1)
+            if (Book_Class.IndexOfBook(Search_By_Book_Name_Box_Edit.Text) != -1)
             {
-
-                Edit_Book_Border.Visibility = Visibility.Visible;
                 Search_By_Book_Name_Border_Edit.Visibility = Visibility.Collapsed;
                 Edit__Information_Of_Book_Border.Visibility = Visibility.Visible;
             }
@@ -103,15 +101,17 @@ namespace Fidibo
         }
         private void Apply_Changes_Of_Book_Button_Click(object sender, RoutedEventArgs e)
         {
+            string temp = Book_Class.books[Book_Class.IndexOfBook(Search_By_Book_Name_Box_Edit.Text)].name;
+
             if (New_Writer_Box.Text != null)
             {
-                Book_Class.books[Book_Class.IndexOfBook(Name_Box.Text)].writer = New_Writer_Box.Text;
+                Book_Class.books[Book_Class.IndexOfBook(Search_By_Book_Name_Box_Edit.Text)].writer = New_Writer_Box.Text;
             }
             try
             {
                 if (New_Price_Box.Text != null)
                 {
-                    Book_Class.books[Book_Class.IndexOfBook(Name_Box.Text)].price = int.Parse(New_Price_Box.Text);
+                    Book_Class.books[Book_Class.IndexOfBook(Search_By_Book_Name_Box_Edit.Text)].price = int.Parse(New_Price_Box.Text);
                 }
             }
             catch
@@ -124,7 +124,7 @@ namespace Fidibo
             {
                 if (New_Year_Box.Text != null)
                 {
-                    Book_Class.books[Book_Class.IndexOfBook(Name_Box.Text)].year = int.Parse(New_Year_Box.Text);
+                    Book_Class.books[Book_Class.IndexOfBook(Search_By_Book_Name_Box_Edit.Text)].year = int.Parse(New_Year_Box.Text);
                 }
             }
             catch
@@ -134,9 +134,9 @@ namespace Fidibo
             }
             if (New_Summary_Text_Box.Text != null)
             {
-                Book_Class.books[Book_Class.IndexOfBook(Name_Box.Text)].summary = New_Summary_Text_Box.Text;
+                Book_Class.books[Book_Class.IndexOfBook(Search_By_Book_Name_Box_Edit.Text)].summary = New_Summary_Text_Box.Text;
             }
-            string command = "update T_Books set Writer = '" + Book_Class.books[Book_Class.IndexOfBook(Name_Box.Text)].writer + "' , Price = '" + Book_Class.books[Book_Class.IndexOfBook(Name_Box.Text)].price + "' , Summary = '" + Book_Class.books[Book_Class.IndexOfBook(Name_Box.Text)].summary + "' , Year = '" + Book_Class.books[Book_Class.IndexOfBook(Name_Box.Text)].year + "' where Name = '" + Book_Class.books[Book_Class.IndexOfBook(Name_Box.Text)].name + "'";
+            string command = "update T_Books set Writer = '" + Book_Class.books[Book_Class.IndexOfBook(Search_By_Book_Name_Box_Edit.Text)].writer + "' , Price = '" + Book_Class.books[Book_Class.IndexOfBook(Search_By_Book_Name_Box_Edit.Text)].price + "' , Summary = '" + Book_Class.books[Book_Class.IndexOfBook(Search_By_Book_Name_Box_Edit.Text)].summary + "' , Year = '" + Book_Class.books[Book_Class.IndexOfBook(Search_By_Book_Name_Box_Edit.Text)].year + "' where Name = '" + temp + "'";
 
             SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=F:\aphw\Fidibo\Fidibo\Resources\data.mdf;Integrated Security=True");
             con.Open();
@@ -149,6 +149,7 @@ namespace Fidibo
             New_Writer_Box.Text = null;
             MessageBox.Show("Changes applied successfully ");
             Edit_Book_Border.Visibility = Visibility.Collapsed;
+            Edit__Information_Of_Book_Border.Visibility = Visibility.Collapsed;
             Welcome_Border.Visibility = Visibility.Visible;
         }
         private void Show_Books_Button_Click(object sender, RoutedEventArgs e)
@@ -173,7 +174,6 @@ namespace Fidibo
             Open_Book_Border.Visibility = Visibility.Collapsed;
 
         }
-
         private void Customers_Button_Click(object sender, RoutedEventArgs e)
         {
             Welcome_Border.Visibility = Visibility.Collapsed;
@@ -524,7 +524,7 @@ namespace Fidibo
 
         private void Go_To_Search_By_Customer_Name_Button_Click(object sender, RoutedEventArgs e)
         {
-            List_Of_Customer_Border.Visibility = Visibility.Collapsed;
+            Search_By_Customer_Email_Border.Visibility = Visibility.Collapsed;
             Search_By_Customer_Name_Border.Visibility = Visibility.Visible;
         }
 
@@ -567,6 +567,36 @@ namespace Fidibo
             }
         }
 
+        private void BrowseSample_Button_Click(object sender, RoutedEventArgs e)
+        {
+            // Create OpenFileDialog
+            Microsoft.Win32.OpenFileDialog openFileDlgPDF = new Microsoft.Win32.OpenFileDialog();
+
+            Nullable<bool> result = openFileDlgPDF.ShowDialog();
+
+            try
+            {
+                if (result == true)
+                {
+                    PDF_Address_Text_Block.Text = openFileDlgPDF.FileName;
+
+                    string a = Name_Box.Text;
+                    PDFPath = System.IO.Path.GetFullPath($@"SampleResources/" + a + ".pdf");
+
+                    System.IO.File.Copy(openFileDlgPDF.FileName, PDFPath);
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                PDF_Address_Text_Block.Text = null;
+                Cover_Address_Text_Block.Text = null;
+                Name_Box.Text = null;
+                Writer_Box.Text = null;
+                Price_Box.Text = null;
+            }
+        }
         private void BrowseCover_Button_Click(object sender, RoutedEventArgs e)
         {
             // Create OpenFileDialog
@@ -767,5 +797,7 @@ namespace Fidibo
             PDF_Webbrowser.Visibility = Visibility.Collapsed;
             Close_PDF_Button.Visibility = Visibility.Collapsed;
         }
+
+
     }
 }

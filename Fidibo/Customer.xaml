@@ -159,7 +159,6 @@
                         <Button x:Name="Pay_VIP_By_Wallet_Button" Height="50" Margin="88,248,314,78" Background="#686de0" BorderThickness="0" Content="Pay by wallet" FontSize="20" Click="Pay_VIP_By_Wallet_Button_Click"/>
                         <Button x:Name="Go_Pay_VIP_By_Card_Button" Height="50" Margin="322,248,80,78" Background="#686de0" BorderThickness="0" Content="Pay by card" FontSize="20" Click="Go_Pay_VIP_By_Card_Button_Click"/>
                     </Grid>
-
                 </Border>
 
                 <Border x:Name="Show_VIP_Border" Grid.Column="1" Margin="5" BorderBrush="#808e9b" BorderThickness="1" Visibility="Collapsed">
@@ -228,7 +227,7 @@
             </StackPanel>
         </Border>
 
-        <Border x:Name="Show_Book_Border" Grid.Column="1" Margin="5" BorderBrush="#808e9b" BorderThickness="1" Background="#1e272e"  Visibility="Collapsed">
+        <Border x:Name="Show_Book_Border" Grid.Column="1" Margin="5" BorderBrush="#808e9b" BorderThickness="1" Background="#1e272e"  Visibility="Visible">
             <Grid>
                 <WebBrowser x:Name="wb" HorizontalAlignment="Right" Width="250" Visibility="Visible" Margin="0,10,0,62"/>
                 <TextBlock x:Name="Book_Text_block" Height="50" Width="300" Background="#1e272e" Margin="39,44,249,294" Foreground="#fff200" FontSize="45" FontFamily="Georgia" TextAlignment="Center"/>
@@ -237,11 +236,14 @@
                 <Button  x:Name="Mark_Book_Button" Height="50" Width="50" Margin="28,125,510,213" BorderThickness="0" BorderBrush="#1e272e" Click="Mark_Book_Button_Click">
                     <Image x:Name="BookMark_Image" Height="51" Width="50"/>
                 </Button>
-                <TextBlock x:Name="Discount_Block_Text" Height="40" FontSize="20" Foreground="#ff9f1a" Margin="10,276,310,72" Visibility="Collapsed"/>
-                <TextBlock x:Name="Is_VIP_Block_Text" Height="50" Margin="277,276,255,62" Text="VIP" Foreground="#32ff7e" FontSize="30" Visibility="Collapsed"/>
-                <TextBlock x:Name="summary_Text_Block" Margin="28,194,294,134" Foreground="#ced6e0"/>
+                <TextBlock x:Name="Discount_Block_Text" Height="40" FontSize="20" Foreground="#ff9f1a" Margin="10,244,310,104" Visibility="Collapsed"/>
+                <TextBlock x:Name="Is_VIP_Block_Text" Height="50" Margin="277,244,255,94" Text="VIP" Foreground="#32ff7e" FontSize="30" Visibility="Collapsed"/>
+                <TextBlock x:Name="summary_Text_Block" Margin="28,194,294,149" Foreground="#ced6e0"/>
+                <Button x:Name="View_Sample_Button" Height="30" Width="150" Margin="28,289,410,69" Content="View sample" Background="#D980FA" BorderThickness="0" Click="View_Sample_Button_Click"/>
                 <WebBrowser x:Name="PDF_Webbrowser"  Margin="0,0,0,50" Visibility="Collapsed"/>
                 <Button x:Name="Close_PDF_Button" Content="Close" Margin="216,354,216,10" Background="#eb3b5a" BorderThickness="0" Visibility="Collapsed" Click="Close_PDF_Button_Click"/>
+                <WebBrowser x:Name="View_Sample_Webbrowser"  Margin="0,0,0,50" Visibility="Collapsed"/>
+                <Button x:Name="Close_Sample_Button" Content="Close" Margin="216,354,216,10" Background="#eb3b5a" BorderThickness="0" Visibility="Collapsed" Click="Close_Sample_Button_Click"/>
             </Grid>
         </Border>
 
