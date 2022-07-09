@@ -138,7 +138,7 @@ namespace Fidibo
             }
             string command = "update T_Books set Writer = '" + Book_Class.books[Book_Class.IndexOfBook(Search_By_Book_Name_Box_Edit.Text)].writer + "' , Price = '" + Book_Class.books[Book_Class.IndexOfBook(Search_By_Book_Name_Box_Edit.Text)].price + "' , Summary = '" + Book_Class.books[Book_Class.IndexOfBook(Search_By_Book_Name_Box_Edit.Text)].summary + "' , Year = '" + Book_Class.books[Book_Class.IndexOfBook(Search_By_Book_Name_Box_Edit.Text)].year + "' where Name = '" + temp + "'";
 
-            SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Ali\Fidibo\Fidibo\Resources\data.mdf;Integrated Security=True");
+            SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=F:\aphw\Fidibo\Fidibo\Resources\data.mdf;Integrated Security=True");
             con.Open();
             SqlCommand com = new SqlCommand(command, con);
             com.BeginExecuteNonQuery();
@@ -246,7 +246,7 @@ namespace Fidibo
                 MessageBox.Show("the book was not found !");
             }
             else
-            {               
+            {
                 Search_By_Book_Name_Border_VIP.Visibility = Visibility.Collapsed;
                 Add_Book_To_VIP_Border.Visibility = Visibility.Visible;
             }
@@ -263,7 +263,7 @@ namespace Fidibo
 
                 string command2 = "update T_Admin set VIP_Price = '" + double.Parse(New_Price_For_VIP_Box.Text) + "'  where Email = '" + "Admin@gmail.com" + "'";
 
-                SqlConnection con2 = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Ali\Fidibo\Fidibo\Resources\data.mdf;Integrated Security=True");
+                SqlConnection con2 = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=F:\aphw\Fidibo\Fidibo\Resources\data.mdf;Integrated Security=True");
                 con2.Open();
                 SqlCommand com2 = new SqlCommand(command2, con2);
                 com2.BeginExecuteNonQuery();
@@ -271,7 +271,7 @@ namespace Fidibo
 
                 string command = "update T_Books set IsVIP = '" + Book_Class.books[Book_Class.IndexOfBook(Search_By_Book_Name_Box_VIP.Text)].isVIP + "'  where Name = '" + Book_Class.books[Book_Class.IndexOfBook(Search_By_Book_Name_Box_VIP.Text)].name + "'";
 
-                SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Ali\Fidibo\Fidibo\Resources\data.mdf;Integrated Security=True");
+                SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=F:\aphw\Fidibo\Fidibo\Resources\data.mdf;Integrated Security=True");
                 con.Open();
                 SqlCommand com = new SqlCommand(command, con);
                 com.ExecuteNonQuery();
@@ -314,41 +314,39 @@ namespace Fidibo
 
         private void Search_And_Set_Discount_Button_Click(object sender, RoutedEventArgs e)
         {
-            if (Book_Class.IndexOfBook(Name_Of_Book_Box_Discount.Text) == -1 || Name_Of_Book_Box_Discount.Text=="")
+            if (Book_Class.IndexOfBook(Name_Of_Book_Box_Discount.Text) == -1 || Name_Of_Book_Box_Discount.Text == "")
             {
                 MessageBox.Show("The book was not found");
                 Name_Of_Book_Box_Discount.Text = "";
                 Discount_amount_Box_Discount.Text = "";
 
             }
-           
+
             try
             {
-             if(double.Parse(Discount_amount_Box_Discount.Text)>100 || double.Parse( Discount_amount_Box_Discount.Text)<0 )
+                if (double.Parse(Discount_amount_Box_Discount.Text) > 100 || double.Parse(Discount_amount_Box_Discount.Text) < 0)
                 {
                     MessageBox.Show("Discount must be between 0 and 100");
                     Discount_amount_Box_Discount.Text = "";
                 }
-             else
+                else
                 {
-                    Book_Class.books[Book_Class.IndexOfBook(Name_Of_Book_Box_Discount.Text)].price = Book_Class.books[Book_Class.IndexOfBook(Name_Of_Book_Box_Discount.Text)].price * (100) / (100 - Book_Class.books[Book_Class.IndexOfBook(Name_Of_Book_Box_Discount.Text)].discount);
                     Book_Class.books[Book_Class.IndexOfBook(Name_Of_Book_Box_Discount.Text)].discount = double.Parse(Discount_amount_Box_Discount.Text);
-                    Book_Class.books[Book_Class.IndexOfBook(Name_Of_Book_Box_Discount.Text)].price = Book_Class.books[Book_Class.IndexOfBook(Name_Of_Book_Box_Discount.Text)].price * (100 - Book_Class.books[Book_Class.IndexOfBook(Name_Of_Book_Box_Discount.Text)].discount) / 100;
-                    string command = "update T_Books set Discount = '" + double.Parse(Discount_amount_Box_Discount.Text) + "' ,Price= '" + Book_Class.books[Book_Class.IndexOfBook(Name_Of_Book_Box_Discount.Text)].price + "'   where Name = '" + Name_Of_Book_Box_Discount.Text + "'";
+                    string command = "update T_Books set Discount = '" + double.Parse(Discount_amount_Box_Discount.Text) + "' where Name = '" + Name_Of_Book_Box_Discount.Text + "'";
 
-                    SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Ali\Fidibo\Fidibo\Resources\data.mdf;Integrated Security=True");
+                    SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=F:\aphw\Fidibo\Fidibo\Resources\data.mdf;Integrated Security=True");
                     con.Open();
                     SqlCommand com = new SqlCommand(command, con);
-                    com.BeginExecuteNonQuery();
+                    com.ExecuteNonQuery();
                     con.Close();
                     MessageBox.Show("Discount applied");
                     Discount_amount_Box_Discount.Text = "";
                     Name_Of_Book_Box_Discount.Text = "";
                 }
 
-                
+
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
                 Discount_amount_Box_Discount.Text = "";
@@ -391,8 +389,9 @@ namespace Fidibo
             else
             {
                 Rate_Text_Block.Text = Book_Class.books[Book_Class.IndexOfBook(Name_Of_Book_Text_Box.Text)].rate.ToString();
-                Sale_Text_Block.Text = (Book_Class.books[Book_Class.IndexOfBook(Name_Of_Book_Text_Box.Text)].salesCount * Book_Class.books[Book_Class.IndexOfBook(Name_Of_Book_Text_Box.Text)].price).ToString();
-
+                Sale_Text_Block.Text = Book_Class.books[Book_Class.IndexOfBook(Name_Of_Book_Text_Box.Text)].salesCount.ToString();
+                Amount_Text.Text = (Book_Class.books[Book_Class.IndexOfBook(Name_Of_Book_Text_Box.Text)].salesCount * Book_Class.books[Book_Class.IndexOfBook(Name_Of_Book_Text_Box.Text)].price).ToString();
+                
                 SearchBy_Book_Border.Visibility = Visibility.Collapsed;
                 Show_Rate_And_Sale_Border.Visibility = Visibility.Visible;
                 return;
@@ -445,7 +444,7 @@ namespace Fidibo
         }
         private void Exit_Button_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow m = new MainWindow();
+            MainWindow m = new MainWindow(true);
             m.Show();
             this.Close();
         }
@@ -453,6 +452,7 @@ namespace Fidibo
         private void Go_To_Transfer_Money_Button_Click(object sender, RoutedEventArgs e)
         {
             Safe_Setting_Border.Visibility = Visibility.Collapsed;
+            Safe_Cash_Border.Visibility = Visibility.Collapsed;
             Transfor_Money_Border.Visibility = Visibility.Visible;
         }
 
@@ -684,6 +684,8 @@ namespace Fidibo
             Writer_Box.Text = "";
             Price_Box.Text = "";
             Year_Box.Text = "";
+            Sample_Address_Text_Block.Text = "";
+            Summary_Text_Box.Text = "";
             return;
 
         }
@@ -725,10 +727,10 @@ namespace Fidibo
             c = button.DataContext as Customer_Class;
 
             Customer_Name_Text_Block.Text = c.userName;
-            Customer_Buyedbook_Text_Block.Text = "Buyed book : "+c.buyedBooks;
+            Customer_Buyedbook_Text_Block.Text = "Buyed book : " + c.buyedBooks;
             Customer_Cartbook_Text_Block.Text = "Book in cart : " + c.cart;
-            Customer_Bookmark_Text_Block.Text ="Bookmark : "+ c.markedBooks;
-            Customer_VIPLeft_Time_Text_Block.Text = "VIP left time : " + c.CalculateLeftTime()+" days";
+            Customer_Bookmark_Text_Block.Text = "Bookmark : " + c.markedBooks;
+            Customer_VIPLeft_Time_Text_Block.Text = "VIP left time : " + c.CalculateLeftTime() + " days";
 
             Show_Customer_Border.Visibility = Visibility.Visible;
 
@@ -791,9 +793,10 @@ namespace Fidibo
             b = button.DataContext as Book_Class;
 
             Book_Text_block.Text = b.name;
-            Writer_Text_block.Text = "Writed by " +b.writer;
+            Writer_Text_block.Text = "Writed by " + b.writer;
             summary_Text_Block.Text = b.summary;
             Year_Text_Block.Text = "Published year : " + b.year.ToString();
+            Price_Text_Block.Text = "Price : " + b.price;
 
             if (b.isVIP)
                 Is_VIP_Block_Text.Visibility = Visibility.Visible;
@@ -850,7 +853,7 @@ namespace Fidibo
                 com.ExecuteNonQuery();
                 con.Close();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
                 return;
@@ -859,6 +862,20 @@ namespace Fidibo
             MessageBox.Show("The VIP Price was Updated ");
         }
 
+        private void Close_Sample_Button_Click(object sender, RoutedEventArgs e)
+        {
+            View_Sample_Webbrowser.Visibility = Visibility.Collapsed;
+            Close_Sample_Button.Visibility = Visibility.Collapsed;
+        }
 
+        private void View_Sample_Button_Click(object sender, RoutedEventArgs e)
+        {
+            string s = System.IO.Path.GetFullPath(@"SampleResources/" + b.name + ".jpg");
+            ////s += "file:/"+"/"+"/";
+            System.Uri i = new Uri(s);
+            View_Sample_Webbrowser.Source = i;
+            View_Sample_Webbrowser.Visibility = Visibility.Visible;
+            Close_Sample_Button.Visibility = Visibility.Visible;
+        }
     }
 }

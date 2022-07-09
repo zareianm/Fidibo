@@ -24,6 +24,8 @@ namespace Fidibo
         public int? vipBegintTimeDay { get; set; }
         public double wallet { get; set; }
 
+        public string rates { get; set; }
+
         public static List<Customer_Class> customers = new List<Customer_Class>();
 
         public Customer_Class(string email, string password, string phoneNumber, string userName)
@@ -43,10 +45,11 @@ namespace Fidibo
             vipBegintTimeMonth = 0;
             vipBegintTimeDay = 0;
             wallet = 0;
+            rates = "";
 
-            SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Ali\Fidibo\Fidibo\Resources\data.mdf;Integrated Security=True");
+            SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=F:\aphw\Fidibo\Fidibo\Resources\data.mdf;Integrated Security=True");
             con.Open();
-            string command = "insert into T_Customers values ('" + email + "','" + userName + "','" + phoneNumber + "','" + password + "','" + wallet + "','" + cart + "','" + markedBooks + "','" + buyedBooks + "','" + vipBegintTimeYear + "','" + vipBegintTimeMonth + "','" + vipBegintTimeDay + "')";
+            string command = "insert into T_Customers values ('" + email + "','" + userName + "','" + phoneNumber + "','" + password + "','" + wallet + "','" + cart + "','" + markedBooks + "','" + buyedBooks + "','" + vipBegintTimeYear + "','" + vipBegintTimeMonth + "','" + vipBegintTimeDay +"','"+rates+ "')";
             SqlCommand com = new SqlCommand(command, con);
             com.ExecuteNonQuery();
             con.Close();
@@ -54,7 +57,7 @@ namespace Fidibo
             customers.Add(this);
         }
 
-        public Customer_Class(string email, string userName, string phoneNumber, string password, double wallet, string cart, string markedBooks, string buyedBooks, int vipBegintTimeYear, int vipBegintTimeMonth, int vipBegintTimeDay)
+        public Customer_Class(string email, string userName, string phoneNumber, string password, double wallet, string cart, string markedBooks, string buyedBooks, int vipBegintTimeYear, int vipBegintTimeMonth, int vipBegintTimeDay, string rates)
         {
             this.email = email;
             this.password = password;
@@ -67,6 +70,7 @@ namespace Fidibo
             this.vipBegintTimeMonth = vipBegintTimeMonth;
             this.vipBegintTimeDay = vipBegintTimeDay;
             this.wallet = wallet;
+            this.rates = rates;
 
             customers.Add(this);
 
@@ -121,7 +125,6 @@ namespace Fidibo
 
             return re.IsMatch(name);
         }
-
         public static bool IsValidEmail2(string email)
         {
             foreach (var item in customers)
@@ -180,9 +183,9 @@ namespace Fidibo
         }
         public static void UpdateCustomerTable(string oldEmail, Customer_Class cc)
         {
-            string command = "update T_Customers set Email = '" + cc.email + "' , Username = '" + cc.userName + "' , PhoneNumber = '" + cc.phoneNumber + "' , Password = '" + cc.password + "' , Wallet = '" + cc.wallet + "' , Cart = '" + cc.cart + "' , Marked_Book = '" + cc.markedBooks + "' , Buyed_Book = '" + cc.buyedBooks + "' , Year = '" + cc.vipBegintTimeYear + "' , Month = '" + cc.vipBegintTimeMonth + "' , Day = '" + cc.vipBegintTimeDay + "' where Email = '" + oldEmail + "'";
+            string command = "update T_Customers set Email = '" + cc.email + "' , Username = '" + cc.userName + "' , PhoneNumber = '" + cc.phoneNumber + "' , Password = '" + cc.password + "' , Wallet = '" + cc.wallet + "' , Cart = '" + cc.cart + "' , Marked_Book = '" + cc.markedBooks + "' , Buyed_Book = '" + cc.buyedBooks + "' , Year = '" + cc.vipBegintTimeYear + "' , Month = '" + cc.vipBegintTimeMonth + "' , Day = '" + cc.vipBegintTimeDay + "' , Rates = '" + cc.rates + "' where Email = '" + oldEmail + "'";
 
-            SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Ali\Fidibo\Fidibo\Resources\data.mdf;Integrated Security=True");
+            SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=F:\aphw\Fidibo\Fidibo\Resources\data.mdf;Integrated Security=True");
             con.Open();
             SqlCommand com = new SqlCommand(command, con);
             com.ExecuteNonQuery();

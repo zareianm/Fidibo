@@ -12,7 +12,7 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <Border x:Name="Welcome_Border" Grid.Column="1" Margin="5" BorderBrush="#808e9b" BorderThickness="1" Visibility="Collapsed">
+        <Border x:Name="Welcome_Border" Grid.Column="1" Margin="5" BorderBrush="#808e9b" BorderThickness="1" Visibility="Visible">
             <TextBlock Text="Welcome" FontSize="40" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#fff200" FontFamily="Tw Cen MT"/>
         </Border>
 
@@ -153,11 +153,8 @@
                             <TextBlock Text="Search by name : " Margin="25,0" Foreground="#a4b0be"/>
                             <Grid>
                                 <TextBox x:Name="Search_By_Book_Name_Box" Height="30" Width="400" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="25,35" Background="#dcdde1" BorderBrush="#fff200" BorderThickness="2"/>
-<<<<<<< HEAD
-                                <Button x:Name="Search_By_Book_Name2" Height="30" Width="60" HorizontalAlignment="Right"  VerticalAlignment="Top" Margin="30,35" Background="#0fb9b1" BorderThickness="1" Content="Search" Click="Search_By_Book_Name_Click_1"/>
-=======
+
                                 <Button x:Name="Search_By_Book_Name2" Height="30" Width="60" HorizontalAlignment="Right"  VerticalAlignment="Top" Margin="30,35" Background="#0fb9b1" BorderThickness="1" Content="Search" Click="Search_By_Book_Name2_Click"/>
->>>>>>> 1af98b1853568ac72adea7f2d5ac36798aad8804
                             </Grid>
 
                             <ScrollViewer>
@@ -284,7 +281,7 @@
                     <TextBlock Text="Enter the discount amount :" FontSize="15" Foreground="#dcdde1" Margin="20,20,20,15"/>
                     <TextBox x:Name="Discount_amount_Box_Discount"  Margin="20,0,100,0" Background="#7f8fa6" BorderThickness="0" Height="20" FontSize="15"/>
 
-                    <Button x:Name="Search_And_Set_Discount_Button" Content="Add new book to VIP section" Height="40" Margin="70,140" VerticalAlignment="Bottom" FontSize="20" Background="#95afc0" BorderThickness="0" Click="Search_And_Set_Discount_Button_Click"/>
+                    <Button x:Name="Search_And_Set_Discount_Button" Content="Set discount" Height="40" Margin="70,140" VerticalAlignment="Bottom" FontSize="20" Background="#95afc0" BorderThickness="0" Click="Search_And_Set_Discount_Button_Click"/>
 
 
                 </StackPanel>
@@ -309,10 +306,11 @@
                     <Grid>
                         <StackPanel>
                             <TextBlock Text="The rate of this book : " VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="30" Margin="25,5" Foreground="#a4b0be"/>
-                            <TextBlock x:Name="Rate_Text_Block" Text="Search by book's name : " VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="25" Margin="25,5" Foreground="#808e9b"/>
+                            <TextBlock x:Name="Rate_Text_Block" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="25" Margin="25,5" Foreground="#00cec9"/>
                             <TextBlock Text="The sale of this book : " Margin="25,5" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="30" Foreground="#a4b0be"/>
-                            <TextBlock x:Name= "Sale_Text_Block" Margin="25,5" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="25" Foreground="#808e9b"/>
-
+                            <TextBlock x:Name= "Sale_Text_Block" Margin="25,5" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="25" Foreground="#00cec9"/>
+                            <TextBlock Text="The amount of cash of this book :" Margin="25,5" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="30" Foreground="#a4b0be"/>
+                            <TextBlock x:Name="Amount_Text" Margin="25,5" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="25" Foreground="#00cec9"/>
                         </StackPanel>
                     </Grid>
                 </Border>
@@ -385,16 +383,21 @@
 
         <Border x:Name="Open_Book_Border" Grid.Column="1" Margin="5" BorderBrush="#808e9b" BorderThickness="1" Background="#1e272e"  Visibility="Collapsed">
             <Grid>
-                <WebBrowser x:Name="wb" HorizontalAlignment="Right" Width="250" Visibility="Visible" Margin="0,10,0,62"/>
-                <TextBlock x:Name="Book_Text_block" Text="boofekoor" Height="50" Width="300" Background="#1e272e" Margin="39,44,249,333" Foreground="#fff200" FontSize="45" FontFamily="Georgia" TextAlignment="Center"/>
-                <TextBlock x:Name="Writer_Text_block" Text="writer : hedayat" Width="300" Background="#1e272e" Margin="39,100,249,258" FontSize="20" TextAlignment="Center" Foreground="#0be881" FontFamily="Tw Cen MT"/>
-                <TextBlock x:Name="Year_Text_Block" Text="Year : 1325" Height="50" Width="300" Margin="39,139,249,238" FontSize="20" TextAlignment="Center" Foreground="#f368e0" FontFamily="Tw Cen MT" />
-                <TextBlock x:Name="Discount_Block_Text" Text="Discount : 20%" Height="40" FontSize="20" Foreground="#ff9f1a" Margin="10,276,310,72"/>
+                <WebBrowser x:Name="wb" HorizontalAlignment="Right" Width="250" Margin="0,10,0,62"/>
+                <TextBlock x:Name="Book_Text_block" Height="50" Width="300" Background="#1e272e" Margin="39,10,249,367" Foreground="#fff200" FontSize="45" FontFamily="Georgia" TextAlignment="Center"/>
+                <TextBlock x:Name="Writer_Text_block" Width="300" Background="#1e272e" Margin="39,66,249,292" FontSize="20" TextAlignment="Center" Foreground="#0be881" FontFamily="Tw Cen MT"/>
+                <TextBlock x:Name="Year_Text_Block" Height="50" Width="300" Margin="39,100,249,277" FontSize="20" TextAlignment="Center" Foreground="#f368e0" FontFamily="Tw Cen MT" />
+                <TextBlock x:Name="Price_Text_Block"  Height="50" Width="300" Margin="39,125,249,252" TextAlignment="Center" FontSize="16" Foreground="#fdcb6e"/>
+                <TextBlock x:Name="Discount_Block_Text" Height="40" FontSize="20" Foreground="#ff9f1a" Margin="10,276,310,72"/>
                 <Button x:Name="Open_PDF_Button" Height="30" Width="100" Margin="139,250,349,147" Content="Open PDF" Background="#54a0ff" BorderThickness="0" Click="Open_PDF_Button_Click"/>
-                <TextBlock x:Name="Is_VIP_Block_Text" Height="50" Margin="277,276,255,62" Text="VIP" Foreground="#32ff7e" FontSize="30"/>
-                <TextBlock x:Name="summary_Text_Block" Margin="28,169,294,208" Foreground="#ced6e0" Height="50"/>
+                <TextBlock x:Name="Is_VIP_Block_Text" Height="50" Margin="277,276,255,62" Text="VIP" Foreground="#32ff7e" FontSize="30" Visibility="Collapsed"/>
+                <TextBlock x:Name="summary_Text_Block" TextWrapping="Wrap" Margin="28,169,294,208" Foreground="#ced6e0" Height="50"/>
                 <WebBrowser x:Name="PDF_Webbrowser"  Margin="0,0,0,50" Visibility="Collapsed"/>
                 <Button x:Name="Close_PDF_Button" Content="Close"  Height="30" Margin="216,382,216,15" Background="#eb3b5a" BorderThickness="0" Visibility="Collapsed" Click="Close_PDF_Button_Click"/>
+                <Button x:Name="View_Sample_Button" Height="30" Width="150" Margin="28,370,410,27" Content="View sample" Background="#D980FA" BorderThickness="0" Click="View_Sample_Button_Click"/>
+                <WebBrowser x:Name="View_Sample_Webbrowser"  Margin="0,0,0,50" Visibility="Collapsed"/>
+                <Button x:Name="Close_Sample_Button" Content="Close" Height="30" Margin="216,354,216,10" Background="#eb3b5a" BorderThickness="0" Visibility="Collapsed" Click="Close_Sample_Button_Click"/>
+
             </Grid>
         </Border>
 

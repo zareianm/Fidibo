@@ -25,7 +25,7 @@ namespace Fidibo
         public MainWindow()
         {
             string command = "select * from T_Customers";
-            SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Ali\Fidibo\Fidibo\Resources\data.mdf;Integrated Security=True");
+            SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=F:\aphw\Fidibo\Fidibo\Resources\data.mdf;Integrated Security=True");
             con.Open();
             SqlDataAdapter adapter = new SqlDataAdapter(command, con);
             DataTable data = new DataTable();
@@ -33,12 +33,12 @@ namespace Fidibo
 
             for (int i = 0; i < data.Rows.Count; i++)
             {
-                new Customer_Class(data.Rows[i][0].ToString(), data.Rows[i][1].ToString(), data.Rows[i][2].ToString(), data.Rows[i][3].ToString(), double.Parse(data.Rows[i][4].ToString()), data.Rows[i][5].ToString(), data.Rows[i][6].ToString(), data.Rows[i][7].ToString(),int.Parse(data.Rows[i][8].ToString()),int.Parse(data.Rows[i][9].ToString()),int.Parse(data.Rows[i][10].ToString()));
+                new Customer_Class(data.Rows[i][0].ToString(), data.Rows[i][1].ToString(), data.Rows[i][2].ToString(), data.Rows[i][3].ToString(), double.Parse(data.Rows[i][4].ToString()), data.Rows[i][5].ToString(), data.Rows[i][6].ToString(), data.Rows[i][7].ToString(),int.Parse(data.Rows[i][8].ToString()),int.Parse(data.Rows[i][9].ToString()),int.Parse(data.Rows[i][10].ToString()), data.Rows[i][11].ToString());
             }
             con.Close();
 
             string command2 = "select * from T_Books";
-            SqlConnection con2 = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Ali\Fidibo\Fidibo\Resources\data.mdf;Integrated Security=True");
+            SqlConnection con2 = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=F:\aphw\Fidibo\Fidibo\Resources\data.mdf;Integrated Security=True");
             con2.Open();
             SqlDataAdapter adapter2 = new SqlDataAdapter(command2, con2);
             DataTable data2 = new DataTable();
@@ -89,7 +89,7 @@ namespace Fidibo
             if (admin_password_box.Password == "1234" && admin_email_box.Text == "Admin@gmail.com")
             {
                 string command = "select * from T_Admin where Email = '" + admin_email_box.Text + "'";
-                SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Ali\Fidibo\Fidibo\Resources\data.mdf;Integrated Security=True");
+                SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=F:\aphw\Fidibo\Fidibo\Resources\data.mdf;Integrated Security=True");
                 con.Open();
                 SqlDataAdapter adapter = new SqlDataAdapter(command, con);
                 DataTable data = new DataTable();
@@ -115,7 +115,7 @@ namespace Fidibo
         private void Customer_Login_Button_Click(object sender, RoutedEventArgs e)
         {
             string command = "select * from T_Customers where Email = '" + customer_email_box.Text + "'";
-            SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Ali\Fidibo\Fidibo\Resources\data.mdf;Integrated Security=True");
+            SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=F:\aphw\Fidibo\Fidibo\Resources\data.mdf;Integrated Security=True");
             con.Open();
             SqlDataAdapter adapter = new SqlDataAdapter(command, con);
             DataTable data = new DataTable();

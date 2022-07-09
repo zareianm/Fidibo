@@ -200,7 +200,7 @@ namespace Fidibo
                 Show_VIP_Border.Visibility = Visibility.Collapsed;
 
                 string command = "select * from T_Admin";
-                SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Ali\Fidibo\Fidibo\Resources\data.mdf;Integrated Security=True");
+                SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=F:\aphw\Fidibo\Fidibo\Resources\data.mdf;Integrated Security=True");
                 con.Open();
                 SqlDataAdapter adapter = new SqlDataAdapter(command, con);
                 DataTable data = new DataTable();
@@ -432,10 +432,32 @@ namespace Fidibo
                 summary_Text_Block.Text = b.summary;
 
                 if (customer.buyedBooks.Contains(b.name))
+                {
                     Add_To_Cart_Or_Read_Button.Content = "Read";
-                else
-                    Add_To_Cart_Or_Read_Button.Content = "Buy " + b.price + "$";
 
+                    Submit_Score_Button.Visibility = Visibility.Visible;
+                    Score_Text_Box.Visibility = Visibility.Visible;
+
+                    string[] v = customer.rates.Split(' ');
+
+                    string[] w = customer.buyedBooks.Split(' ');
+
+                    int j = 0;
+
+                    for (; j < w.Length; j++)
+                    {
+                        if (w[j] == b.name)
+                            break;
+                    }
+
+                    Score_Text_Box.Text = v[j];
+                }
+                else
+                {
+                    Add_To_Cart_Or_Read_Button.Content = "Buy " + b.price + "$";
+                    Submit_Score_Button.Visibility = Visibility.Collapsed;
+                    Score_Text_Box.Visibility = Visibility.Collapsed;
+                }
                 if (customer.markedBooks.Contains(b.name))
                 {
                     Uri resourceUri = new Uri("Resources/fullbookmark.PNG", UriKind.Relative);
@@ -453,7 +475,7 @@ namespace Fidibo
                 else
                     Is_VIP_Block_Text.Visibility = Visibility.Collapsed;
 
-                if (b.discount != 0 && b.discount.ToString() != "")
+                if (b.discount != 0 && b.discount.ToString() != "" && !customer.buyedBooks.Contains(b.name))
                 {
                     Discount_Block_Text.Text = "Discount: " + b.discount + "%";
                     Discount_Block_Text.Visibility = Visibility.Visible;
@@ -521,9 +543,11 @@ namespace Fidibo
                     PDF_Webbrowser.Source = i;
                     PDF_Webbrowser.Visibility = Visibility.Visible;
                     Close_PDF_Button.Visibility = Visibility.Visible;
+
                 }
                 else
                 {
+
                     if (!customer.buyedBooks.Contains(b.name))
                     {
                         if (!customer.cart.Contains(b.name))
@@ -579,8 +603,8 @@ namespace Fidibo
                 double a = 0;
                 for (int i = 0; i < s.Length; i++)
                 {
-                    if(Book_Class.IndexOfBook(s[i]) != -1)
-                    a += Book_Class.books[Book_Class.IndexOfBook(s[i])].price * (100 - Book_Class.books[Book_Class.IndexOfBook(s[i])].discount) * 0.01;
+                    if (Book_Class.IndexOfBook(s[i]) != -1)
+                        a += Book_Class.books[Book_Class.IndexOfBook(s[i])].price * (100 - Book_Class.books[Book_Class.IndexOfBook(s[i])].discount) * 0.01;
                 }
 
                 Amount_Of_Money_To_Pay.Text = a + "$";
@@ -693,7 +717,7 @@ namespace Fidibo
                     Amount_Of_Money_To_Pay.Text = "0$";
 
                     string command = "select * from T_Admin";
-                    SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Ali\Fidibo\Fidibo\Resources\data.mdf;Integrated Security=True");
+                    SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=F:\aphw\Fidibo\Fidibo\Resources\data.mdf;Integrated Security=True");
                     con.Open();
                     SqlDataAdapter adapter = new SqlDataAdapter(command, con);
                     DataTable data = new DataTable();
@@ -704,7 +728,7 @@ namespace Fidibo
 
                     string c = "update T_Admin set Safe_Cash = '" + d + "'";
 
-                    SqlConnection con2 = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Ali\Fidibo\Fidibo\Resources\data.mdf;Integrated Security=True");
+                    SqlConnection con2 = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=F:\aphw\Fidibo\Fidibo\Resources\data.mdf;Integrated Security=True");
                     con2.Open();
                     SqlCommand com = new SqlCommand(c, con2);
                     com.BeginExecuteNonQuery();
@@ -724,6 +748,13 @@ namespace Fidibo
 
                     customer.buyedBooks += customer.cart;
                     customer.cart = "";
+
+                    for (int i = 0; i < s.Length; i++)
+                    {
+                        if (s[i] != "")
+                            customer.rates += "0 ";
+                    }
+
                     Customer_Class.UpdateCustomerTable(customer.email, customer);
 
                     MessageBox.Show("Payed succesfully");
@@ -751,7 +782,7 @@ namespace Fidibo
                 }
                 Amount_Of_Money_Box2.Text = a + "$";
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
@@ -801,7 +832,7 @@ namespace Fidibo
                 }
 
                 string command = "select * from T_Admin";
-                SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Ali\Fidibo\Fidibo\Resources\data.mdf;Integrated Security=True");
+                SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=F:\aphw\Fidibo\Fidibo\Resources\data.mdf;Integrated Security=True");
                 con.Open();
                 SqlDataAdapter adapter = new SqlDataAdapter(command, con);
                 DataTable data = new DataTable();
@@ -813,7 +844,7 @@ namespace Fidibo
                 string c = "update T_Admin set Safe_Cash = '" + d + "'  where Email = '" + "Admin@gmail.com" + "'";
 
 
-                SqlConnection con2 = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Ali\Fidibo\Fidibo\Resources\data.mdf;Integrated Security=True");
+                SqlConnection con2 = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=F:\aphw\Fidibo\Fidibo\Resources\data.mdf;Integrated Security=True");
                 con2.Open();
                 SqlCommand com = new SqlCommand(c, con2);
                 com.BeginExecuteNonQuery();
@@ -840,9 +871,16 @@ namespace Fidibo
 
                 customer.buyedBooks += customer.cart;
                 customer.cart = "";
+
+                for (int i = 0; i < s2.Length; i++)
+                {
+                    if (s2[i] != "")
+                        customer.rates += "0 ";
+                }
+
                 Customer_Class.UpdateCustomerTable(customer.email, customer);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
@@ -859,7 +897,7 @@ namespace Fidibo
             try
             {
                 string command = "select * from T_Admin";
-                SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Ali\Fidibo\Fidibo\Resources\data.mdf;Integrated Security=True");
+                SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=F:\aphw\Fidibo\Fidibo\Resources\data.mdf;Integrated Security=True");
                 con.Open();
                 SqlDataAdapter adapter = new SqlDataAdapter(command, con);
                 DataTable data = new DataTable();
@@ -878,7 +916,7 @@ namespace Fidibo
 
                     string c = "update T_Admin set Safe_Cash = '" + d + "'";
 
-                    SqlConnection con2 = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Ali\Fidibo\Fidibo\Resources\data.mdf;Integrated Security=True");
+                    SqlConnection con2 = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=F:\aphw\Fidibo\Fidibo\Resources\data.mdf;Integrated Security=True");
                     con2.Open();
                     SqlCommand com = new SqlCommand(c, con2);
                     com.BeginExecuteNonQuery();
@@ -895,7 +933,7 @@ namespace Fidibo
                     MessageBox.Show("Payed succesfully");
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
@@ -914,7 +952,7 @@ namespace Fidibo
             adapter.Fill(data);
             con.Close();
 
-            Amount_Of_Money_Box3.Text = data.Rows[0][3].ToString()+"$";
+            Amount_Of_Money_Box3.Text = data.Rows[0][3].ToString() + "$";
         }
 
         private void Pay_VIP_By_Card_Button_Click(object sender, RoutedEventArgs e)
@@ -922,7 +960,7 @@ namespace Fidibo
             try
             {
                 string command = "select * from T_Admin";
-                SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Ali\Fidibo\Fidibo\Resources\data.mdf;Integrated Security=True");
+                SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=F:\aphw\Fidibo\Fidibo\Resources\data.mdf;Integrated Security=True");
                 con.Open();
                 SqlDataAdapter adapter = new SqlDataAdapter(command, con);
                 DataTable data = new DataTable();
@@ -962,7 +1000,7 @@ namespace Fidibo
 
                 string c = "update T_Admin set Safe_Cash = '" + d + "'";
 
-                SqlConnection con2 = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Ali\Fidibo\Fidibo\Resources\data.mdf;Integrated Security=True");
+                SqlConnection con2 = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=F:\aphw\Fidibo\Fidibo\Resources\data.mdf;Integrated Security=True");
                 con2.Open();
                 SqlCommand com = new SqlCommand(c, con2);
                 com.BeginExecuteNonQuery();
@@ -983,7 +1021,7 @@ namespace Fidibo
 
                 Customer_Class.UpdateCustomerTable(customer.email, customer);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
@@ -1003,6 +1041,77 @@ namespace Fidibo
             View_Sample_Webbrowser.Source = i;
             View_Sample_Webbrowser.Visibility = Visibility.Visible;
             Close_Sample_Button.Visibility = Visibility.Visible;
+        }
+
+        private void Submit_Score_Button_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (double.Parse(Score_Text_Box.Text) <= 0 || double.Parse(Score_Text_Box.Text) > 5)
+                    throw new Exception("the rate must be a number between 1 to 5 !!");
+
+                string[] v = customer.rates.Split(' ');
+
+                string[] w = customer.buyedBooks.Split(' ');
+
+                int j = 0;
+
+                for (; j < w.Length; j++)
+                {
+                    if (w[j] == b.name)
+                        break;
+                }
+
+                v[j] = Score_Text_Box.Text;
+
+                customer.rates = "";
+
+                foreach (var item in v)
+                {
+                    if (item != "")
+                        customer.rates += item + " ";
+                }
+
+                double sum = 0;
+                int count = 0;
+                for (int i = 0; i < Customer_Class.customers.Count; i++)
+                {
+                    string[] r = Customer_Class.customers[i].rates.Split(' ');
+                    string[] bs = Customer_Class.customers[i].buyedBooks.Split(' ');
+                    if (Customer_Class.customers[i].buyedBooks.Contains(b.name))
+                    {
+                        int k = 0;
+                        for (; k < bs.Length; k++)
+                        {
+                            if (bs[k] == b.name)
+                                break;
+                        }
+
+                        if (int.Parse(r[k]) != 0)
+                        {
+                            sum += int.Parse(r[k]);
+                            count++;
+                        }
+                    }
+                }
+
+                if (count == 0)
+                    b.rate = 0;
+                else
+                    b.rate = sum / count;
+
+                Customer_Class.UpdateCustomerTable(customer.email, customer);
+
+                Book_Class.UpdateBookTable(b.name, b);
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return;
+            }
+
+            MessageBox.Show("Your vote were submited !!");
         }
     }
 }
